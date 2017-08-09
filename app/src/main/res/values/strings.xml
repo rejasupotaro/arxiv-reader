@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">ArxivReader</string>
-    <string name="title_activity_main">MainActivity</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="navigation_my_papers">My papers</string>
+    <string name="navigation_viewer">Viewer</string>
+    <string name="navigation_find_papers">Find papers</string>
 </resources>

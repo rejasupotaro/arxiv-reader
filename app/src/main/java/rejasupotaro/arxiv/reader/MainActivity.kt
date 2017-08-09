@@ -3,8 +3,6 @@ package rejasupotaro.arxiv.reader
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
-import android.view.MenuItem
-import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -12,15 +10,15 @@ class MainActivity : AppCompatActivity() {
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_home -> {
-                messageTextView.setText(R.string.title_home)
+                openPaperViewFragment()
                 true
             }
             R.id.navigation_dashboard -> {
-                messageTextView.setText(R.string.title_dashboard)
+                openPaperViewFragment()
                 true
             }
             R.id.navigation_notifications -> {
-                messageTextView.setText(R.string.title_notifications)
+                openPaperFindFragment()
                 true
             }
             else -> false
@@ -31,5 +29,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
+        openPaperViewFragment()
+    }
+
+    private fun openPaperViewFragment() {
+        supportFragmentManager.beginTransaction()
+                .replace(R.id.content, PaperViewFragment())
+                .commit()
+    }
+
+    private fun openPaperFindFragment() {
+        supportFragmentManager.beginTransaction()
+                .replace(R.id.content, PaperFindFragment())
+                .commit()
     }
 }
