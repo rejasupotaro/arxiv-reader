@@ -1,4 +1,4 @@
-package rejasupotaro.arxiv.reader
+package rejasupotaro.arxiv.reader.ui.paper.view
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_paper_view.*
+import rejasupotaro.arxiv.reader.R
 
 class PaperViewFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
