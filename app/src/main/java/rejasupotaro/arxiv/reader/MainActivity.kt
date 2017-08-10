@@ -1,14 +1,13 @@
 package rejasupotaro.arxiv.reader
 
+import android.arch.lifecycle.LifecycleActivity
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
-import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import rejasupotaro.arxiv.reader.ui.paper.find.PaperFindFragment
 import rejasupotaro.arxiv.reader.ui.paper.view.PaperViewFragment
 
-class MainActivity : AppCompatActivity() {
-
+class MainActivity : LifecycleActivity() {
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_home -> {
