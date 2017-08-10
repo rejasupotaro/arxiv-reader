@@ -15,6 +15,10 @@ class PaperFindFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        ApiClient().request()
+        object : Thread() {
+            override fun run() {
+                ApiClient().search()
+            }
+        }.start()
     }
 }
