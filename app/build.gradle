@@ -31,13 +31,24 @@ dependencies {
     compile('com.stanfy:gson-xml-java:0.1.+') {
         exclude group: 'xmlpull', module: 'xmlpull'
     }
+    compile "android.arch.lifecycle:runtime:$arch_version"
+    compile "android.arch.lifecycle:extensions:$arch_version"
+
+    annotationProcessor "android.arch.lifecycle:compiler:$arch_version"
 
     testCompile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     testCompile 'junit:junit:4.12'
+    testCompile ("android.arch.core:core-testing:$arch_version", {
+        exclude group: 'com.android.support', module: 'support-compat'
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'com.android.support', module: 'support-core-utils'
+    })
 
     androidTestCompile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    androidTestCompile("android.arch.core:core-testing:$arch_version", {
     })
 }
 
