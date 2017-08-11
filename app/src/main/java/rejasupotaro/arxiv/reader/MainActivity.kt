@@ -4,23 +4,21 @@ import android.arch.lifecycle.LifecycleActivity
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
-import rejasupotaro.arxiv.reader.ui.my_paper.MyPaperListFragment
-import rejasupotaro.arxiv.reader.ui.paper.find.PaperFindFragment
-import rejasupotaro.arxiv.reader.ui.paper.view.PaperViewFragment
+import rejasupotaro.arxiv.reader.ui.common.NavigationController
 
 class MainActivity : LifecycleActivity() {
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_my_papers -> {
-                openMyPaperListFragment()
+                NavigationController.navigateToMyPapers()
                 true
             }
-            R.id.navigation_dashboard -> {
-                openPaperViewFragment()
+            R.id.navigation_viewer -> {
+                NavigationController.navigateToViewer()
                 true
             }
-            R.id.navigation_notifications -> {
-                openPaperFindFragment()
+            R.id.navigation_find_papers -> {
+                NavigationController.navigateToSearch()
                 true
             }
             else -> false
@@ -30,25 +28,7 @@ class MainActivity : LifecycleActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        NavigationController.init(this)
         bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
-        openPaperViewFragment()
-    }
-
-    private fun openMyPaperListFragment() {
-        supportFragmentManager.beginTransaction()
-                .replace(R.id.content, MyPaperListFragment())
-                .commit()
-    }
-
-    private fun openPaperViewFragment() {
-        supportFragmentManager.beginTransaction()
-                .replace(R.id.content, PaperViewFragment())
-                .commit()
-    }
-
-    private fun openPaperFindFragment() {
-        supportFragmentManager.beginTransaction()
-                .replace(R.id.content, PaperFindFragment())
-                .commit()
     }
 }
