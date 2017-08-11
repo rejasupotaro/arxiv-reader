@@ -1,0 +1,43 @@
+<entry>
+    <id>http://arxiv.org/abs/1204.5852v1</id>
+    <updated>2012-04-26T07:44:18Z</updated>
+    <published>2012-04-26T07:44:18Z</published>
+    <title>Context-sensitive Spelling Correction Using Google Web 1T 5-Gram Information</title>
+    <summary>In computing, spell checking is the process of detecting and sometimes
+        providing spelling suggestions for incorrectly spelled words in a text.
+        Basically, a spell checker is a computer program that uses a dictionary of
+        words to perform spell checking. The bigger the dictionary is, the higher is
+        the error detection rate. The fact that spell checkers are based on regular
+        dictionaries, they suffer from data sparseness problem as they cannot capture
+        large vocabulary of words including proper names, domain-specific terms,
+        technical jargons, special acronyms, and terminologies. As a result, they
+        exhibit low error detection rate and often fail to catch major errors in the
+        text. This paper proposes a new context-sensitive spelling correction method
+        for detecting and correcting non-word and real-word errors in digital text
+        documents. The approach hinges around data statistics from Google Web 1T 5-gram
+        data set which consists of a big volume of n-gram word sequences, extracted
+        from the World Wide Web. Fundamentally, the proposed method comprises an error
+        detector that detects misspellings, a candidate spellings generator based on a
+        character 2-gram model that generates correction suggestions, and an error
+        corrector that performs contextual error correction. Experiments conducted on a
+        set of text documents from different domains and containing misspellings,
+        showed an outstanding spelling error correction rate and a drastic reduction of
+        both non-word and real-word errors. In a further study, the proposed algorithm
+        is to be parallelized so as to lower the computational cost of the error
+        detection and correction processes.</summary>
+    <author>
+        <name>Youssef Bassil</name>
+    </author>
+    <author>
+        <name>Mohammad Alwani</name>
+    </author>
+    <arxiv:doi xmlns:arxiv="http://arxiv.org/schemas/atom">10.5539/cis.v5n3p37</arxiv:doi>
+    <link title="doi" href="http://dx.doi.org/10.5539/cis.v5n3p37" rel="related" />
+    <arxiv:comment xmlns:arxiv="http://arxiv.org/schemas/atom">LACSC - Lebanese Association for Computational Sciences -
+        http://www.lacsc.org</arxiv:comment>
+    <arxiv:journal_ref xmlns:arxiv="http://arxiv.org/schemas/atom">Computer and Information Science, Vol. 5, No. 3, May 2012</arxiv:journal_ref>
+    <link href="http://arxiv.org/abs/1204.5852v1" rel="alternate" type="text/html" />
+    <link title="pdf" href="http://arxiv.org/pdf/1204.5852v1" rel="related" type="application/pdf" />
+    <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom" term="cs.CL" scheme="http://arxiv.org/schemas/atom" />
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom" />
+</entry>

@@ -11,4 +11,3 @@ data class ApiResponse(
         @SerializedName("<opensearch>startIndex") val startIndex: Int,
         @SerializedName("<opensearch>itemsPerPage") val itemPerPage: Int
 )
-

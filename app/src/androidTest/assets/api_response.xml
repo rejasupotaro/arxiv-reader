@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <link href="http://arxiv.org/api/query?search_query%3Dall%3Aspelling%26id_list%3D%26start%3D0%26max_results%3D10"
+            rel="self"
+            type="application/atom+xml" />
+    <title type="html">ArXiv Query: search_query=all:spelling&amp;id_list=&amp;start=0&amp;max_results=10</title>
+    <id>http://arxiv.org/api/dGTJJqWuqiHLrncuWvptJXI0CSM</id>
+    <updated>2017-08-11T00:00:00-04:00</updated>
+    <opensearch:totalResults xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">550</opensearch:totalResults>
+    <opensearch:startIndex xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">0</opensearch:startIndex>
+    <opensearch:itemsPerPage xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">10</opensearch:itemsPerPage>
+    <entry>
+        <id>http://arxiv.org/abs/1204.5852v1</id>
+        <updated>2012-04-26T07:44:18Z</updated>
+        <published>2012-04-26T07:44:18Z</published>
+        <title>Context-sensitive Spelling Correction Using Google Web 1T 5-Gram Information
+        </title>
+        <summary>In computing, spell checking is the process of detecting and sometimes
+            providing spelling suggestions for incorrectly spelled words in a text.
+            Basically, a spell checker is a computer program that uses a dictionary of
+            words to perform spell checking. The bigger the dictionary is, the higher is
+            the error detection rate. The fact that spell checkers are based on regular
+            dictionaries, they suffer from data sparseness problem as they cannot capture
+            large vocabulary of words including proper names, domain-specific terms,
+            technical jargons, special acronyms, and terminologies. As a result, they
+            exhibit low error detection rate and often fail to catch major errors in the
+            text. This paper proposes a new context-sensitive spelling correction method
+            for detecting and correcting non-word and real-word errors in digital text
+            documents. The approach hinges around data statistics from Google Web 1T 5-gram
+            data set which consists of a big volume of n-gram word sequences, extracted
+            from the World Wide Web. Fundamentally, the proposed method comprises an error
+            detector that detects misspellings, a candidate spellings generator based on a
+            character 2-gram model that generates correction suggestions, and an error
+            corrector that performs contextual error correction. Experiments conducted on a
+            set of text documents from different domains and containing misspellings,
+            showed an outstanding spelling error correction rate and a drastic reduction of
+            both non-word and real-word errors. In a further study, the proposed algorithm
+            is to be parallelized so as to lower the computational cost of the error
+            detection and correction processes.
+        </summary>
+        <author>
+            <name>Youssef Bassil</name>
+        </author>
+        <author>
+            <name>Mohammad Alwani</name>
+        </author>
+        <arxiv:doi xmlns:arxiv="http://arxiv.org/schemas/atom">10.5539/cis.v5n3p37</arxiv:doi>
+        <link href="http://dx.doi.org/10.5539/cis.v5n3p37"
+                rel="related"
+                title="doi" />
+        <arxiv:comment xmlns:arxiv="http://arxiv.org/schemas/atom">LACSC - Lebanese Association for Computational Sciences -
+            http://www.lacsc.org
+        </arxiv:comment>
+        <arxiv:journal_ref xmlns:arxiv="http://arxiv.org/schemas/atom">Computer and Information Science, Vol. 5, No. 3, May
+            2012
+        </arxiv:journal_ref>
+        <link href="http://arxiv.org/abs/1204.5852v1"
+                rel="alternate"
+                type="text/html" />
+        <link href="http://arxiv.org/pdf/1204.5852v1"
+                rel="related"
+                title="pdf"
+                type="application/pdf" />
+        <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom"
+                scheme="http://arxiv.org/schemas/atom"
+                term="cs.CL" />
+        <category scheme="http://arxiv.org/schemas/atom"
+                term="cs.CL" />
+    </entry>
+    <entry>
+        <id>http://arxiv.org/abs/1611.08358v1</id>
+        <updated>2016-11-25T06:18:29Z</updated>
+        <published>2016-11-25T06:18:29Z</published>
+        <title>Kannada Spell Checker with Sandhi Splitter</title>
+        <summary>Spelling errors are introduced in text either during typing, or when the user
+            does not know the correct phoneme or grapheme. If a language contains complex
+            words like sandhi where two or more morphemes join based on some rules, spell
+            checking becomes very tedious. In such situations, having a spell checker with
+            sandhi splitter which alerts the user by flagging the errors and providing
+            suggestions is very useful. A novel algorithm of sandhi splitting is proposed
+            in this paper. The sandhi splitter can split about 7000 most common sandhi
+            words in Kannada language used as test samples. The sandhi splitter was
+            integrated with a Kannada spell checker and a mechanism for generating
+            suggestions was added. A comprehensive, platform independent, standalone spell
+            checker with sandhi splitter application software was thus developed and tested
+            extensively for its efficiency and correctness. A comparative analysis of this
+            spell checker with sandhi splitter was made and results concluded that the
+            Kannada spell checker with sandhi splitter has an improved performance. It is
+            twice as fast, 200 times more space efficient, and it is 90% accurate in case
+            of complex nouns and 50% accurate for complex verbs. Such a spell checker with
+            sandhi splitter will be of foremost significance in machine translation
+            systems, voice processing, etc. This is the first sandhi splitter in Kannada
+            and the advantage of the novel algorithm is that, it can be extended to all
+            Indian languages.
+        </summary>
+        <author>
+            <name>A N Akshatha</name>
+        </author>
+        <author>
+            <name>Chandana G Upadhyaya</name>
+        </author>
+        <author>
+            <name>Rajashekara S Murthy</name>
+        </author>
+        <arxiv:comment xmlns:arxiv="http://arxiv.org/schemas/atom">7 pages, 10 figures</arxiv:comment>
+        <link href="http://arxiv.org/abs/1611.08358v1"
+                rel="alternate"
+                type="text/html" />
+        <link href="http://arxiv.org/pdf/1611.08358v1"
+                rel="related"
+                title="pdf"
+                type="application/pdf" />
+        <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom"
+                scheme="http://arxiv.org/schemas/atom"
+                term="cs.CL" />
+        <category scheme="http://arxiv.org/schemas/atom"
+                term="cs.CL" />
+    </entry>
+    <entry>
+        <id>http://arxiv.org/abs/1204.0184v1</id>
+        <updated>2012-04-01T09:28:20Z</updated>
+        <published>2012-04-01T09:28:20Z</published>
+        <title>Parallel Spell-Checking Algorithm Based on Yahoo! N-Grams Dataset</title>
+        <summary>Spell-checking is the process of detecting and sometimes providing
+            suggestions for incorrectly spelled words in a text. Basically, the larger the
+            dictionary of a spell-checker is, the higher is the error detection rate;
+            otherwise, misspellings would pass undetected. Unfortunately, traditional
+            dictionaries suffer from out-of-vocabulary and data sparseness problems as they
+            do not encompass large vocabulary of words indispensable to cover proper names,
+            domain-specific terms, technical jargons, special acronyms, and terminologies.
+            As a result, spell-checkers will incur low error detection and correction rate
+            and will fail to flag all errors in the text. This paper proposes a new
+            parallel shared-memory spell-checking algorithm that uses rich real-world word
+            statistics from Yahoo! N-Grams Dataset to correct non-word and real-word errors
+            in computer text. Essentially, the proposed algorithm can be divided into three
+            sub-algorithms that run in a parallel fashion: The error detection algorithm
+            that detects misspellings, the candidates generation algorithm that generates
+            correction suggestions, and the error correction algorithm that performs
+            contextual error correction. Experiments conducted on a set of text articles
+            containing misspellings, showed a remarkable spelling error correction rate
+            that resulted in a radical reduction of both non-word and real-word errors in
+            electronic text. In a further study, the proposed algorithm is to be optimized
+            for message-passing systems so as to become more flexible and less costly to
+            scale over distributed machines.
+        </summary>
+        <author>
+            <name>Youssef Bassil</name>
+        </author>
+        <arxiv:comment xmlns:arxiv="http://arxiv.org/schemas/atom">LACSC - Lebanese Association for Computational Sciences,
+            http://www.lacsc.org/; International Journal of Research and Reviews in
+            Computer Science (IJRRCS), Vol. 3, No. 1, February 2012
+        </arxiv:comment>
+        <link href="http://arxiv.org/abs/1204.0184v1"
+                rel="alternate"
+                type="text/html" />
+        <link href="http://arxiv.org/pdf/1204.0184v1"
+                rel="related"
+                title="pdf"
+                type="application/pdf" />
+        <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom"
+                scheme="http://arxiv.org/schemas/atom"
+                term="cs.CL" />
+        <category scheme="http://arxiv.org/schemas/atom"
+                term="cs.CL" />
+    </entry>
+    <entry>
+        <id>http://arxiv.org/abs/1610.00259v1</id>
+        <updated>2016-10-02T11:08:10Z</updated>
+        <published>2016-10-02T11:08:10Z</published>
+        <title>Hysteresis and Duration Dependence of Financial Crises in the US:
+            Evidence from 1871-2016
+        </title>
+        <summary>This study analyses the duration dependence of events that trigger volatility
+            persistence in stock markets. Such events, in our context, are monthly spells
+            of contiguous price decline or negative returns for the S&amp;P500 stock market
+            index over the last 145 years. Factors known to affect the duration of these
+            spells are the magnitude or intensity of the price decline, long-term interest
+            rates and economic recessions, among others. The result of interest is the
+            conditional probability of ending a spell of consecutive months over which
+            stock market returns remain negative. In this study, we rely on continuous time
+            survival models in order to investigate this question. Several specifications
+            were attempted, some of which under the proportional hazards assumption and
+            others under the accelerated failure time assumption. The best fit of the
+            various models endeavored was obtained for the log-normal distribution. This
+            distribution yields a non-monotonic hazard function that increases up to a
+            maximum and then decreases. The peak is achieved 2-3 months after the spells
+            onset with a hazard of around 0.9 or higher; this hazard then decays
+            asymptotically to zero. Spells duration increase during recessions, when
+            interest rate rises and when price declines are more intense. The main
+            conclusion is that short spells of negative returns appear to be mainly
+            frictional while long spells become structural and trigger hysteresis effects
+            after an initial period of adjustment. Although in line with our expectations,
+            these results may be of some importance for policy-makers.
+        </summary>
+        <author>
+            <name>Rui Menezes</name>
+        </author>
+        <author>
+            <name>Sonia Bentes</name>
+        </author>
+        <arxiv:comment xmlns:arxiv="http://arxiv.org/schemas/atom">59 pages, 10 figures, 4 tables</arxiv:comment>
+        <link href="http://arxiv.org/abs/1610.00259v1"
+                rel="alternate"
+                type="text/html" />
+        <link href="http://arxiv.org/pdf/1610.00259v1"
+                rel="related"
+                title="pdf"
+                type="application/pdf" />
+        <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom"
+                scheme="http://arxiv.org/schemas/atom"
+                term="q-fin.ST" />
+        <category scheme="http://arxiv.org/schemas/atom"
+                term="q-fin.ST" />
+    </entry>
+    <entry>
+        <id>http://arxiv.org/abs/1408.3153v2</id>
+        <updated>2014-08-15T15:06:38Z</updated>
+        <published>2014-08-13T22:09:23Z</published>
+        <title>Detection is the central problem in real-word spelling correction</title>
+        <summary>Real-word spelling correction differs from non-word spelling correction in
+            its aims and its challenges. Here we show that the central problem in real-word
+            spelling correction is detection. Methods from non-word spelling correction,
+            which focus instead on selection among candidate corrections, do not address
+            detection adequately, because detection is either assumed in advance or heavily
+            constrained. As we demonstrate in this paper, merely discriminating between the
+            intended word and a random close variation of it within the context of a
+            sentence is a task that can be performed with high accuracy using
+            straightforward models. Trigram models are sufficient in almost all cases. The
+            difficulty comes when every word in the sentence is a potential error, with a
+            large set of possible candidate corrections. Despite their strengths, trigram
+            models cannot reliably find true errors without introducing many more, at least
+            not when used in the obvious sequential way without added structure. The
+            detection task exposes weakness not visible in the selection task.
+        </summary>
+        <author>
+            <name>L. Amber Wilcox-O'Hearn</name>
+        </author>
+        <link href="http://arxiv.org/abs/1408.3153v2"
+                rel="alternate"
+                type="text/html" />
+        <link href="http://arxiv.org/pdf/1408.3153v2"
+                rel="related"
+                title="pdf"
+                type="application/pdf" />
+        <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom"
+                scheme="http://arxiv.org/schemas/atom"
+                term="cs.CL" />
+        <category scheme="http://arxiv.org/schemas/atom"
+                term="cs.CL" />
+    </entry>
+    <entry>
+        <id>http://arxiv.org/abs/1610.07844v1</id>
+        <updated>2016-10-25T12:30:26Z</updated>
+        <published>2016-10-25T12:30:26Z</published>
+        <title>Improving historical spelling normalization with bi-directional LSTMs
+            and multi-task learning
+        </title>
+        <summary>Natural-language processing of historical documents is complicated by the
+            abundance of variant spellings and lack of annotated data. A common approach is
+            to normalize the spelling of historical words to modern forms. We explore the
+            suitability of a deep neural network architecture for this task, particularly a
+            deep bi-LSTM network applied on a character level. Our model compares well to
+            previously established normalization algorithms when evaluated on a diverse set
+            of texts from Early New High German. We show that multi-task learning with
+            additional normalization data can improve our model's performance further.
+        </summary>
+        <author>
+            <name>Marcel Bollmann</name>
+        </author>
+        <author>
+            <name>Anders Søgaard</name>
+        </author>
+        <arxiv:comment xmlns:arxiv="http://arxiv.org/schemas/atom">Accepted to COLING 2016</arxiv:comment>
+        <link href="http://arxiv.org/abs/1610.07844v1"
+                rel="alternate"
+                type="text/html" />
+        <link href="http://arxiv.org/pdf/1610.07844v1"
+                rel="related"
+                title="pdf"
+                type="application/pdf" />
+        <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom"
+                scheme="http://arxiv.org/schemas/atom"
+                term="cs.CL" />
+        <category scheme="http://arxiv.org/schemas/atom"
+                term="cs.CL" />
+    </entry>
+    <entry>
+        <id>http://arxiv.org/abs/1407.1824v1</id>
+        <updated>2014-07-07T19:55:48Z</updated>
+        <published>2014-07-07T19:55:48Z</published>
+        <title>Spelling Rules for the Monster/Semple Tower</title>
+        <summary>We further study the incidence relations that arise from the various
+            subtowers, known as Baby Monster, which exist within the
+            $\mathbb{R}^{3}$-Monster Tower. This allows us to complete the $RVT$ class
+            spelling rules. We also present a method of calculating the various Baby
+            Monster that appear within the Monster Tower.
+        </summary>
+        <author>
+            <name>Alex L. Castro</name>
+        </author>
+        <author>
+            <name>Wyatt C. Howard</name>
+        </author>
+        <arxiv:comment xmlns:arxiv="http://arxiv.org/schemas/atom">24 pages, 7 figures</arxiv:comment>
+        <link href="http://arxiv.org/abs/1407.1824v1"
+                rel="alternate"
+                type="text/html" />
+        <link href="http://arxiv.org/pdf/1407.1824v1"
+                rel="related"
+                title="pdf"
+                type="application/pdf" />
+        <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom"
+                scheme="http://arxiv.org/schemas/atom"
+                term="math.DG" />
+        <category scheme="http://arxiv.org/schemas/atom"
+                term="math.DG" />
+        <category scheme="http://arxiv.org/schemas/atom"
+                term="58A30, 58A17, 58K50" />
+    </entry>
+    <entry>
+        <id>http://arxiv.org/abs/1407.6639v3</id>
+        <updated>2015-12-09T23:38:21Z</updated>
+        <published>2014-07-24T16:26:45Z</published>
+        <title>How the Voynich Manuscript was created</title>
+        <summary>The Voynich manuscript is a medieval book written in an unknown script. This
+            paper studies the relation between similarly spelled words in the Voynich
+            manuscript. By means of a detailed analysis of similar spelled words it was
+            possible to reveal the text generation method used for the Voynich manuscript.
+        </summary>
+        <author>
+            <name>Torsten Timm</name>
+        </author>
+        <arxiv:comment xmlns:arxiv="http://arxiv.org/schemas/atom">96 pages, 17 figures, revised version</arxiv:comment>
+        <link href="http://arxiv.org/abs/1407.6639v3"
+                rel="alternate"
+                type="text/html" />
+        <link href="http://arxiv.org/pdf/1407.6639v3"
+                rel="related"
+                title="pdf"
+                type="application/pdf" />
+        <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom"
+                scheme="http://arxiv.org/schemas/atom"
+                term="cs.CR" />
+        <category scheme="http://arxiv.org/schemas/atom"
+                term="cs.CR" />
+        <category scheme="http://arxiv.org/schemas/atom"
+                term="cs.CL" />
+    </entry>
+    <entry>
+        <id>http://arxiv.org/abs/1606.08270v1</id>
+        <updated>2016-06-27T13:39:54Z</updated>
+        <published>2016-06-27T13:39:54Z</published>
+        <title>Evaluating Informal-Domain Word Representations With UrbanDictionary</title>
+        <summary>Existing corpora for intrinsic evaluation are not targeted towards tasks in
+            informal domains such as Twitter or news comment forums. We want to test
+            whether a representation of informal words fulfills the promise of eliding
+            explicit text normalization as a preprocessing step. One possible evaluation
+            metric for such domains is the proximity of spelling variants. We propose how
+            such a metric might be computed and how a spelling variant dataset can be
+            collected using UrbanDictionary.
+        </summary>
+        <author>
+            <name>Naomi Saphra</name>
+        </author>
+        <author>
+            <name>Adam Lopez</name>
+        </author>
+        <link href="http://arxiv.org/abs/1606.08270v1"
+                rel="alternate"
+                type="text/html" />
+        <link href="http://arxiv.org/pdf/1606.08270v1"
+                rel="related"
+                title="pdf"
+                type="application/pdf" />
+        <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom"
+                scheme="http://arxiv.org/schemas/atom"
+                term="cs.CL" />
+        <category scheme="http://arxiv.org/schemas/atom"
+                term="cs.CL" />
+    </entry>
+    <entry>
+        <id>http://arxiv.org/abs/cmp-lg/9410004v2</id>
+        <updated>1994-10-07T07:13:03Z</updated>
+        <published>1994-10-06T07:41:44Z</published>
+        <title>Spelling Correction in Agglutinative Languages</title>
+        <summary>This paper presents an approach to spelling correction in agglutinative
+            languages that is based on two-level morphology and a dynamic programming based
+            search algorithm. Spelling correction in agglutinative languages is
+            significantly different than in languages like English. The concept of a word
+            in such languages is much wider that the entries found in a dictionary, owing
+            to {}~productive word formation by derivational and inflectional affixations.
+            After an overview of certain issues and relevant mathematical preliminaries, we
+            formally present the problem and our solution. We then present results from our
+            experiments with spelling correction in Turkish, a Ural--Altaic agglutinative
+            language. Our results indicate that we can find the intended correct word in
+            95\% of the cases and offer it as the first candidate in 74\% of the cases,
+            when the edit distance is 1.
+        </summary>
+        <author>
+            <name>Kemal Oflazer</name>
+        </author>
+        <arxiv:comment xmlns:arxiv="http://arxiv.org/schemas/atom">uuencoded postscript file, poster version to appear in ANLP
+            proceedings. (Abstract now fixed)
+        </arxiv:comment>
+        <link href="http://arxiv.org/abs/cmp-lg/9410004v2"
+                rel="alternate"
+                type="text/html" />
+        <link href="http://arxiv.org/pdf/cmp-lg/9410004v2"
+                rel="related"
+                title="pdf"
+                type="application/pdf" />
+        <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom"
+                scheme="http://arxiv.org/schemas/atom"
+                term="cmp-lg" />
+        <category scheme="http://arxiv.org/schemas/atom"
+                term="cmp-lg" />
+        <category scheme="http://arxiv.org/schemas/atom"
+                term="cs.CL" />
+    </entry>
+</feed>

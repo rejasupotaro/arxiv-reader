@@ -9,4 +9,8 @@ data class Paper(
         @SerializedName("title") val title: String,
         @SerializedName("summary") val summary: String,
         @SerializedName("link") val links: List<Link>
-)
+) {
+    var downloadUrl: String = ""
+        private set
+        get() = links.filter { it.title == "pdf" }.first().href
+}
