@@ -10,9 +10,3 @@ data class Paper(
         @SerializedName("summary") val summary: String,
         @SerializedName("link") val links: List<Link>
 )
-
-data class Link(
-        @SerializedName("@title") val title: String,
-        @SerializedName("@href") val href: String,
-        @SerializedName("@rel") val rel: String
-)
