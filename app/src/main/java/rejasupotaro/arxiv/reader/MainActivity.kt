@@ -4,14 +4,15 @@ import android.arch.lifecycle.LifecycleActivity
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
+import rejasupotaro.arxiv.reader.ui.my_paper.MyPaperListFragment
 import rejasupotaro.arxiv.reader.ui.paper.find.PaperFindFragment
 import rejasupotaro.arxiv.reader.ui.paper.view.PaperViewFragment
 
 class MainActivity : LifecycleActivity() {
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
-            R.id.navigation_home -> {
-                openPaperViewFragment()
+            R.id.navigation_my_papers -> {
+                openMyPaperListFragment()
                 true
             }
             R.id.navigation_dashboard -> {
@@ -31,6 +32,12 @@ class MainActivity : LifecycleActivity() {
         setContentView(R.layout.activity_main)
         bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
         openPaperViewFragment()
+    }
+
+    private fun openMyPaperListFragment() {
+        supportFragmentManager.beginTransaction()
+                .replace(R.id.content, MyPaperListFragment())
+                .commit()
     }
 
     private fun openPaperViewFragment() {
