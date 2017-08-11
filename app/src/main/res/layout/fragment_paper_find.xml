@@ -5,10 +5,27 @@
         android:orientation="vertical"
         >
 
-    <EditText
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/spacing_medium"
-            />
+            android:orientation="horizontal"
+            >
 
+        <EditText
+                android:id="@+id/queryEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="text"
+                android:maxLines="1"
+                android:padding="@dimen/spacing_medium"
+                />
+
+        <Button
+                android:id="@+id/submitButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_submit"
+                />
+    </LinearLayout>
 </LinearLayout>

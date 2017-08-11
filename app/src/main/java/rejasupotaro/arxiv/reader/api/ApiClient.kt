@@ -9,11 +9,11 @@ import java.io.IOException
 class ApiClient {
     private val okHttpClient = OkHttpClient.Builder().build()
 
-    fun request(): LiveData<String> {
+    fun request(url: String): LiveData<String> {
         val liveData = MutableLiveData<String>()
 
         val request = Request.Builder()
-                .url("http://export.arxiv.org/api/query?search_query=all:electron")
+                .url(url)
                 .build()
         okHttpClient.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {

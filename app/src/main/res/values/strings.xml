@@ -3,4 +3,5 @@
     <string name="navigation_my_papers">My papers</string>
     <string name="navigation_viewer">Viewer</string>
     <string name="navigation_find_papers">Find papers</string>
+    <string name="button_submit">Submit</string>
 </resources>
