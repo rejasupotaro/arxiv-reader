@@ -15,7 +15,7 @@ class ResponseConverterTest {
         val paper = ResponseConverter.xmlToPaper(xml)
 
         paper.apply {
-            assertThat(id).isEqualTo("http://arxiv.org/abs/1204.5852v1")
+            assertThat(url).isEqualTo("http://arxiv.org/abs/1204.5852v1")
             assertThat(updated).isEqualTo("2012-04-26T07:44:18Z")
             assertThat(published).isEqualTo("2012-04-26T07:44:18Z")
             assertThat(title).isEqualTo("Context-sensitive Spelling Correction Using Google Web 1T 5-Gram Information")

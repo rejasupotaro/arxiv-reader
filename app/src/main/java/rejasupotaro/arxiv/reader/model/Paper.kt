@@ -3,14 +3,25 @@ package rejasupotaro.arxiv.reader.model
 import com.google.gson.annotations.SerializedName
 
 data class Paper(
-        @SerializedName("id") val id: String,
-        @SerializedName("updated") val updated: String,
-        @SerializedName("published") val published: String,
-        @SerializedName("title") val title: String,
-        @SerializedName("summary") val summary: String,
-        @SerializedName("link") val links: List<Link>
+        @SerializedName("id")
+        var url: String = "",
+
+        @SerializedName("title")
+        var title: String = "",
+
+        @SerializedName("summary")
+        var summary: String = "",
+
+        @SerializedName("link")
+        var links: List<Link> = listOf(),
+
+        @SerializedName("updated")
+        var updated: String = "",
+
+        @SerializedName("published")
+        var published: String = ""
 ) {
+    @SerializedName("download_url")
     var downloadUrl: String = ""
-        private set
         get() = links.filter { it.title == "pdf" }.first().href
 }
