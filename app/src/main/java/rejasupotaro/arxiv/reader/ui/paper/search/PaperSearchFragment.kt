@@ -3,6 +3,7 @@ package rejasupotaro.arxiv.reader.ui.paper.search
 import android.arch.lifecycle.LifecycleFragment
 import android.arch.lifecycle.Observer
 import android.os.Bundle
+import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.view.KeyEvent
 import android.view.LayoutInflater
@@ -53,11 +54,16 @@ class PaperSearchFragment : LifecycleFragment() {
                 }
         )
 
-        searchResultListView.adapter = adapter
-        searchResultListView.layoutManager = LinearLayoutManager(activity)
+        searchResultListView.apply {
+            this.adapter = adapter
+            layoutManager = LinearLayoutManager(context)
+            addItemDecoration(DividerItemDecoration(
+                    context,
+                    (layoutManager as LinearLayoutManager).orientation))
+        }
+
         viewModel.searchResults.observe(this, Observer<List<Paper>> { papers ->
             papers?.let {
-                showSearchResults(it)
                 adapter.items = papers.toMutableList()
                 adapter.notifyDataSetChanged()
             }
@@ -67,9 +73,5 @@ class PaperSearchFragment : LifecycleFragment() {
     private fun doSearch() {
         val query = queryEditText.text.toString().trim()
         viewModel.query = query
-    }
-
-    private fun showSearchResults(papers: List<Paper>) {
-        Toast.makeText(activity, "${papers.size} results found", Toast.LENGTH_SHORT).show()
     }
 }

@@ -44,7 +44,7 @@ class PaperListFragment : LifecycleFragment() {
         )
 
         paperListView.adapter = adapter
-        paperListView.layoutManager = GridLayoutManager(context, 4)
+        paperListView.layoutManager = GridLayoutManager(context, 2)
 
         viewModel.paperList().observe(this, Observer<List<Paper>> { papers ->
             papers?.let {

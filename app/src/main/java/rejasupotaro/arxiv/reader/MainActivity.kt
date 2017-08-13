@@ -10,7 +10,7 @@ class MainActivity : LifecycleActivity() {
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_paper_list -> {
-                NavigationController.navigateToPaperList()
+                NavigationController.navigateToMyPapers()
                 true
             }
             R.id.navigation_viewer -> {
@@ -30,5 +30,7 @@ class MainActivity : LifecycleActivity() {
         setContentView(R.layout.activity_main)
         NavigationController.init(this)
         bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
+
+        NavigationController.navigateToMyPapers()
     }
 }

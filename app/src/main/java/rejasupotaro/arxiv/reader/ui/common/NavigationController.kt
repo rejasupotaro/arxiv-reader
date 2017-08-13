@@ -16,7 +16,7 @@ object NavigationController {
         fragmentManager = activity.supportFragmentManager
     }
 
-    fun navigateToPaperList() {
+    fun navigateToMyPapers() {
         fragmentManager.beginTransaction()
                 .replace(containerId, PaperListFragment())
                 .commit()

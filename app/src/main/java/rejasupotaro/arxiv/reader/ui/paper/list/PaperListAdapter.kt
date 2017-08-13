@@ -1,6 +1,7 @@
 package rejasupotaro.arxiv.reader.ui.paper.list
 
 import android.support.v7.widget.RecyclerView
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,6 +33,7 @@ class PaperViewHolder(
 ) : RecyclerView.ViewHolder(itemView) {
     fun bind(paper: Paper) {
         itemView.titleTextView.text = paper.title
+        itemView.summaryTextView.text = paper.summary
         itemView.setOnClickListener { onItemClickListener.invoke(paper) }
         itemView.setOnLongClickListener { onItemLongClickListener.invoke(paper) }
     }
