@@ -8,8 +8,11 @@ import kotlinx.android.synthetic.main.list_item_search_result.view.*
 import rejasupotaro.arxiv.reader.R
 import rejasupotaro.arxiv.reader.data.model.Paper
 
-class SearchResultListAdapter(val onItemClickListener: (Paper) -> Unit) : RecyclerView.Adapter<SearchResultViewHolder>() {
-    var items = listOf<Paper>()
+class SearchResultListAdapter(
+        val onItemClickListener: (Paper) -> Unit,
+        val onItemLongClickListener: (Paper) -> Boolean = { _ -> false }
+) : RecyclerView.Adapter<SearchResultViewHolder>() {
+    var items = mutableListOf<Paper>()
     override fun getItemCount(): Int = items.size
 
     override fun onBindViewHolder(holder: SearchResultViewHolder, position: Int) {
@@ -18,14 +21,19 @@ class SearchResultListAdapter(val onItemClickListener: (Paper) -> Unit) : Recycl
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchResultViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.list_item_search_result, parent, false)
-        return SearchResultViewHolder(itemView, onItemClickListener)
+        return SearchResultViewHolder(itemView, onItemClickListener, onItemLongClickListener)
     }
 }
 
-class SearchResultViewHolder(itemView: View, val onItemClickListener: (Paper) -> Unit) : RecyclerView.ViewHolder(itemView) {
+class SearchResultViewHolder(
+        itemView: View,
+        val onItemClickListener: (Paper) -> Unit,
+        val onItemLongClickListener: (Paper) -> Boolean
+) : RecyclerView.ViewHolder(itemView) {
     fun bind(paper: Paper) {
-        itemView.setOnClickListener { onItemClickListener.invoke(paper) }
         itemView.titleTextView.text = paper.title
+        itemView.setOnClickListener { onItemClickListener.invoke(paper) }
+        itemView.setOnLongClickListener { onItemLongClickListener.invoke(paper) }
     }
 }
 

@@ -43,19 +43,21 @@ class PaperSearchFragment : LifecycleFragment() {
     }
 
     private fun setupSearchResultListView() {
-        val adapter = SearchResultListAdapter { paper ->
-            Toast.makeText(context, "Download ${paper.downloadUrl}", Toast.LENGTH_SHORT).show()
-            viewModel.download(context, paper).observe(this, Observer<Unit> {
-                Toast.makeText(context, "Download complete", Toast.LENGTH_SHORT).show()
-            })
-        }
+        val adapter = SearchResultListAdapter(
+                onItemClickListener = { paper ->
+                    Toast.makeText(context, "Download ${paper.downloadUrl}", Toast.LENGTH_SHORT).show()
+                    viewModel.download(context, paper).observe(this, Observer<Unit> {
+                        Toast.makeText(context, "Download complete", Toast.LENGTH_SHORT).show()
+                    })
+                }
+        )
 
         searchResultListView.adapter = adapter
         searchResultListView.layoutManager = LinearLayoutManager(activity)
         viewModel.searchResults.observe(this, Observer<List<Paper>> { papers ->
             papers?.let {
                 showSearchResults(it)
-                adapter.items = papers
+                adapter.items = papers.toMutableList()
                 adapter.notifyDataSetChanged()
             }
         })

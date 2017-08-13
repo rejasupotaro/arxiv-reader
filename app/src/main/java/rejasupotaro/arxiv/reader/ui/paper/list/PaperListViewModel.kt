@@ -9,7 +9,7 @@ import rejasupotaro.arxiv.reader.data.db.DbManager
 import rejasupotaro.arxiv.reader.data.model.Paper
 
 class PaperListViewModel(
-        val db: DbManager = DbManager
+        private val db: DbManager = DbManager
 
 ) : ViewModel() {
     fun paperList(): LiveData<List<Paper>> {
@@ -19,6 +19,15 @@ class PaperListViewModel(
             papers.postValue(result)
         }
         return papers
+    }
+
+    fun deletePaper(paper: Paper): LiveData<Unit> {
+        val signal = MutableLiveData<Unit>()
+        async(CommonPool) {
+            db.paperDao.delete(paper.id)
+            signal.postValue(Unit)
+        }
+        return signal
     }
 }
 
