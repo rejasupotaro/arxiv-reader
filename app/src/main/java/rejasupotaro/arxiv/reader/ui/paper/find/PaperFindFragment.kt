@@ -13,6 +13,7 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.fragment_paper_find.*
 import rejasupotaro.arxiv.reader.R
 import rejasupotaro.arxiv.reader.model.Paper
+import java.io.File
 
 class PaperFindFragment : LifecycleFragment() {
     private val viewModel = PaperFindViewModel()
@@ -45,6 +46,7 @@ class PaperFindFragment : LifecycleFragment() {
 
     private fun setupSearchResultListView() {
         val adapter = SearchResultListAdapter { paper ->
+            viewModel.download(activity, paper)
             Toast.makeText(activity, paper.downloadUrl, Toast.LENGTH_SHORT).show()
         }
 
