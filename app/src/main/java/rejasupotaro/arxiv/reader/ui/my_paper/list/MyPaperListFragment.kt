@@ -1,4 +1,4 @@
-package rejasupotaro.arxiv.reader.ui.my_paper
+package rejasupotaro.arxiv.reader.ui.my_paper.list
 
 import android.arch.lifecycle.LifecycleFragment
 import android.arch.lifecycle.Observer
