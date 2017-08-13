@@ -1,10 +1,10 @@
-package rejasupotaro.arxiv.reader.repo
+package rejasupotaro.arxiv.reader.data.repo
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
-import rejasupotaro.arxiv.reader.api.ResponseConverter
-import rejasupotaro.arxiv.reader.http.HttpClient
-import rejasupotaro.arxiv.reader.model.Paper
+import rejasupotaro.arxiv.reader.data.api.ResponseConverter
+import rejasupotaro.arxiv.reader.data.http.HttpClient
+import rejasupotaro.arxiv.reader.data.model.Paper
 import java.io.File
 
 

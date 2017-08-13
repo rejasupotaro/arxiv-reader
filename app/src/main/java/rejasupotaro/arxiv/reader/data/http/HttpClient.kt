@@ -1,4 +1,4 @@
-package rejasupotaro.arxiv.reader.http
+package rejasupotaro.arxiv.reader.data.http
 
 import okhttp3.*
 import java.io.IOException

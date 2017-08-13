@@ -1,8 +1,8 @@
 package rejasupotaro.arxiv.reader.ui.my_paper.list
 
 import android.arch.lifecycle.ViewModel
-import rejasupotaro.arxiv.reader.db.DbManager
-import rejasupotaro.arxiv.reader.model.Paper
+import rejasupotaro.arxiv.reader.data.db.DbManager
+import rejasupotaro.arxiv.reader.data.model.Paper
 
 class MyPaperListViewModel(
         val db: DbManager = DbManager

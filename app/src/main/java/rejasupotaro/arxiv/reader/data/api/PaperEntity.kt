@@ -1,4 +1,4 @@
-package rejasupotaro.arxiv.reader.api
+package rejasupotaro.arxiv.reader.data.api
 
 import com.google.gson.annotations.SerializedName
 

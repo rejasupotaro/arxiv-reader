@@ -1,7 +1,7 @@
-package rejasupotaro.arxiv.reader.model
+package rejasupotaro.arxiv.reader.data.model
 
 import com.yatatsu.autobundle.AutoBundleConverter
-import rejasupotaro.arxiv.reader.gson
+import rejasupotaro.arxiv.reader.data.gson
 
 class PaperConverter : AutoBundleConverter<Paper, String> {
 

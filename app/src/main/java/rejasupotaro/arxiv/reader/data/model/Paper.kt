@@ -1,9 +1,9 @@
-package rejasupotaro.arxiv.reader.model
+package rejasupotaro.arxiv.reader.data.model
 
 import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
-import rejasupotaro.arxiv.reader.api.PaperEntity
+import rejasupotaro.arxiv.reader.data.api.PaperEntity
 
 @Entity(tableName = "papers")
 data class Paper(

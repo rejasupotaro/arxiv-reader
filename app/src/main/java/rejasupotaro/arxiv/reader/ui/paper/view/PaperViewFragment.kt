@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import com.yatatsu.autobundle.AutoBundleField
 import kotlinx.android.synthetic.main.fragment_paper_view.*
 import rejasupotaro.arxiv.reader.R
-import rejasupotaro.arxiv.reader.model.Paper
-import rejasupotaro.arxiv.reader.model.PaperConverter
+import rejasupotaro.arxiv.reader.data.model.Paper
+import rejasupotaro.arxiv.reader.data.model.PaperConverter
 import java.io.File
 
 class PaperViewFragment : Fragment() {

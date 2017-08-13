@@ -1,4 +1,4 @@
-package rejasupotaro.arxiv.reader.api
+package rejasupotaro.arxiv.reader.data.api
 
 import android.support.test.InstrumentationRegistry.getInstrumentation
 import android.support.test.runner.AndroidJUnit4

@@ -1,7 +1,7 @@
 package rejasupotaro.arxiv.reader
 
 import android.app.Application
-import rejasupotaro.arxiv.reader.db.DbManager
+import rejasupotaro.arxiv.reader.data.db.DbManager
 
 class ArxivReaderApplication : Application() {
     override fun onCreate() {

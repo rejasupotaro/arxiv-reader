@@ -1,8 +1,8 @@
-package rejasupotaro.arxiv.reader.db
+package rejasupotaro.arxiv.reader.data.db
 
 import android.arch.persistence.room.TypeConverter
 import com.google.gson.reflect.TypeToken
-import rejasupotaro.arxiv.reader.gson
+import rejasupotaro.arxiv.reader.data.gson
 
 class StringConverter {
     @TypeConverter

@@ -1,8 +1,8 @@
-package rejasupotaro.arxiv.reader.api
+package rejasupotaro.arxiv.reader.data.api
 
 import fr.arnaudguyon.xmltojsonlib.XmlToJson
 import org.json.JSONObject
-import rejasupotaro.arxiv.reader.gson
+import rejasupotaro.arxiv.reader.data.gson
 
 object ResponseConverter {
     fun xmlToPaper(xml: String): PaperEntity {

@@ -8,12 +8,10 @@ import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.Toast
 import kotlinx.android.synthetic.main.fragment_paper_find.*
 import rejasupotaro.arxiv.reader.R
-import rejasupotaro.arxiv.reader.model.Paper
-import java.io.File
+import rejasupotaro.arxiv.reader.data.model.Paper
 
 class PaperFindFragment : LifecycleFragment() {
     private val viewModel = PaperFindViewModel()

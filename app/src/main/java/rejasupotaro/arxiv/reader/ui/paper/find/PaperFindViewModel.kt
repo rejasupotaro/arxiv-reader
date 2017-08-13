@@ -4,11 +4,11 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.content.Context
-import rejasupotaro.arxiv.reader.db.DbManager
+import rejasupotaro.arxiv.reader.data.db.DbManager
 import rejasupotaro.arxiv.reader.extensions.map
 import rejasupotaro.arxiv.reader.extensions.switchMap
-import rejasupotaro.arxiv.reader.model.Paper
-import rejasupotaro.arxiv.reader.repo.PaperRepository
+import rejasupotaro.arxiv.reader.data.model.Paper
+import rejasupotaro.arxiv.reader.data.repo.PaperRepository
 import java.io.File
 
 

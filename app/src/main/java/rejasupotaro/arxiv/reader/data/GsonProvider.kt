@@ -1,4 +1,4 @@
-package rejasupotaro.arxiv.reader
+package rejasupotaro.arxiv.reader.data
 
 import com.google.gson.Gson
 

@@ -1,10 +1,10 @@
-package rejasupotaro.arxiv.reader.db
+package rejasupotaro.arxiv.reader.data.db
 
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert
 import android.arch.persistence.room.OnConflictStrategy
 import android.arch.persistence.room.Query
-import rejasupotaro.arxiv.reader.model.Paper
+import rejasupotaro.arxiv.reader.data.model.Paper
 
 @Dao
 interface PaperDao {

@@ -1,4 +1,4 @@
-package rejasupotaro.arxiv.reader.db
+package rejasupotaro.arxiv.reader.data.db
 
 import android.arch.persistence.room.Room
 import android.content.Context

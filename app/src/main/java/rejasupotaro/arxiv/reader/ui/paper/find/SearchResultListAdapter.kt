@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.list_item_search_result.view.*
 import rejasupotaro.arxiv.reader.R
-import rejasupotaro.arxiv.reader.model.Paper
+import rejasupotaro.arxiv.reader.data.model.Paper
 
 class SearchResultListAdapter(val onItemClickLIstener: (Paper) -> Unit) : RecyclerView.Adapter<SearchResultViewHolder>() {
     var items = listOf<Paper>()
