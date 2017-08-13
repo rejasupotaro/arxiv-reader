@@ -27,4 +27,3 @@ class PaperFindViewModel(val repository: PaperRepository = PaperRepository()) : 
         }
     }
 }
-
