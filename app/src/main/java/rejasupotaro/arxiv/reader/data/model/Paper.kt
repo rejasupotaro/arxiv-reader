@@ -9,7 +9,7 @@ import rejasupotaro.arxiv.reader.data.api.PaperEntity
 @Entity(
         tableName = "papers",
         indices = arrayOf(
-            Index(value = "title", unique = true)
+                Index(value = "title", unique = true)
         )
 )
 data class Paper(
@@ -21,6 +21,9 @@ data class Paper(
 
         @ColumnInfo(name = "authors")
         var authors: List<String>,
+
+        @ColumnInfo(name = "category")
+        var category: List<String>,
 
         @ColumnInfo(name = "download_url")
         var downloadUrl: String
@@ -35,6 +38,7 @@ data class Paper(
                     title = entity.title.trim(),
                     summary = entity.summary.trim(),
                     authors = entity.authors.map { it.name },
+                    category = entity.categories.map { it.description },
                     downloadUrl = entity.links.filter { it.title == "pdf" }.first().href
             )
         }
