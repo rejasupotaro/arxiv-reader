@@ -6,7 +6,7 @@ import rejasupotaro.arxiv.reader.R
 import rejasupotaro.arxiv.reader.model.Paper
 import rejasupotaro.arxiv.reader.ui.my_paper.list.MyPaperListFragment
 import rejasupotaro.arxiv.reader.ui.paper.find.PaperFindFragment
-import rejasupotaro.arxiv.reader.ui.paper.view.PaperViewFragment
+import rejasupotaro.arxiv.reader.ui.paper.view.PaperViewFragmentAutoBundle
 
 object NavigationController {
     val containerId = R.id.content
@@ -22,9 +22,12 @@ object NavigationController {
                 .commit()
     }
 
-    fun navigateToViewer() {
+    fun navigateToViewer(paper: Paper? = null) {
+        val fragment = PaperViewFragmentAutoBundle.builder()
+                .paper(paper)
+                .build()
         fragmentManager.beginTransaction()
-                .replace(containerId, PaperViewFragment())
+                .replace(containerId, fragment)
                 .commit()
     }
 

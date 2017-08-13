@@ -29,7 +29,7 @@ class MyPaperListFragment : LifecycleFragment() {
 
     private fun setupSearchResultListView() {
         val adapter = SearchResultListAdapter { paper ->
-            NavigationController.navigateToViewer()
+            NavigationController.navigateToViewer(paper)
         }
 
         myPaperListView.adapter = adapter
