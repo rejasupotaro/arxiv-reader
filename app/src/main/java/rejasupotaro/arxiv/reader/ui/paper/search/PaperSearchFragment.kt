@@ -46,9 +46,10 @@ class PaperSearchFragment : LifecycleFragment() {
         val adapter = SearchResultListAdapter(
                 onItemClickListener = { paper ->
                     Toast.makeText(context, "Download ${paper.downloadUrl}", Toast.LENGTH_SHORT).show()
-                    viewModel.download(context, paper).observe(this, Observer<Unit> {
-                        Toast.makeText(context, "Download complete", Toast.LENGTH_SHORT).show()
-                    })
+                    viewModel.download(context, paper)
+                            .observe(this, Observer<Unit> {
+                                Toast.makeText(context, "Download complete", Toast.LENGTH_SHORT).show()
+                            })
                 }
         )
 

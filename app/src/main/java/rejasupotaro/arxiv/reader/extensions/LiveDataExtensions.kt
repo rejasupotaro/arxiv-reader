@@ -7,9 +7,12 @@ import android.arch.lifecycle.Transformations
 import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.async
 
-fun <X, Y> LiveData<X>.create(func: (X) -> LiveData<Y>): LiveData<Y> {
-    val result = MutableLiveData<Y>()
-    return result
+fun <T> observable(func: () -> T): LiveData<T> {
+    val liveData = MutableLiveData<T>()
+    async(CommonPool) {
+        liveData.postValue(func.invoke())
+    }
+    return liveData
 }
 
 fun <X, Y> LiveData<X>.map(func: (X) -> Y): LiveData<Y> {
