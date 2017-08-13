@@ -1,10 +1,13 @@
 package rejasupotaro.arxiv.reader.data.http
 
+import com.facebook.stetho.okhttp3.StethoInterceptor
 import okhttp3.*
 import java.io.IOException
 
 class HttpClient {
-    private val okHttpClient = OkHttpClient.Builder().build()
+    private val okHttpClient = OkHttpClient.Builder()
+            .addNetworkInterceptor(StethoInterceptor())
+            .build()
 
     fun get(url: String,
             handler: (Response) -> Unit,

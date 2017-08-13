@@ -65,6 +65,9 @@ dependencies {
     compile "com.google.dagger:dagger-android:$dagger_version"
     compile "com.google.dagger:dagger-android-support:$dagger_version"
     compile "com.github.yatatsu:autobundle:$autobundle_version"
+    compile "com.facebook.stetho:stetho:$stetho_version"
+    compile "com.facebook.stetho:stetho-js-rhino:$stetho_version"
+    compile "com.facebook.stetho:stetho-okhttp3:$stetho_version"
 
     kapt "android.arch.lifecycle:compiler:$arch_version"
     kapt "android.arch.persistence.room:compiler:$arch_version"
