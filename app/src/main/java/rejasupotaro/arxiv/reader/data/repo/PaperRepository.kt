@@ -7,7 +7,6 @@ import rejasupotaro.arxiv.reader.data.http.HttpClient
 import rejasupotaro.arxiv.reader.data.model.Paper
 import java.io.File
 
-
 class PaperRepository {
     val httpClient = HttpClient()
 

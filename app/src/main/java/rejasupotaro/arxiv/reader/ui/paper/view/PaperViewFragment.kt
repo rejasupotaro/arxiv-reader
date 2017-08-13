@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.yatatsu.autobundle.AutoBundleField
 import kotlinx.android.synthetic.main.fragment_paper_view.*
 import rejasupotaro.arxiv.reader.R
+import rejasupotaro.arxiv.reader.data.file.FileManager
 import rejasupotaro.arxiv.reader.data.model.Paper
 import rejasupotaro.arxiv.reader.data.model.PaperConverter
 import java.io.File
@@ -28,7 +29,7 @@ class PaperViewFragment : Fragment() {
 
     private fun setupPdfView() {
         paper?.let {
-            val file = File(context.filesDir, it.title)
+            val file = FileManager.paperToFile(context, it)
            pdfView.fromFile(file).load()
         } ?: run {
             pdfView.fromAsset("example.pdf").load()

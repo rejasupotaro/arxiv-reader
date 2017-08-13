@@ -5,12 +5,11 @@ import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.content.Context
 import rejasupotaro.arxiv.reader.data.db.DbManager
-import rejasupotaro.arxiv.reader.extensions.map
-import rejasupotaro.arxiv.reader.extensions.switchMap
+import rejasupotaro.arxiv.reader.data.file.FileManager
 import rejasupotaro.arxiv.reader.data.model.Paper
 import rejasupotaro.arxiv.reader.data.repo.PaperRepository
-import java.io.File
-
+import rejasupotaro.arxiv.reader.extensions.map
+import rejasupotaro.arxiv.reader.extensions.switchMap
 
 class PaperFindViewModel(
         val repository: PaperRepository = PaperRepository(),
@@ -30,7 +29,7 @@ class PaperFindViewModel(
     }
 
     fun download(context: Context, paper: Paper): LiveData<Unit> {
-        val file = File(context.filesDir, paper.title)
+        val file = FileManager.paperToFile(context, paper)
         return repository.download(paper, file).map {
             db.paperDao.insert(paper)
         }
