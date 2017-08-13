@@ -8,7 +8,7 @@ import rejasupotaro.arxiv.reader.data.db.DbManager
 import rejasupotaro.arxiv.reader.data.file.FileManager
 import rejasupotaro.arxiv.reader.data.model.Paper
 import rejasupotaro.arxiv.reader.data.repo.PaperRepository
-import rejasupotaro.arxiv.reader.extensions.map
+import rejasupotaro.arxiv.reader.extensions.deferredMap
 import rejasupotaro.arxiv.reader.extensions.switchMap
 
 class PaperSearchViewModel(
@@ -30,7 +30,7 @@ class PaperSearchViewModel(
 
     fun download(context: Context, paper: Paper): LiveData<Unit> {
         val file = FileManager.paperToFile(context, paper)
-        return repository.download(paper, file).map {
+        return repository.download(paper, file).deferredMap {
             db.paperDao.insert(paper)
         }
     }

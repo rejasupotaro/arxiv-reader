@@ -13,7 +13,6 @@ object DbManager {
 
     fun init(context: Context) {
         db = Room.databaseBuilder(context, ArxivDb::class.java, "arxiv")
-                .allowMainThreadQueries()
                 .build()
     }
 }
