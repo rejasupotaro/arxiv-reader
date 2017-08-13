@@ -26,10 +26,10 @@ class PaperListFragment : LifecycleFragment() {
     }
 
     private fun setupViews() {
-        setupSearchResultListView()
+        setupListView()
     }
 
-    private fun setupSearchResultListView() {
+    private fun setupListView() {
         val adapter = SearchResultListAdapter { paper ->
             NavigationController.navigateToViewer(paper)
         }

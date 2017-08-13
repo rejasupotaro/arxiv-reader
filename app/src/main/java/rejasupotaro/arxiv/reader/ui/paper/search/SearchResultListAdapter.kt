@@ -8,7 +8,7 @@ import kotlinx.android.synthetic.main.list_item_search_result.view.*
 import rejasupotaro.arxiv.reader.R
 import rejasupotaro.arxiv.reader.data.model.Paper
 
-class SearchResultListAdapter(val onItemClickLIstener: (Paper) -> Unit) : RecyclerView.Adapter<SearchResultViewHolder>() {
+class SearchResultListAdapter(val onItemClickListener: (Paper) -> Unit) : RecyclerView.Adapter<SearchResultViewHolder>() {
     var items = listOf<Paper>()
     override fun getItemCount(): Int = items.size
 
@@ -18,7 +18,7 @@ class SearchResultListAdapter(val onItemClickLIstener: (Paper) -> Unit) : Recycl
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchResultViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.list_item_search_result, parent, false)
-        return SearchResultViewHolder(itemView, onItemClickLIstener)
+        return SearchResultViewHolder(itemView, onItemClickListener)
     }
 }
 
