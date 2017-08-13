@@ -13,5 +13,8 @@ interface SearchHistoryDao {
 
     @Query("SELECT * FROM search_histories ORDER BY created DESC")
     fun findAll(): List<SearchHistory>
+
+    @Query("SELECT * FROM search_histories ORDER BY created DESC LIMIT 1")
+    fun first(): SearchHistory
 }
 

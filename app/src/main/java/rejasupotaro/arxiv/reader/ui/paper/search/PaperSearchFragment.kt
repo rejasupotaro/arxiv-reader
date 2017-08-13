@@ -31,6 +31,9 @@ class PaperSearchFragment : LifecycleFragment() {
     }
 
     private fun setupSearchView() {
+        viewModel.latestQuery().observe(this, Observer<String> { query ->
+            query?.let { queryEditText.setText(it) }
+        })
         queryEditText.setOnKeyListener { _, keyCode, event ->
             if ((event.action == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
                 doSearch()
