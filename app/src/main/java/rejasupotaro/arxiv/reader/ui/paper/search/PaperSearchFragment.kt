@@ -3,7 +3,6 @@ package rejasupotaro.arxiv.reader.ui.paper.search
 import android.arch.lifecycle.LifecycleFragment
 import android.arch.lifecycle.Observer
 import android.os.Bundle
-import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.view.KeyEvent
 import android.view.LayoutInflater
@@ -57,9 +56,6 @@ class PaperSearchFragment : LifecycleFragment() {
         searchResultListView.apply {
             this.adapter = adapter
             layoutManager = LinearLayoutManager(context)
-            addItemDecoration(DividerItemDecoration(
-                    context,
-                    (layoutManager as LinearLayoutManager).orientation))
         }
 
         viewModel.searchResults.observe(this, Observer<List<Paper>> { papers ->

@@ -1,5 +1,6 @@
 package rejasupotaro.arxiv.reader.data.api
 
+import android.util.Log
 import com.google.gson.annotations.SerializedName
 
 data class PaperEntity(
@@ -166,7 +167,10 @@ data class CategoryEntity(
             "physics.pop-ph" -> "Physics - Popular Physics"
             "physics.space-ph" -> "Physics - Space Physics"
             "quant-ph" -> "Quantum Physics"
-            else -> throw IllegalArgumentException("Unexpected abbreviation received: $term")
+            else -> {
+                Log.i(CategoryEntity::class.java.simpleName, "Unexpected abbreviation received: $term")
+                ""
+            }
         }
 }
 

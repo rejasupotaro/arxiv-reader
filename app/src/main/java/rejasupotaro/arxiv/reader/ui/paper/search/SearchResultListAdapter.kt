@@ -32,7 +32,9 @@ class SearchResultViewHolder(
 ) : RecyclerView.ViewHolder(itemView) {
     fun bind(paper: Paper) {
         itemView.titleTextView.text = paper.title
+        itemView.downloadUrlTextView.text = paper.downloadUrl
         itemView.summaryTextView.text = paper.summary
+        itemView.categoryTextView.text = paper.category.joinToString("\n").trim()
         itemView.setOnClickListener { onItemClickListener.invoke(paper) }
         itemView.setOnLongClickListener { onItemLongClickListener.invoke(paper) }
     }
