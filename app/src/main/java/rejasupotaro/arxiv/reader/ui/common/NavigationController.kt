@@ -4,8 +4,8 @@ import android.support.v4.app.FragmentManager
 import rejasupotaro.arxiv.reader.MainActivity
 import rejasupotaro.arxiv.reader.R
 import rejasupotaro.arxiv.reader.data.model.Paper
-import rejasupotaro.arxiv.reader.ui.my_paper.list.MyPaperListFragment
-import rejasupotaro.arxiv.reader.ui.paper.find.PaperFindFragment
+import rejasupotaro.arxiv.reader.ui.paper.list.PaperListFragment
+import rejasupotaro.arxiv.reader.ui.paper.search.PaperSearchFragment
 import rejasupotaro.arxiv.reader.ui.paper.view.PaperViewFragmentAutoBundle
 
 object NavigationController {
@@ -16,9 +16,9 @@ object NavigationController {
         fragmentManager = activity.supportFragmentManager
     }
 
-    fun navigateToMyPapers() {
+    fun navigateToPaperList() {
         fragmentManager.beginTransaction()
-                .replace(containerId, MyPaperListFragment())
+                .replace(containerId, PaperListFragment())
                 .commit()
     }
 
@@ -33,7 +33,7 @@ object NavigationController {
 
     fun navigateToSearch() {
         fragmentManager.beginTransaction()
-                .replace(containerId, PaperFindFragment())
+                .replace(containerId, PaperSearchFragment())
                 .commit()
     }
 }

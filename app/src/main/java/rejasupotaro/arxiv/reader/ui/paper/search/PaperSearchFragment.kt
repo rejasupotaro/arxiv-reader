@@ -1,4 +1,4 @@
-package rejasupotaro.arxiv.reader.ui.paper.find
+package rejasupotaro.arxiv.reader.ui.paper.search
 
 import android.arch.lifecycle.LifecycleFragment
 import android.arch.lifecycle.Observer
@@ -9,15 +9,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import kotlinx.android.synthetic.main.fragment_paper_find.*
+import kotlinx.android.synthetic.main.fragment_paper_search.*
 import rejasupotaro.arxiv.reader.R
 import rejasupotaro.arxiv.reader.data.model.Paper
 
-class PaperFindFragment : LifecycleFragment() {
-    private val viewModel = PaperFindViewModel()
+class PaperSearchFragment : LifecycleFragment() {
+    private val viewModel = PaperSearchViewModel()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_paper_find, container, false)
+        return inflater.inflate(R.layout.fragment_paper_search, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

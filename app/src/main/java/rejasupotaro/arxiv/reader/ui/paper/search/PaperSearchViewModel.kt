@@ -1,4 +1,4 @@
-package rejasupotaro.arxiv.reader.ui.paper.find
+package rejasupotaro.arxiv.reader.ui.paper.search
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
@@ -11,7 +11,7 @@ import rejasupotaro.arxiv.reader.data.repo.PaperRepository
 import rejasupotaro.arxiv.reader.extensions.map
 import rejasupotaro.arxiv.reader.extensions.switchMap
 
-class PaperFindViewModel(
+class PaperSearchViewModel(
         val repository: PaperRepository = PaperRepository(),
         val db: DbManager = DbManager
 ) : ViewModel() {

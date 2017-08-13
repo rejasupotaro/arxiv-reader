@@ -1,4 +1,4 @@
-package rejasupotaro.arxiv.reader.ui.paper.find
+package rejasupotaro.arxiv.reader.ui.paper.search
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater

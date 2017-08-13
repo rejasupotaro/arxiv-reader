@@ -9,8 +9,8 @@ import rejasupotaro.arxiv.reader.ui.common.NavigationController
 class MainActivity : LifecycleActivity() {
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
-            R.id.navigation_my_papers -> {
-                NavigationController.navigateToMyPapers()
+            R.id.navigation_paper_list -> {
+                NavigationController.navigateToPaperList()
                 true
             }
             R.id.navigation_viewer -> {
