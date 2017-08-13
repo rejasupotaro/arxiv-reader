@@ -2,10 +2,16 @@ package rejasupotaro.arxiv.reader.data.model
 
 import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity
+import android.arch.persistence.room.Index
 import android.arch.persistence.room.PrimaryKey
 import rejasupotaro.arxiv.reader.data.api.PaperEntity
 
-@Entity(tableName = "papers")
+@Entity(
+        tableName = "papers",
+        indices = arrayOf(
+            Index(value = "title", unique = true)
+        )
+)
 data class Paper(
         @ColumnInfo(name = "title")
         var title: String,
