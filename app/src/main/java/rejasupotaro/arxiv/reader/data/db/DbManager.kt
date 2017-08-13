@@ -11,6 +11,10 @@ object DbManager {
         db.paperDao()
     }
 
+    val searchHistoryDao by lazy {
+        db.searchHistoryDao()
+    }
+
     fun init(context: Context) {
         db = Room.databaseBuilder(context, ArxivDb::class.java, "arxiv")
                 .build()

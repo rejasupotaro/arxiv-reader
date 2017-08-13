@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "323bab617577bec96917841fe8dfbdac",
+    "identityHash": "07fa87eb27962dde2c56724b7a8a1da1",
     "entities": [
       {
         "tableName": "papers",
@@ -62,11 +62,43 @@
           }
         ],
         "foreignKeys": []
+      },
+      {
+        "tableName": "search_histories",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `query` TEXT NOT NULL, `created` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "query",
+            "columnName": "query",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "created",
+            "columnName": "created",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
       }
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"323bab617577bec96917841fe8dfbdac\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"07fa87eb27962dde2c56724b7a8a1da1\")"
     ]
   }
 }
