@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.fragment_paper_search.*
 import rejasupotaro.arxiv.reader.R
@@ -43,6 +42,7 @@ class PaperSearchFragment : LifecycleFragment() {
                 queryEditText.showDropDown()
             }
         })
+        queryEditText.setOnItemClickListener { _, _, _, _ -> doSearch() }
         queryEditText.setOnKeyListener { _, keyCode, event ->
             if ((event.action == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
                 doSearch()
@@ -52,7 +52,6 @@ class PaperSearchFragment : LifecycleFragment() {
             }
         }
         submitButton.setOnClickListener { doSearch() }
-
         queryEditText.showKeyboard()
     }
 
