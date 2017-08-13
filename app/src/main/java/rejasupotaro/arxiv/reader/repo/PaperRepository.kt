@@ -15,20 +15,25 @@ class PaperRepository {
         val papers = MutableLiveData<List<Paper>>()
         val url = "http://export.arxiv.org/api/query?search_query=all:$query"
         httpClient.get(url, { response ->
-            papers.postValue(ResponseConverter
-                    .xmlToApiResponse(response.body().toString())
+            val body = response.body()?.string() ?: ""
+            val result = ResponseConverter
+                    .xmlToApiResponse(body)
                     .papers
-                    .map { Paper.entityToModel(it) })
+                    .map { Paper.entityToModel(it) }
+            papers.postValue(result)
         })
         return papers
     }
 
-    fun download(paper: Paper, file: File) {
+    fun download(paper: Paper, file: File): LiveData<Unit> {
+        val signal = MutableLiveData<Unit>()
         httpClient.get(paper.downloadUrl, { response ->
             response.body()?.byteStream()?.use {
                 it.copyTo(file.outputStream())
+                signal.postValue(Unit)
             }
         })
+        return signal
     }
 }
 
