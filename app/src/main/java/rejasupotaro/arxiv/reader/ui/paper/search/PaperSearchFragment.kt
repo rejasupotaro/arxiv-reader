@@ -14,6 +14,8 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.fragment_paper_search.*
 import rejasupotaro.arxiv.reader.R
 import rejasupotaro.arxiv.reader.data.model.Paper
+import rejasupotaro.arxiv.reader.extensions.hideKeyboard
+import rejasupotaro.arxiv.reader.extensions.showKeyboard
 
 
 class PaperSearchFragment : LifecycleFragment() {
@@ -50,6 +52,8 @@ class PaperSearchFragment : LifecycleFragment() {
             }
         }
         submitButton.setOnClickListener { doSearch() }
+
+        queryEditText.showKeyboard()
     }
 
     private fun setupSearchResultListView() {
@@ -77,6 +81,7 @@ class PaperSearchFragment : LifecycleFragment() {
     }
 
     private fun doSearch() {
+        queryEditText.hideKeyboard()
         val query = queryEditText.text.toString().trim()
         viewModel.query = query
     }
