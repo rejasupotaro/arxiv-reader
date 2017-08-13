@@ -35,9 +35,9 @@ class PaperSearchViewModel(
         repository.search(query)
     }
 
-    fun latestQuery(): LiveData<String> {
+    fun latestQueries(): LiveData<List<String>> {
         return observable {
-            db.searchHistoryDao.first().query
+            db.searchHistoryDao.latest().map { it.query }
         }
     }
 

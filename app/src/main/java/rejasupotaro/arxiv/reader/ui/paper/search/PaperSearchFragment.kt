@@ -8,10 +8,13 @@ import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.fragment_paper_search.*
 import rejasupotaro.arxiv.reader.R
 import rejasupotaro.arxiv.reader.data.model.Paper
+
 
 class PaperSearchFragment : LifecycleFragment() {
     private val viewModel = PaperSearchViewModel()
@@ -31,8 +34,12 @@ class PaperSearchFragment : LifecycleFragment() {
     }
 
     private fun setupSearchView() {
-        viewModel.latestQuery().observe(this, Observer<String> { query ->
-            query?.let { queryEditText.setText(it) }
+        viewModel.latestQueries().observe(this, Observer<List<String>> { queries ->
+            queries?.let {
+                val adapter = ArrayAdapter<String>(context, android.R.layout.simple_dropdown_item_1line, queries)
+                queryEditText.setAdapter<ArrayAdapter<String>>(adapter)
+                queryEditText.showDropDown()
+            }
         })
         queryEditText.setOnKeyListener { _, keyCode, event ->
             if ((event.action == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {

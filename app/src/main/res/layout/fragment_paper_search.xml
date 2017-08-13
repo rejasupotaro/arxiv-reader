@@ -17,7 +17,7 @@
                 android:orientation="horizontal"
                 >
 
-            <EditText
+            <android.support.v7.widget.AppCompatAutoCompleteTextView
                     android:id="@+id/queryEditText"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"

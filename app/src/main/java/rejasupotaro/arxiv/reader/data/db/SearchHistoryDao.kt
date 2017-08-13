@@ -16,5 +16,8 @@ interface SearchHistoryDao {
 
     @Query("SELECT * FROM search_histories ORDER BY created DESC LIMIT 1")
     fun first(): SearchHistory
+
+    @Query("SELECT * FROM search_histories GROUP BY query LIMIT 10")
+    fun latest(): List<SearchHistory>
 }
 
