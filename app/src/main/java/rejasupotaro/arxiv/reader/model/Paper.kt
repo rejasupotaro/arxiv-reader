@@ -1,37 +1,36 @@
 package rejasupotaro.arxiv.reader.model
 
-import com.google.gson.annotations.SerializedName
+import android.arch.persistence.room.ColumnInfo
+import android.arch.persistence.room.Entity
+import android.arch.persistence.room.PrimaryKey
+import rejasupotaro.arxiv.reader.api.PaperEntity
 
+@Entity(tableName = "papers")
 data class Paper(
-        @SerializedName("id")
-        var url: String,
-
-        @SerializedName("title")
+        @ColumnInfo(name = "title")
         var title: String,
 
-        @SerializedName("summary")
+        @ColumnInfo(name = "summary")
         var summary: String,
 
-        @SerializedName("author")
-        var authors: List<Author>,
+        @ColumnInfo(name = "authors")
+        var authors: List<String>,
 
-        @SerializedName("category")
-        var categories: List<Category>,
-
-        @SerializedName("link")
-        var links: List<Link>,
-
-        @SerializedName("updated")
-        var updated: String,
-
-        @SerializedName("published")
-        var published: String
+        @ColumnInfo(name = "download_url")
+        var downloadUrl: String
 ) {
-    @SerializedName("download_url")
-    var downloadUrl: String = ""
-        get() = links.filter { it.title == "pdf" }.first().href
-}
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    var id: Long = 0
 
-data class Category(
-        @SerializedName("term") var term: String
-)
+    companion object {
+        fun entityToModel(entity: PaperEntity): Paper {
+            return Paper(
+                    title = entity.title.trim(),
+                    summary = entity.summary.trim(),
+                    authors = entity.authors.map { it.name },
+                    downloadUrl = entity.links.filter { it.title == "pdf" }.first().href
+            )
+        }
+    }
+}

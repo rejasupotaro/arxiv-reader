@@ -1,8 +1,8 @@
-package rejasupotaro.arxiv.reader.model
+package rejasupotaro.arxiv.reader.api
 
 import com.google.gson.annotations.SerializedName
 
-data class Link(
+data class LinkEntity(
         @SerializedName("title") val title: String,
         @SerializedName("href") val href: String,
         @SerializedName("rel") val rel: String,

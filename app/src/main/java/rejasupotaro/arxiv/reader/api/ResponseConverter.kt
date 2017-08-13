@@ -1,17 +1,13 @@
 package rejasupotaro.arxiv.reader.api
 
-import com.google.gson.Gson
 import fr.arnaudguyon.xmltojsonlib.XmlToJson
 import org.json.JSONObject
-import rejasupotaro.arxiv.reader.model.ApiResponse
-import rejasupotaro.arxiv.reader.model.Paper
+import rejasupotaro.arxiv.reader.gson
 
 object ResponseConverter {
-    private val gson = Gson()
-
-    fun xmlToPaper(xml: String): Paper {
+    fun xmlToPaper(xml: String): PaperEntity {
         val json = xmlToJson(xml)
-        return gson.fromJson(json.getJSONObject("entry").toString(), Paper::class.java)
+        return gson.fromJson(json.getJSONObject("entry").toString(), PaperEntity::class.java)
     }
 
     fun xmlToApiResponse(xml: String): ApiResponse {

@@ -5,7 +5,6 @@ import android.arch.lifecycle.MutableLiveData
 import okhttp3.*
 import java.io.IOException
 
-
 class ApiClient {
     private val okHttpClient = OkHttpClient.Builder().build()
 
@@ -15,6 +14,7 @@ class ApiClient {
         val request = Request.Builder()
                 .url(url)
                 .build()
+
         okHttpClient.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
                 e.printStackTrace()

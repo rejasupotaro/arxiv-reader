@@ -1,12 +1,12 @@
-package rejasupotaro.arxiv.reader.model
+package rejasupotaro.arxiv.reader.api
 
 import com.google.gson.annotations.SerializedName
 
 data class ApiResponse(
         @SerializedName("id") val id: String,
         @SerializedName("updated") val updated: String,
-        @SerializedName("entry") val papers: List<Paper>,
-        @SerializedName("link") val link: Link,
+        @SerializedName("entry") val papers: List<PaperEntity>,
+        @SerializedName("link") val link: LinkEntity,
         @SerializedName("opensearch:totalResults") val totalResults: TotalResults,
         @SerializedName("opensearch:startIndex") val startIndex: StartIndex,
         @SerializedName("opensearch:itemsPerPage") val itemPerPage: ItemPerPage

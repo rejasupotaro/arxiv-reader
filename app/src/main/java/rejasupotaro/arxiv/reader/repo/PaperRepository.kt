@@ -4,7 +4,6 @@ import android.arch.lifecycle.LiveData
 import rejasupotaro.arxiv.reader.api.ApiClient
 import rejasupotaro.arxiv.reader.api.ResponseConverter
 import rejasupotaro.arxiv.reader.extensions.map
-import rejasupotaro.arxiv.reader.model.ApiResponse
 import rejasupotaro.arxiv.reader.model.Paper
 
 class PaperRepository {
@@ -13,7 +12,7 @@ class PaperRepository {
     fun search(query: String): LiveData<List<Paper>> {
         val url = "http://export.arxiv.org/api/query?search_query=all:$query"
         return apiClient.request(url).map { body ->
-            ResponseConverter.xmlToApiResponse(body).papers
+            ResponseConverter.xmlToApiResponse(body).papers.map { Paper.entityToModel(it) }
         }
     }
 }
