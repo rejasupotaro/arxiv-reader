@@ -13,7 +13,7 @@ class PaperRepository {
     fun search(query: String): LiveData<List<Paper>> {
         val url = "http://export.arxiv.org/api/query?search_query=all:$query"
         return apiClient.request(url).map { body ->
-            ResponseConverter.gson.fromXml(body, ApiResponse::class.java).papers
+            ResponseConverter.xmlToApiResponse(body).papers
         }
     }
 }

@@ -7,7 +7,19 @@ data class ApiResponse(
         @SerializedName("updated") val updated: String,
         @SerializedName("entry") val papers: List<Paper>,
         @SerializedName("link") val link: Link,
-        @SerializedName("<opensearch>totalResults") val totalResults: Int,
-        @SerializedName("<opensearch>startIndex") val startIndex: Int,
-        @SerializedName("<opensearch>itemsPerPage") val itemPerPage: Int
+        @SerializedName("opensearch:totalResults") val totalResults: TotalResults,
+        @SerializedName("opensearch:startIndex") val startIndex: StartIndex,
+        @SerializedName("opensearch:itemsPerPage") val itemPerPage: ItemPerPage
+)
+
+data class TotalResults(
+        @SerializedName("content") val content: Int
+)
+
+data class StartIndex(
+        @SerializedName("content") val content: Int
+)
+
+data class ItemPerPage(
+        @SerializedName("content") val content: Int
 )

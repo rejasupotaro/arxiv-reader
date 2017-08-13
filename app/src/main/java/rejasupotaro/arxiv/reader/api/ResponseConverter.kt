@@ -1,30 +1,33 @@
 package rejasupotaro.arxiv.reader.api
 
-import com.stanfy.gsonxml.GsonXmlBuilder
-import com.stanfy.gsonxml.XmlParserCreator
-import org.xmlpull.v1.XmlPullParserFactory
+import com.google.gson.Gson
+import fr.arnaudguyon.xmltojsonlib.XmlToJson
+import org.json.JSONObject
 import rejasupotaro.arxiv.reader.model.ApiResponse
 import rejasupotaro.arxiv.reader.model.Paper
 
 object ResponseConverter {
-    private val parserCreator = XmlParserCreator {
-        try {
-            XmlPullParserFactory.newInstance().newPullParser()
-        } catch (e: Exception) {
-            throw RuntimeException(e)
-        }
-    }
-
-    val gson = GsonXmlBuilder()
-            .setXmlParserCreator(parserCreator)
-            .setSameNameLists(true)
-            .create()
+    private val gson = Gson()
 
     fun xmlToPaper(xml: String): Paper {
-        return gson.fromXml(xml, Paper::class.java)
+        val json = xmlToJson(xml)
+        return gson.fromJson(json.getJSONObject("entry").toString(), Paper::class.java)
     }
 
     fun xmlToApiResponse(xml: String): ApiResponse {
-        return gson.fromXml(xml, ApiResponse::class.java)
+        val json = xmlToJson(xml)
+        return gson.fromJson(json.getJSONObject("feed").toString(), ApiResponse::class.java)
+    }
+
+    private fun xmlToJson(xml: String): JSONObject {
+        return XmlToJson.Builder(xml)
+                .forceList("/entry/author")
+                .forceList("/entry/category")
+                .forceList("/entry/link")
+                .forceList("/feed/entry")
+                .forceList("/feed/entry/author")
+                .forceList("/feed/entry/category")
+                .forceList("/feed/entry/link")
+                .build().toJson() ?: JSONObject()
     }
 }

@@ -16,10 +16,14 @@ class ResponseConverterTest {
 
         paper.apply {
             assertThat(url).isEqualTo("http://arxiv.org/abs/1204.5852v1")
+            assertThat(title).isEqualTo("Context-sensitive Spelling Correction Using Google Web 1T 5-Gram Information")
+            assertThat(authors.size).isEqualTo(2)
+            assertThat(authors[0].name).isEqualTo("Youssef Bassil")
+            assertThat(categories.size).isEqualTo(1)
+            assertThat(categories[0].term).isEqualTo("cs.CL")
+            assertThat(links.size).isEqualTo(3)
             assertThat(updated).isEqualTo("2012-04-26T07:44:18Z")
             assertThat(published).isEqualTo("2012-04-26T07:44:18Z")
-            assertThat(title).isEqualTo("Context-sensitive Spelling Correction Using Google Web 1T 5-Gram Information")
-            assertThat(links.size).isEqualTo(2)
         }
     }
 
@@ -31,9 +35,9 @@ class ResponseConverterTest {
         apiResponse.apply {
             assertThat(id).isEqualTo("http://arxiv.org/api/dGTJJqWuqiHLrncuWvptJXI0CSM")
             assertThat(updated).isEqualTo("2017-08-11T00:00:00-04:00")
-            assertThat(totalResults).isEqualTo(550)
-            assertThat(startIndex).isEqualTo(0)
-            assertThat(itemPerPage).isEqualTo("10")
+            assertThat(totalResults.content).isEqualTo(550)
+            assertThat(startIndex.content).isEqualTo(0)
+            assertThat(itemPerPage.content).isEqualTo(10)
 
             link.apply {
                 assertThat(href).isEqualTo("http://arxiv.org/api/query?search_query%3Dall%3Aspelling%26id_list%3D%26start%3D0%26max_results%3D10")
@@ -43,11 +47,15 @@ class ResponseConverterTest {
 
             assertThat(papers.size).isEqualTo(10)
             papers[0].apply {
-                assertThat(id).isEqualTo("http://arxiv.org/abs/1204.5852v1")
+                assertThat(id).isEqualTo("http://arxiv.org/api/dGTJJqWuqiHLrncuWvptJXI0CSM")
+                assertThat(title.trim()).isEqualTo("Context-sensitive Spelling Correction Using Google Web 1T 5-Gram Information")
+                assertThat(authors.size).isEqualTo(2)
+                assertThat(authors[0].name).isEqualTo("Youssef Bassil")
+                assertThat(categories.size).isEqualTo(1)
+                assertThat(categories[0].term).isEqualTo("cs.CL")
+                assertThat(links.size).isEqualTo(3)
                 assertThat(updated).isEqualTo("2012-04-26T07:44:18Z")
                 assertThat(published).isEqualTo("2012-04-26T07:44:18Z")
-                assertThat(title).isEqualTo("Context-sensitive Spelling Correction Using Google Web 1T 5-Gram Information")
-                assertThat(links.size).isEqualTo(2)
             }
         }
     }
