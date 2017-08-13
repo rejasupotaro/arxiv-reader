@@ -34,7 +34,7 @@ class SearchResultViewHolder(
         itemView.titleTextView.text = paper.title
         itemView.downloadUrlTextView.text = paper.downloadUrl
         itemView.summaryTextView.text = paper.summary
-        itemView.categoryTextView.text = paper.category.joinToString("\n").trim()
+        itemView.categoryTextView.text = paper.categories.joinToString("\n").trim()
         itemView.setOnClickListener { onItemClickListener.invoke(paper) }
         itemView.setOnLongClickListener { onItemLongClickListener.invoke(paper) }
     }

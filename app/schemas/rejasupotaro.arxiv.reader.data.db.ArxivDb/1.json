@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "07fa87eb27962dde2c56724b7a8a1da1",
+    "identityHash": "9a67e460f3e5661304571a3bd9ecfb8e",
     "entities": [
       {
         "tableName": "papers",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `title` TEXT NOT NULL, `summary` TEXT NOT NULL, `authors` TEXT NOT NULL, `category` TEXT NOT NULL, `download_url` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `title` TEXT NOT NULL, `summary` TEXT NOT NULL, `authors` TEXT NOT NULL, `categories` TEXT NOT NULL, `download_url` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -33,8 +33,8 @@
             "notNull": true
           },
           {
-            "fieldPath": "category",
-            "columnName": "category",
+            "fieldPath": "categories",
+            "columnName": "categories",
             "affinity": "TEXT",
             "notNull": true
           },
@@ -98,7 +98,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"07fa87eb27962dde2c56724b7a8a1da1\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"9a67e460f3e5661304571a3bd9ecfb8e\")"
     ]
   }
 }

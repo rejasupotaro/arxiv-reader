@@ -33,7 +33,7 @@ class PaperViewHolder(
 ) : RecyclerView.ViewHolder(itemView) {
     fun bind(paper: Paper) {
         itemView.titleTextView.text = paper.title
-        itemView.summaryTextView.text = paper.summary
+        itemView.categoryTextView.text = paper.categories.joinToString("\n").trim()
         itemView.setOnClickListener { onItemClickListener.invoke(paper) }
         itemView.setOnLongClickListener { onItemLongClickListener.invoke(paper) }
     }

@@ -4,6 +4,7 @@ import android.arch.lifecycle.LifecycleFragment
 import android.arch.lifecycle.Observer
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,7 +45,7 @@ class PaperListFragment : LifecycleFragment() {
         )
 
         paperListView.adapter = adapter
-        paperListView.layoutManager = GridLayoutManager(context, 2)
+        paperListView.layoutManager = LinearLayoutManager(context)
 
         viewModel.paperList().observe(this, Observer<List<Paper>> { papers ->
             papers?.let {
