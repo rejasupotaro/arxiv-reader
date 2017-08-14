@@ -4,6 +4,7 @@ import android.arch.lifecycle.LifecycleActivity
 import android.arch.lifecycle.Observer
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.KeyEvent
 import android.widget.ArrayAdapter
 import android.widget.Toast
@@ -64,9 +65,24 @@ class PaperSearchActivity : LifecycleActivity() {
             layoutManager = LinearLayoutManager(context)
         }
 
-        viewModel.searchResults.observe(this, Observer<List<Paper>> { papers ->
-            papers?.let {
-                adapter.items = papers.toMutableList()
+        searchResultListView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+                val lastPosition = layoutManager.findLastVisibleItemPosition()
+                if (lastPosition == adapter.itemCount - 1) {
+                    viewModel.loadNextPage()
+                }
+                super.onScrollStateChanged(recyclerView, newState)
+            }
+        })
+
+        viewModel.searchResults.observe(this, Observer<SearchResponse> { response ->
+            response?.let {
+                if (it.page == 1) {
+                    adapter.items = response.result.toMutableList()
+                } else {
+                    adapter.items.addAll(response.result.toMutableList())
+                }
                 adapter.notifyDataSetChanged()
             }
         })

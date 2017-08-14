@@ -20,7 +20,8 @@ class PaperSearchViewModel(
         val repository: PaperRepository = PaperRepository(),
         val db: DbManager = DbManager
 ) : ViewModel() {
-    private val submitEvent = MutableLiveData<String>()
+    private val submitEvent = MutableLiveData<SearchRequest>()
+
     var query: String = ""
         set(value) {
             if (field == value) {
@@ -29,10 +30,21 @@ class PaperSearchViewModel(
             field = value
 
             logQuery(field)
-            submitEvent.value = field
+            submitEvent.value = SearchRequest(field, 1)
         }
-    var searchResults: LiveData<List<Paper>> = submitEvent.switchMap { query ->
-        repository.search(query)
+
+    var searchResults: LiveData<SearchResponse> = submitEvent.switchMap { (query, page, perPage) ->
+        repository.search(query, page, perPage)
+    }
+
+    fun loadNextPage() {
+        if (query.isNullOrEmpty()) {
+            return
+        }
+
+        submitEvent.value?.let {
+            submitEvent.value = SearchRequest(query, it.page + 1)
+        }
     }
 
     fun latestQueries(): LiveData<List<String>> {
@@ -54,3 +66,6 @@ class PaperSearchViewModel(
         }
     }
 }
+
+data class SearchRequest(val query: String, val page: Int, val perPage: Int = 20)
+data class SearchResponse(val query: String, val result: List<Paper>, val page: Int, val totalPages: Int)

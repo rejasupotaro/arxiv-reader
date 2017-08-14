@@ -5,20 +5,27 @@ import android.arch.lifecycle.MutableLiveData
 import rejasupotaro.arxiv.reader.data.api.ResponseConverter
 import rejasupotaro.arxiv.reader.data.http.HttpClient
 import rejasupotaro.arxiv.reader.data.model.Paper
+import rejasupotaro.arxiv.reader.ui.paper.search.SearchResponse
 import java.io.File
 
 class PaperRepository {
     val httpClient = HttpClient()
 
-    fun search(query: String): LiveData<List<Paper>> {
-        val papers = MutableLiveData<List<Paper>>()
-        val url = "http://export.arxiv.org/api/query?search_query=all:$query"
+    fun search(query: String, page: Int, perPage: Int): LiveData<SearchResponse> {
+        val papers = MutableLiveData<SearchResponse>()
+        val url = "http://export.arxiv.org/api/query?search_query=all:$query&start=${page * perPage}"
         httpClient.get(url, { response ->
             val body = response.body()?.string() ?: ""
             val result = ResponseConverter
                     .xmlToApiResponse(body)
-                    .papers
-                    .map { Paper.entityToModel(it) }
+                    .let {
+                        SearchResponse(
+                                query,
+                                it.papers.map { Paper.entityToModel(it) },
+                                page,
+                                it.totalResults.content
+                        )
+                    }
             papers.postValue(result)
         })
         return papers
