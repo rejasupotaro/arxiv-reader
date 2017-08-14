@@ -23,8 +23,8 @@ class PaperSearchActivity : LifecycleActivity() {
     }
 
     private fun setupViews() {
-        setupSearchView()
         setupSearchResultListView()
+        setupSearchView()
     }
 
     private fun setupSearchView() {

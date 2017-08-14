@@ -5,6 +5,39 @@
         android:orientation="vertical"
         >
 
+    <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize"
+                android:orientation="horizontal"
+                >
+
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="@string/app_name"
+                    android:textStyle="bold"
+                    />
+
+            <TextView
+                    android:id="@+id/searchButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:gravity="center"
+                    android:padding="@dimen/spacing_medium"
+                    android:text="@string/button_search"
+                    />
+        </LinearLayout>
+    </android.support.v7.widget.Toolbar>
+
     <android.support.v7.widget.RecyclerView
             android:id="@+id/paperListView"
             android:layout_width="match_parent"

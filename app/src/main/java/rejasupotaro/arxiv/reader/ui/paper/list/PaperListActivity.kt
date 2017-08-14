@@ -20,7 +20,12 @@ class PaperListActivity : LifecycleActivity() {
     }
 
     private fun setupViews() {
+        setupToolbar()
         setupListView()
+    }
+
+    private fun setupToolbar() {
+        searchButton.setOnClickListener { NavigationController.navigateToSearch(this) }
     }
 
     private fun setupListView() {
