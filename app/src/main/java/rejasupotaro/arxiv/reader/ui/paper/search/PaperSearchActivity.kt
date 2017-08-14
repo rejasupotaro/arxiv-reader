@@ -10,7 +10,6 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_paper_search.*
 import rejasupotaro.arxiv.reader.R
-import rejasupotaro.arxiv.reader.data.model.Paper
 import rejasupotaro.arxiv.reader.extensions.hideKeyboard
 import rejasupotaro.arxiv.reader.extensions.showKeyboard
 
@@ -24,16 +23,18 @@ class PaperSearchActivity : LifecycleActivity() {
     }
 
     private fun setupViews() {
-        setupSearchResultListView()
         setupSearchView()
+        setupSearchResultListView()
     }
 
     private fun setupSearchView() {
         viewModel.latestQueries().observe(this, Observer<List<String>> { queries ->
             queries?.let {
                 val adapter = ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, queries)
-                queryEditText.setAdapter<ArrayAdapter<String>>(adapter)
-                queryEditText.showDropDown()
+                queryEditText.post {
+                    queryEditText.setAdapter(adapter)
+                    queryEditText.showDropDown()
+                }
             }
         })
         queryEditText.setOnItemClickListener { _, _, _, _ -> doSearch() }
