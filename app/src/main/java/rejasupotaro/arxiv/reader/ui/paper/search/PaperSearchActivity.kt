@@ -1,31 +1,24 @@
 package rejasupotaro.arxiv.reader.ui.paper.search
 
-import android.arch.lifecycle.LifecycleFragment
+import android.arch.lifecycle.LifecycleActivity
 import android.arch.lifecycle.Observer
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.KeyEvent
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import kotlinx.android.synthetic.main.fragment_paper_search.*
+import kotlinx.android.synthetic.main.activity_paper_search.*
 import rejasupotaro.arxiv.reader.R
 import rejasupotaro.arxiv.reader.data.model.Paper
 import rejasupotaro.arxiv.reader.extensions.hideKeyboard
 import rejasupotaro.arxiv.reader.extensions.showKeyboard
 
-
-class PaperSearchFragment : LifecycleFragment() {
+class PaperSearchActivity : LifecycleActivity() {
     private val viewModel = PaperSearchViewModel()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_paper_search, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_paper_search)
         setupViews()
     }
 
@@ -37,7 +30,7 @@ class PaperSearchFragment : LifecycleFragment() {
     private fun setupSearchView() {
         viewModel.latestQueries().observe(this, Observer<List<String>> { queries ->
             queries?.let {
-                val adapter = ArrayAdapter<String>(context, android.R.layout.simple_dropdown_item_1line, queries)
+                val adapter = ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, queries)
                 queryEditText.setAdapter<ArrayAdapter<String>>(adapter)
                 queryEditText.showDropDown()
             }
@@ -58,10 +51,10 @@ class PaperSearchFragment : LifecycleFragment() {
     private fun setupSearchResultListView() {
         val adapter = SearchResultListAdapter(
                 onItemClickListener = { paper ->
-                    Toast.makeText(context, "Download ${paper.downloadUrl}", Toast.LENGTH_SHORT).show()
-                    viewModel.download(context, paper)
+                    Toast.makeText(this, "Download ${paper.downloadUrl}", Toast.LENGTH_SHORT).show()
+                    viewModel.download(this, paper)
                             .observe(this, Observer<Unit> {
-                                Toast.makeText(context, "Download complete", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this, "Download complete", Toast.LENGTH_SHORT).show()
                             })
                 }
         )

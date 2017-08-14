@@ -1,40 +1,28 @@
 package rejasupotaro.arxiv.reader.ui.common
 
-import android.support.v4.app.FragmentManager
-import rejasupotaro.arxiv.reader.MainActivity
-import rejasupotaro.arxiv.reader.R
+import android.content.Context
+import android.content.Intent
 import rejasupotaro.arxiv.reader.data.model.Paper
-import rejasupotaro.arxiv.reader.ui.paper.list.PaperListFragment
-import rejasupotaro.arxiv.reader.ui.paper.search.PaperSearchFragment
-import rejasupotaro.arxiv.reader.ui.paper.view.PaperViewFragmentAutoBundle
+import rejasupotaro.arxiv.reader.ui.paper.list.PaperListActivity
+import rejasupotaro.arxiv.reader.ui.paper.search.PaperSearchActivity
+import rejasupotaro.arxiv.reader.ui.paper.view.PaperViewActivityAutoBundle
 
 object NavigationController {
-    val containerId = R.id.content
-    lateinit var fragmentManager: FragmentManager
-
-    fun init(activity: MainActivity) {
-        fragmentManager = activity.supportFragmentManager
+    fun navigateToMyPapers(context: Context) {
+        val intent = Intent(context, PaperListActivity::class.java)
+        context.startActivity(intent)
     }
 
-    fun navigateToMyPapers() {
-        fragmentManager.beginTransaction()
-                .replace(containerId, PaperListFragment())
-                .commit()
-    }
-
-    fun navigateToViewer(paper: Paper? = null) {
-        val fragment = PaperViewFragmentAutoBundle.builder()
+    fun navigateToViewer(context: Context, paper: Paper? = null) {
+        val intent = PaperViewActivityAutoBundle.builder()
                 .paper(paper)
-                .build()
-        fragmentManager.beginTransaction()
-                .replace(containerId, fragment)
-                .commit()
+                .build(context)
+        context.startActivity(intent)
     }
 
-    fun navigateToSearch() {
-        fragmentManager.beginTransaction()
-                .replace(containerId, PaperSearchFragment())
-                .commit()
+    fun navigateToSearch(context: Context) {
+        val intent = Intent(context, PaperSearchActivity::class.java)
+        context.startActivity(intent)
     }
 }
 

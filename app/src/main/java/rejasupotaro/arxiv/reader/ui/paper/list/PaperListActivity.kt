@@ -1,28 +1,21 @@
 package rejasupotaro.arxiv.reader.ui.paper.list
 
-import android.arch.lifecycle.LifecycleFragment
+import android.arch.lifecycle.LifecycleActivity
 import android.arch.lifecycle.Observer
 import android.os.Bundle
-import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import kotlinx.android.synthetic.main.fragment_paper_list.*
+import kotlinx.android.synthetic.main.activity_paper_list.*
 import rejasupotaro.arxiv.reader.R
 import rejasupotaro.arxiv.reader.data.model.Paper
 import rejasupotaro.arxiv.reader.ui.common.NavigationController
 
-class PaperListFragment : LifecycleFragment() {
+class PaperListActivity : LifecycleActivity() {
     private val viewModel = PaperListViewModel()
     lateinit var adapter: PaperListAdapter
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_paper_list, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_paper_list)
         setupViews()
     }
 
@@ -33,7 +26,7 @@ class PaperListFragment : LifecycleFragment() {
     private fun setupListView() {
         adapter = PaperListAdapter(
                 onItemClickListener = { paper ->
-                    NavigationController.navigateToViewer(paper)
+                    NavigationController.navigateToViewer(this, paper)
                 },
                 onItemLongClickListener = { paper ->
                     viewModel.deletePaper(paper).observe(this, Observer {
@@ -45,7 +38,7 @@ class PaperListFragment : LifecycleFragment() {
         )
 
         paperListView.adapter = adapter
-        paperListView.layoutManager = LinearLayoutManager(context)
+        paperListView.layoutManager = LinearLayoutManager(this)
 
         viewModel.paperList().observe(this, Observer<List<Paper>> { papers ->
             papers?.let {
