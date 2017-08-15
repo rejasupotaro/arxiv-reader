@@ -1,17 +1,17 @@
 package rejasupotaro.arxiv.reader.data.api
 
-import android.support.test.InstrumentationRegistry.getInstrumentation
 import android.support.test.runner.AndroidJUnit4
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 import org.junit.runner.RunWith
+import rejasupotaro.arxiv.reader.helper.readTextFromAssets
 
 @RunWith(AndroidJUnit4::class)
 class ResponseConverterTest {
 
     @Test
     fun xmlToPaper() {
-        val xml = readText("paper.xml")
+        val xml = readTextFromAssets("paper.xml")
         val paper = ResponseConverter.xmlToPaper(xml)
 
         paper.apply {
@@ -22,14 +22,20 @@ class ResponseConverterTest {
             assertThat(categories.size).isEqualTo(1)
             assertThat(categories[0].term).isEqualTo("cs.CL")
             assertThat(links.size).isEqualTo(3)
-            assertThat(updated).isEqualTo("2012-04-26T07:44:18Z")
-            assertThat(published).isEqualTo("2012-04-26T07:44:18Z")
+            updated.apply {
+                assertThat(year).isEqualTo(2012)
+                assertThat(monthOfYear).isEqualTo(4)
+                assertThat(dayOfMonth).isEqualTo(26)
+                assertThat(hourOfDay).isEqualTo(8)
+                assertThat(minuteOfHour).isEqualTo(44)
+                assertThat(secondOfMinute).isEqualTo(18)
+            }
         }
     }
 
     @Test
     fun xmlToPapers() {
-        val xml = readText("api_response.xml")
+        val xml = readTextFromAssets("api_response.xml")
         val apiResponse = ResponseConverter.xmlToApiResponse(xml)
 
         apiResponse.apply {
@@ -54,14 +60,16 @@ class ResponseConverterTest {
                 assertThat(categories.size).isEqualTo(1)
                 assertThat(categories[0].term).isEqualTo("cs.CL")
                 assertThat(links.size).isEqualTo(3)
-                assertThat(updated).isEqualTo("2012-04-26T07:44:18Z")
-                assertThat(published).isEqualTo("2012-04-26T07:44:18Z")
+                updated.apply {
+                    assertThat(year).isEqualTo(2012)
+                    assertThat(monthOfYear).isEqualTo(4)
+                    assertThat(dayOfMonth).isEqualTo(26)
+                    assertThat(hourOfDay).isEqualTo(8)
+                    assertThat(minuteOfHour).isEqualTo(44)
+                    assertThat(secondOfMinute).isEqualTo(18)
+                }
             }
         }
-    }
-
-    fun readText(fileName: String): String {
-        return getInstrumentation().context.resources.assets.open(fileName).bufferedReader().use { it.readText() }
     }
 }
 

@@ -2,6 +2,7 @@ package rejasupotaro.arxiv.reader.data.db
 
 import android.arch.persistence.room.TypeConverter
 import com.google.gson.reflect.TypeToken
+import org.joda.time.DateTime
 import rejasupotaro.arxiv.reader.data.gson
 import java.util.*
 
@@ -19,14 +20,14 @@ class StringConverter {
 }
 
 
-class DateConverter {
+class DateTimeConverter {
     @TypeConverter
-    fun serialize(date: Date): Long {
-        return date.time
+    fun serialize(dateTime: DateTime): String {
+        return gson.toJson(dateTime)
     }
 
     @TypeConverter
-    fun deserialize(value: Long): Date {
-        return Date(value)
+    fun deserialize(value: String): DateTime {
+        return gson.fromJson(value, object : TypeToken<DateTime>() {}.type)
     }
 }

@@ -6,6 +6,7 @@ import android.arch.lifecycle.ViewModel
 import android.content.Context
 import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.async
+import org.joda.time.DateTime
 import rejasupotaro.arxiv.reader.data.db.DbManager
 import rejasupotaro.arxiv.reader.data.file.FileManager
 import rejasupotaro.arxiv.reader.data.model.Paper
@@ -14,7 +15,6 @@ import rejasupotaro.arxiv.reader.data.repo.PaperRepository
 import rejasupotaro.arxiv.reader.extensions.deferredMap
 import rejasupotaro.arxiv.reader.extensions.observable
 import rejasupotaro.arxiv.reader.extensions.switchMap
-import java.util.*
 
 class PaperSearchViewModel(
         val repository: PaperRepository = PaperRepository(),
@@ -27,10 +27,9 @@ class PaperSearchViewModel(
             if (field == value) {
                 return
             }
+            logQuery(value)
+            submitEvent.value = SearchRequest(value, 1)
             field = value
-
-            logQuery(field)
-            submitEvent.value = SearchRequest(field, 1)
         }
 
     var searchResults: LiveData<SearchResponse> = submitEvent.switchMap { (query, page, perPage) ->
@@ -62,7 +61,7 @@ class PaperSearchViewModel(
 
     private fun logQuery(query: String) {
         async(CommonPool) {
-            db.searchHistoryDao.insert(SearchHistory(query, Date()))
+            db.searchHistoryDao.insert(SearchHistory(query, DateTime.now()))
         }
     }
 }

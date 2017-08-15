@@ -15,7 +15,7 @@ import rejasupotaro.arxiv.reader.data.model.SearchHistory
 )
 @TypeConverters(
         StringConverter::class,
-        DateConverter::class
+        DateTimeConverter::class
 )
 abstract class ArxivDb : RoomDatabase() {
     abstract fun paperDao(): PaperDao

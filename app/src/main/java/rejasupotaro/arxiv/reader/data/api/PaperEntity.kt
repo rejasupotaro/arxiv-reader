@@ -2,6 +2,7 @@ package rejasupotaro.arxiv.reader.data.api
 
 import android.util.Log
 import com.google.gson.annotations.SerializedName
+import org.joda.time.DateTime
 
 data class PaperEntity(
         @SerializedName("id")
@@ -23,10 +24,10 @@ data class PaperEntity(
         var links: List<LinkEntity>,
 
         @SerializedName("updated")
-        var updated: String,
+        var updated: DateTime,
 
         @SerializedName("published")
-        var published: String
+        var published: DateTime
 )
 
 data class AuthorEntity(

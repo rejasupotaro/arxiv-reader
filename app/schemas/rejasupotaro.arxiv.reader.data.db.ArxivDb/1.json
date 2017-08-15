@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "9a67e460f3e5661304571a3bd9ecfb8e",
+    "identityHash": "e38c5286e030aac135903dab5eef0305",
     "entities": [
       {
         "tableName": "papers",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `title` TEXT NOT NULL, `summary` TEXT NOT NULL, `authors` TEXT NOT NULL, `categories` TEXT NOT NULL, `download_url` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `title` TEXT NOT NULL, `summary` TEXT NOT NULL, `authors` TEXT NOT NULL, `categories` TEXT NOT NULL, `download_url` TEXT NOT NULL, `published_at` TEXT NOT NULL, `updated_at` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -43,6 +43,18 @@
             "columnName": "download_url",
             "affinity": "TEXT",
             "notNull": true
+          },
+          {
+            "fieldPath": "publishedAt",
+            "columnName": "published_at",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updated_at",
+            "affinity": "TEXT",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -65,7 +77,7 @@
       },
       {
         "tableName": "search_histories",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `query` TEXT NOT NULL, `created` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `query` TEXT NOT NULL, `created_at` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -80,9 +92,9 @@
             "notNull": true
           },
           {
-            "fieldPath": "created",
-            "columnName": "created",
-            "affinity": "INTEGER",
+            "fieldPath": "createdAt",
+            "columnName": "created_at",
+            "affinity": "TEXT",
             "notNull": true
           }
         ],
@@ -98,7 +110,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"9a67e460f3e5661304571a3bd9ecfb8e\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"e38c5286e030aac135903dab5eef0305\")"
     ]
   }
 }

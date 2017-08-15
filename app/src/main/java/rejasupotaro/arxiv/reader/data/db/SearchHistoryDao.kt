@@ -11,13 +11,12 @@ interface SearchHistoryDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(searchHistory: SearchHistory)
 
-    @Query("SELECT * FROM search_histories ORDER BY created DESC")
+    @Query("SELECT * FROM search_histories ORDER BY created_at DESC")
     fun findAll(): List<SearchHistory>
 
-    @Query("SELECT * FROM search_histories ORDER BY created DESC LIMIT 1")
+    @Query("SELECT * FROM search_histories ORDER BY created_at DESC LIMIT 1")
     fun first(): SearchHistory
 
     @Query("SELECT * FROM search_histories GROUP BY query LIMIT 10")
     fun latest(): List<SearchHistory>
 }
-

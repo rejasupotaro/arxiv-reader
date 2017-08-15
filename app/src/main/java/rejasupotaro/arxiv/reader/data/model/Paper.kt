@@ -4,6 +4,7 @@ import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.Index
 import android.arch.persistence.room.PrimaryKey
+import org.joda.time.DateTime
 import rejasupotaro.arxiv.reader.data.api.PaperEntity
 
 @Entity(
@@ -26,7 +27,13 @@ data class Paper(
         var categories: List<String>,
 
         @ColumnInfo(name = "download_url")
-        var downloadUrl: String
+        var downloadUrl: String,
+
+        @ColumnInfo(name = "published_at")
+        var publishedAt: DateTime,
+
+        @ColumnInfo(name = "updated_at")
+        var updatedAt: DateTime
 ) {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
@@ -39,7 +46,9 @@ data class Paper(
                     summary = entity.summary.trim(),
                     authors = entity.authors.map { it.name },
                     categories = entity.categories.map { it.description },
-                    downloadUrl = entity.links.filter { it.title == "pdf" }.first().href
+                    downloadUrl = entity.links.filter { it.title == "pdf" }.first().href,
+                    publishedAt = entity.published,
+                    updatedAt = entity.updated
             )
         }
     }

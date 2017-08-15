@@ -64,6 +64,7 @@ dependencies {
     compile "com.facebook.stetho:stetho:$stetho_version"
     compile "com.facebook.stetho:stetho-js-rhino:$stetho_version"
     compile "com.facebook.stetho:stetho-okhttp3:$stetho_version"
+    compile "net.danlew:android.joda:$joda_version"
 
     kapt "android.arch.lifecycle:compiler:$arch_version"
     kapt "android.arch.persistence.room:compiler:$arch_version"
