@@ -1,8 +1,16 @@
 <resources>
+    <!-- Common -->
     <string name="app_name">ArxivReader</string>
     <string name="navigation_my_papers">My papers</string>
     <string name="navigation_viewer">Viewer</string>
     <string name="navigation_find_papers">Find papers</string>
-    <string name="button_search">SEARCH</string>
+
+    <!-- PaperListActivity -->
+    <string name="button_find_more">FIND MORE</string>
     <string name="opened_xxx_ago">Opened %1$s</string>
+
+    <!-- PaperSearchActivity -->
+    <string name="button_search">SEARCH</string>
+
+    <!-- PaperViewActivity-->
 </resources>

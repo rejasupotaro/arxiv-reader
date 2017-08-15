@@ -1,0 +1,7 @@
+<resources>
+    <color name="text_color_primary">@color/md_grey_700</color>
+    <color name="text_color_secondary">@color/md_grey_600</color>
+    <color name="text_color_tertiary">@color/md_grey_500</color>
+    <color name="text_color_light">@color/md_grey_200</color>
+    <color name="text_color_hint">@color/md_grey_400</color>
+</resources>

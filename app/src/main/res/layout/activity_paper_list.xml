@@ -9,6 +9,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/color_primary"
             >
 
         <LinearLayout
@@ -23,6 +24,8 @@
                     android:layout_weight="1"
                     android:gravity="center_vertical"
                     android:text="@string/app_name"
+                    android:textColor="@color/text_color_light"
+                    android:textSize="@dimen/text_size_large"
                     android:textStyle="bold"
                     />
 
@@ -33,7 +36,9 @@
                     android:background="?android:attr/selectableItemBackground"
                     android:gravity="center"
                     android:padding="@dimen/spacing_medium"
-                    android:text="@string/button_search"
+                    android:text="@string/button_find_more"
+                    android:textColor="@color/text_color_light"
+                    android:textStyle="bold"
                     />
         </LinearLayout>
     </android.support.v7.widget.Toolbar>
