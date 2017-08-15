@@ -33,7 +33,13 @@ data class Paper(
         var publishedAt: DateTime,
 
         @ColumnInfo(name = "updated_at")
-        var updatedAt: DateTime
+        var updatedAt: DateTime,
+
+        @ColumnInfo(name = "opened_at")
+        var openedAt: DateTime,
+
+        @ColumnInfo(name = "last_opened_page")
+        var lastOpenedPage: Int
 ) {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
@@ -48,7 +54,9 @@ data class Paper(
                     categories = entity.categories.map { it.description },
                     downloadUrl = entity.links.filter { it.title == "pdf" }.first().href,
                     publishedAt = entity.published,
-                    updatedAt = entity.updated
+                    updatedAt = entity.updated,
+                    openedAt = DateTime.now(),
+                    lastOpenedPage = 0
             )
         }
     }
