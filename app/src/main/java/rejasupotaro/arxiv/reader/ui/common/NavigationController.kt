@@ -2,7 +2,6 @@ package rejasupotaro.arxiv.reader.ui.common
 
 import android.content.Context
 import android.content.Intent
-import rejasupotaro.arxiv.reader.data.model.Paper
 import rejasupotaro.arxiv.reader.ui.paper.list.PaperListActivity
 import rejasupotaro.arxiv.reader.ui.paper.search.PaperSearchActivity
 import rejasupotaro.arxiv.reader.ui.paper.view.PaperViewActivityAutoBundle
@@ -13,9 +12,8 @@ object NavigationController {
         context.startActivity(intent)
     }
 
-    fun navigateToViewer(context: Context, paper: Paper? = null) {
-        val intent = PaperViewActivityAutoBundle.builder()
-                .paper(paper)
+    fun navigateToViewer(context: Context, paperId: Long) {
+        val intent = PaperViewActivityAutoBundle.builder(paperId)
                 .build(context)
         context.startActivity(intent)
     }

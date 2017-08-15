@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "e38c5286e030aac135903dab5eef0305",
+    "identityHash": "e2d327b7bef712cfb0acd9ead330d2d9",
     "entities": [
       {
         "tableName": "papers",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `title` TEXT NOT NULL, `summary` TEXT NOT NULL, `authors` TEXT NOT NULL, `categories` TEXT NOT NULL, `download_url` TEXT NOT NULL, `published_at` TEXT NOT NULL, `updated_at` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `title` TEXT NOT NULL, `summary` TEXT NOT NULL, `authors` TEXT NOT NULL, `categories` TEXT NOT NULL, `download_url` TEXT NOT NULL, `published_at` TEXT NOT NULL, `updated_at` TEXT NOT NULL, `opened_at` TEXT NOT NULL, `last_opened_page` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -54,6 +54,18 @@
             "fieldPath": "updatedAt",
             "columnName": "updated_at",
             "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "openedAt",
+            "columnName": "opened_at",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lastOpenedPage",
+            "columnName": "last_opened_page",
+            "affinity": "INTEGER",
             "notNull": true
           }
         ],
@@ -110,7 +122,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"e38c5286e030aac135903dab5eef0305\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"e2d327b7bef712cfb0acd9ead330d2d9\")"
     ]
   }
 }
