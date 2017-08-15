@@ -17,7 +17,7 @@ class PaperListViewModel(
 
     fun deletePaper(paper: Paper): LiveData<Unit> {
         return observable {
-            db.paperDao.delete(paper.id)
+            db.paperDao.delete(paper)
         }
     }
 }

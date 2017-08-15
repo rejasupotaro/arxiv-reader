@@ -11,8 +11,8 @@ interface PaperDao {
     @Query("SELECT * FROM papers ORDER BY opened_at DESC")
     fun findAll(): List<Paper>
 
-    @Query("DELETE FROM papers WHERE id = :id")
-    fun delete(id: Long)
+    @Delete
+    fun delete(paper: Paper)
 
     @Query("SELECT * FROM papers WHERE id = :id")
     fun findById(id: Long): Paper
