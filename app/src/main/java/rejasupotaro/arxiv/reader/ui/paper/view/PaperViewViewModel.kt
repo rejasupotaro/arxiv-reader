@@ -15,7 +15,7 @@ class PaperViewViewModel(
 ) : ViewModel() {
     val paper: LiveData<Paper> = observable {
         val paper = db.paperDao.findById(paperId)
-        paper.updatedAt = DateTime.now()
+        paper.openedAt = DateTime.now()
         paper
     }.switchMap { paper ->
         updatePaper(paper)

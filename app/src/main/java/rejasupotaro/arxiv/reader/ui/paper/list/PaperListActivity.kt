@@ -3,6 +3,7 @@ package rejasupotaro.arxiv.reader.ui.paper.list
 import android.arch.lifecycle.LifecycleActivity
 import android.arch.lifecycle.Observer
 import android.os.Bundle
+import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_paper_list.*
 import rejasupotaro.arxiv.reader.R
@@ -44,6 +45,8 @@ class PaperListActivity : LifecycleActivity() {
 
         paperListView.adapter = adapter
         paperListView.layoutManager = LinearLayoutManager(this)
+        val itemDecoration = DividerItemDecoration(this, (paperListView.layoutManager as LinearLayoutManager).orientation)
+        paperListView.addItemDecoration(itemDecoration)
 
         viewModel.paperList().observe(this, Observer<List<Paper>> { papers ->
             papers?.let {

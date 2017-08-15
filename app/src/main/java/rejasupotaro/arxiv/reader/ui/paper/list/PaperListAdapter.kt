@@ -1,13 +1,13 @@
 package rejasupotaro.arxiv.reader.ui.paper.list
 
 import android.support.v7.widget.RecyclerView
-import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.list_item_search_result.view.*
+import kotlinx.android.synthetic.main.list_item_paper.view.*
 import rejasupotaro.arxiv.reader.R
 import rejasupotaro.arxiv.reader.data.model.Paper
+import rejasupotaro.arxiv.reader.extensions.relativeTimeSpanText
 
 class PaperListAdapter(
         val onItemClickListener: (Paper) -> Unit,
@@ -33,7 +33,8 @@ class PaperViewHolder(
 ) : RecyclerView.ViewHolder(itemView) {
     fun bind(paper: Paper) {
         itemView.titleTextView.text = paper.title
-        itemView.categoryTextView.text = paper.categories.joinToString("\n").trim()
+        itemView.authorsTextView.text = paper.authors.joinToString()
+        itemView.relativeTimeTextView.text = itemView.context.getString(R.string.opened_xxx_ago, paper.openedAt.relativeTimeSpanText())
         itemView.setOnClickListener { onItemClickListener.invoke(paper) }
         itemView.setOnLongClickListener { onItemLongClickListener.invoke(paper) }
     }
