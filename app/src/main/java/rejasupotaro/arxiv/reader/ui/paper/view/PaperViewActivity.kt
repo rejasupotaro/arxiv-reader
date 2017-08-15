@@ -6,7 +6,7 @@ import android.os.Bundle
 import com.yatatsu.autobundle.AutoBundleField
 import kotlinx.android.synthetic.main.activity_paper_view.*
 import rejasupotaro.arxiv.reader.R
-import java.io.File
+import rejasupotaro.arxiv.reader.data.file.FileManager
 
 class PaperViewActivity : LifecycleActivity() {
     @AutoBundleField
@@ -14,18 +14,27 @@ class PaperViewActivity : LifecycleActivity() {
 
     private lateinit var viewModel: PaperViewViewModel
 
+    private val onPageChangedListener = { page: Int, _: Int ->
+        viewModel.updatePaperLastOpenedPage(page).observe(this, Observer {})
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_paper_view)
         PaperViewActivityAutoBundle.bind(this, intent)
-        viewModel = PaperViewViewModel(this, paperId)
+        viewModel = PaperViewViewModel(paperId)
         setupPdfView()
     }
 
     private fun setupPdfView() {
-        viewModel.loadPaper().observe(this, Observer<File> {
-            pdfView.fromFile(it)
-                    .load()
+        viewModel.paper.observe(this, Observer { paper ->
+            paper?.let {
+                val file = FileManager.paperToFile(this, it)
+                pdfView.fromFile(file)
+                        .defaultPage(it.lastOpenedPage)
+                        .onPageChange(onPageChangedListener)
+                        .load()
+            }
         })
     }
 }

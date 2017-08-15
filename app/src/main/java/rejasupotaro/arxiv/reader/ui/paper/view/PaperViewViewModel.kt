@@ -2,25 +2,37 @@ package rejasupotaro.arxiv.reader.ui.paper.view
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.ViewModel
-import android.content.Context
 import org.joda.time.DateTime
 import rejasupotaro.arxiv.reader.data.db.DbManager
-import rejasupotaro.arxiv.reader.data.file.FileManager
+import rejasupotaro.arxiv.reader.data.model.Paper
+import rejasupotaro.arxiv.reader.extensions.map
 import rejasupotaro.arxiv.reader.extensions.observable
-import java.io.File
+import rejasupotaro.arxiv.reader.extensions.switchMap
 
 class PaperViewViewModel(
-        private val context: Context,
         private val paperId: Long,
         private val db: DbManager = DbManager
 ) : ViewModel() {
-    fun loadPaper(): LiveData<File> {
+    val paper: LiveData<Paper> = observable {
+        val paper = db.paperDao.findById(paperId)
+        paper.updatedAt = DateTime.now()
+        paper
+    }.switchMap { paper ->
+        updatePaper(paper)
+    }
+
+    fun updatePaper(paper: Paper): LiveData<Paper> {
         return observable {
-            val paper = db.paperDao.findById(paperId)
-            paper.updatedAt = DateTime.now()
             db.paperDao.update(paper)
-            FileManager.paperToFile(context, paper)
+            paper
         }
+    }
+
+    fun updatePaperLastOpenedPage(page: Int): LiveData<Unit> {
+        return paper.value?.let {
+            it.lastOpenedPage = page
+            updatePaper(it).map { Unit }
+        } ?: observable { Unit }
     }
 }
 
