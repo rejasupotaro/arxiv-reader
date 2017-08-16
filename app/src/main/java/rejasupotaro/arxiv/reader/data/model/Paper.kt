@@ -23,6 +23,11 @@ data class Paper(
         @ColumnInfo(name = "authors")
         var authors: List<String>,
 
+        // This value can take below values
+        // "Statistics - *", "Quantitative Biology - *", "Computer Science - *",
+        // "Nonlinear Sciences - *", "Mathematics - *", "Astrophysics",
+        // "Physics", "High Energy Physics", "Mathematical Physics",
+        // "Nuclear Experiment", "Nuclear Theory", "Physics - *", "Quantum Physics"
         @ColumnInfo(name = "categories")
         var categories: List<String>,
 
@@ -51,7 +56,7 @@ data class Paper(
                     title = entity.title.trim(),
                     summary = entity.summary.trim(),
                     authors = entity.authors.map { it.name },
-                    categories = entity.categories.map { it.description },
+                    categories = entity.categories.map { it.description }.filter { it.isNotEmpty() },
                     downloadUrl = entity.links.filter { it.title == "pdf" }.first().href,
                     publishedAt = entity.published,
                     updatedAt = entity.updated,

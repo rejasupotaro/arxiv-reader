@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_medium"
+        android:layout_marginStart="@dimen/spacing_medium"
+        android:orientation="vertical"
+        >
+
+    <TextView
+            android:id="@+id/categoryTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_round"
+            android:paddingEnd="@dimen/spacing_medium"
+            android:paddingStart="@dimen/spacing_medium"
+            android:textColor="@color/md_white_1000"
+            android:textStyle="bold"
+            />
+</LinearLayout>
