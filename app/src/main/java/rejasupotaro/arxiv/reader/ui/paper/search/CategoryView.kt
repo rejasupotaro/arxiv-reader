@@ -8,6 +8,7 @@ import android.util.AttributeSet
 import android.widget.FrameLayout
 import kotlinx.android.synthetic.main.view_category.view.*
 import rejasupotaro.arxiv.reader.R
+import rejasupotaro.arxiv.reader.data.model.Category
 
 class CategoryView : FrameLayout {
     constructor(context: Context) : super(context)
@@ -18,18 +19,17 @@ class CategoryView : FrameLayout {
         inflate(context, R.layout.view_category, this)
     }
 
-    var category: String = ""
+    var category: Category = Category("", "", R.color.md_white_1000)
         set(value) {
             if (categoryTextView.background is GradientDrawable) {
                 val drawable = categoryTextView.background as GradientDrawable
-                val colorId = if (value.startsWith("Computer Science")) {
-                    R.color.ink_orange
-                } else {
-                    R.color.ink_blue
-                }
-                drawable.color = ColorStateList.valueOf(ContextCompat.getColor(context, colorId))
+                drawable.color = ColorStateList.valueOf(ContextCompat.getColor(context, value.color))
             }
-            categoryTextView.text = value
+            categoryTextView.text = if (value.sub.isEmpty()) {
+                value.primary
+            } else {
+                "${value.primary.split(" ").map { it[0] }.joinToString("")}:${value.sub}"
+            }
         }
 }
 

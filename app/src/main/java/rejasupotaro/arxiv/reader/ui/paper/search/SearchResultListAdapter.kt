@@ -10,6 +10,7 @@ import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
 import kotlinx.android.synthetic.main.list_item_search_result.view.*
 import rejasupotaro.arxiv.reader.R
+import rejasupotaro.arxiv.reader.data.model.Category
 import rejasupotaro.arxiv.reader.data.model.Paper
 
 class SearchResultListAdapter(
@@ -55,7 +56,7 @@ class SearchResultViewHolder(
 }
 
 private class CategoryListAdapter : RecyclerView.Adapter<CategoryViewHolder>() {
-    var items = listOf<String>()
+    var items = listOf<Category>()
     override fun getItemCount() = items.size
 
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
@@ -69,7 +70,7 @@ private class CategoryListAdapter : RecyclerView.Adapter<CategoryViewHolder>() {
 }
 
 private class CategoryViewHolder(val categoryView: CategoryView) : RecyclerView.ViewHolder(categoryView) {
-    fun bind(category: String) {
+    fun bind(category: Category) {
         categoryView.category = category
     }
 }
