@@ -32,11 +32,18 @@ class PaperViewHolder(
         val onItemLongClickListener: (Paper) -> Boolean
 ) : RecyclerView.ViewHolder(itemView) {
     fun bind(paper: Paper) {
-        itemView.titleTextView.text = paper.title
-        itemView.authorsTextView.text = paper.authors.joinToString()
-        itemView.relativeTimeTextView.text = itemView.context.getString(R.string.opened_xxx_ago, paper.openedAt.relativeTimeSpanText())
-        itemView.setOnClickListener { onItemClickListener.invoke(paper) }
-        itemView.setOnLongClickListener { onItemLongClickListener.invoke(paper) }
+        itemView.apply {
+            titleTextView.text = paper.title
+            authorsTextView.text = paper.authors.joinToString()
+            val relativeTimeText = paper.openedAt?.let {
+                context.getString(R.string.opened_xxx_ago, it.relativeTimeSpanText())
+            } ?: run {
+                context.getString(R.string.downloaded_xxx_ago, paper.downloadedAt.relativeTimeSpanText())
+            }
+            relativeTimeTextView.text = relativeTimeText
+            setOnClickListener { onItemClickListener.invoke(paper) }
+            setOnLongClickListener { onItemLongClickListener.invoke(paper) }
+        }
     }
 }
 

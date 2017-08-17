@@ -4,6 +4,7 @@ import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.Index
 import android.arch.persistence.room.PrimaryKey
+import android.support.annotation.Nullable
 import org.joda.time.DateTime
 import rejasupotaro.arxiv.reader.data.api.PaperEntity
 
@@ -35,8 +36,12 @@ data class Paper(
         @ColumnInfo(name = "updated_at")
         var updatedAt: DateTime,
 
+        @ColumnInfo(name = "downloaded_at")
+        var downloadedAt: DateTime,
+
         @ColumnInfo(name = "opened_at")
-        var openedAt: DateTime,
+        @Nullable
+        var openedAt: DateTime?,
 
         @ColumnInfo(name = "last_opened_page")
         var lastOpenedPage: Int
@@ -57,7 +62,8 @@ data class Paper(
                     downloadUrl = entity.links.filter { it.title == "pdf" }.first().href,
                     publishedAt = entity.published,
                     updatedAt = entity.updated,
-                    openedAt = DateTime.now(),
+                    downloadedAt = DateTime.now(),
+                    openedAt = null,
                     lastOpenedPage = 0
             )
         }

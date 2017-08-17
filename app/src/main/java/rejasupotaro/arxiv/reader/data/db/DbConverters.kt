@@ -21,13 +21,13 @@ class StringListConverter {
 
 class DateTimeConverter {
     @TypeConverter
-    fun serialize(dateTime: DateTime): String {
-        return gson.toJson(dateTime)
+    fun serialize(dateTime: DateTime?): String? {
+        return dateTime?.let { gson.toJson(it) }
     }
 
     @TypeConverter
-    fun deserialize(value: String): DateTime {
-        return gson.fromJson(value, object : TypeToken<DateTime>() {}.type)
+    fun deserialize(value: String?): DateTime? {
+        return value?.let { gson.fromJson(it, object : TypeToken<DateTime>() {}.type) }
     }
 }
 
