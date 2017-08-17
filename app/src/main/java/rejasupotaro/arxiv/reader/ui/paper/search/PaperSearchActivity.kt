@@ -7,7 +7,6 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.KeyEvent
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_paper_search.*
 import rejasupotaro.arxiv.reader.R
 import rejasupotaro.arxiv.reader.extensions.hideKeyboard
@@ -53,11 +52,7 @@ class PaperSearchActivity : LifecycleActivity() {
     private fun setupSearchResultListView() {
         val adapter = SearchResultListAdapter(
                 onItemClickListener = { paper ->
-                    Toast.makeText(this, "Download ${paper.downloadUrl}", Toast.LENGTH_SHORT).show()
                     viewModel.download(this, paper)
-                            .observe(this, Observer<Unit> {
-                                Toast.makeText(this, "Download complete", Toast.LENGTH_SHORT).show()
-                            })
                 }
         )
 

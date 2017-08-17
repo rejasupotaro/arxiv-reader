@@ -8,13 +8,12 @@ import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.async
 import org.joda.time.DateTime
 import rejasupotaro.arxiv.reader.data.db.DbManager
-import rejasupotaro.arxiv.reader.data.file.FileManager
 import rejasupotaro.arxiv.reader.data.model.Paper
 import rejasupotaro.arxiv.reader.data.model.SearchHistory
 import rejasupotaro.arxiv.reader.data.repo.PaperRepository
-import rejasupotaro.arxiv.reader.extensions.deferredMap
 import rejasupotaro.arxiv.reader.extensions.observable
 import rejasupotaro.arxiv.reader.extensions.switchMap
+import rejasupotaro.arxiv.reader.job.PdfDownloadServiceAutoBundle
 
 class PaperSearchViewModel(
         val repository: PaperRepository = PaperRepository(),
@@ -33,7 +32,9 @@ class PaperSearchViewModel(
         }
 
     var searchResults: LiveData<SearchResponse> = submitEvent.switchMap { (query, page, perPage) ->
-        repository.search(query, page, perPage)
+        observable {
+            repository.search(query, page, perPage)
+        }
     }
 
     fun loadNextPage() {
@@ -52,11 +53,10 @@ class PaperSearchViewModel(
         }
     }
 
-    fun download(context: Context, paper: Paper): LiveData<Unit> {
-        val file = FileManager.paperToFile(context, paper)
-        return repository.download(paper, file).deferredMap {
-            db.paperDao.insert(paper)
-        }
+    fun download(context: Context, paper: Paper) {
+        val intent = PdfDownloadServiceAutoBundle.builder(paper)
+                .build(context)
+        context.startService(intent)
     }
 
     private fun logQuery(query: String) {

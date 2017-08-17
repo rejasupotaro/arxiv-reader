@@ -9,23 +9,12 @@ class HttpClient {
             .addNetworkInterceptor(StethoInterceptor())
             .build()
 
-    fun get(url: String,
-            handler: (Response) -> Unit,
-            errorHandler: (IOException) -> Unit = { _ -> }
-    ) {
+    fun get(url: String): Response {
         val request = Request.Builder()
                 .url(url)
                 .build()
 
-        okHttpClient.newCall(request).enqueue(object : Callback {
-            override fun onFailure(call: Call, e: IOException) {
-                errorHandler.invoke(e)
-            }
-
-            override fun onResponse(call: Call, response: Response) {
-                handler.invoke(response)
-            }
-        })
+        return okHttpClient.newCall(request).execute()
     }
 }
 
