@@ -45,7 +45,7 @@ class PaperSearchActivity : LifecycleActivity() {
                 false
             }
         }
-        submitButton.setOnClickListener { doSearch() }
+        searchButton.setOnClickListener { doSearch() }
         queryEditText.showKeyboard()
     }
 
