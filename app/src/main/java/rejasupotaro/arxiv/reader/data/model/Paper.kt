@@ -53,7 +53,7 @@ data class Paper(
                     authors = entity.authors.map { it.name },
                     categories = entity.categories.map { it.description }
                             .filter { it.isNotEmpty() }
-                            .map { Category.stringToModel(it) },
+                            .map { Category.entityToModel(it) },
                     downloadUrl = entity.links.filter { it.title == "pdf" }.first().href,
                     publishedAt = entity.published,
                     updatedAt = entity.updated,

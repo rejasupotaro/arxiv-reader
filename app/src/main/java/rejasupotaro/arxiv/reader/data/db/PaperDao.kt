@@ -6,7 +6,7 @@ import rejasupotaro.arxiv.reader.data.model.Paper
 @Dao
 interface PaperDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(paper: Paper)
+    fun insert(paper: Paper): Long
 
     @Query("SELECT * FROM papers ORDER BY opened_at DESC")
     fun findAll(): List<Paper>

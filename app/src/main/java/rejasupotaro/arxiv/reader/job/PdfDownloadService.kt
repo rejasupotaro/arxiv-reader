@@ -8,6 +8,8 @@ import rejasupotaro.arxiv.reader.data.file.FileManager
 import rejasupotaro.arxiv.reader.data.model.Paper
 import rejasupotaro.arxiv.reader.data.model.PaperConverter
 import rejasupotaro.arxiv.reader.data.repo.PaperRepository
+import rejasupotaro.arxiv.reader.notification.PdfDownloadedPushNotification
+import rejasupotaro.arxiv.reader.notification.PdfDownloadingPushNotification
 
 class PdfDownloadService(
         name: String = PdfDownloadService::class.java.simpleName,
@@ -23,8 +25,15 @@ class PdfDownloadService(
     }
 
     fun download(paper: Paper) {
-        val file = FileManager.paperToFile(applicationContext, paper)
-        repository.download(paper, file)
-        db.paperDao.insert(paper)
+        val notification = PdfDownloadingPushNotification(applicationContext, paper)
+        try {
+            notification.show()
+            val file = FileManager.paperToFile(applicationContext, paper)
+            repository.download(paper, file)
+            paper.id = db.paperDao.insert(paper)
+            PdfDownloadedPushNotification(applicationContext, paper).show()
+        } finally {
+            notification.cancel()
+        }
     }
 }

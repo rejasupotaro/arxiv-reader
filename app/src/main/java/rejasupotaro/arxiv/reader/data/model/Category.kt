@@ -10,7 +10,7 @@ data class Category(
 ) {
 
     companion object {
-        fun stringToModel(iterm: String): Category {
+        fun entityToModel(iterm: String): Category {
             var primary = ""
             var sub = ""
             if (iterm.contains(" - ")) {
