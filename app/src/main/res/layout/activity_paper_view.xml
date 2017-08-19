@@ -1,15 +1,69 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         >
 
-    <ScrollView
+    <android.support.design.widget.AppBarLayout
+            android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            >
+
+        <android.support.design.widget.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                >
+
+            <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    app:layout_collapseMode="pin"
+                    >
+
+                <TextView
+                        android:id="@+id/titleTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|center_horizontal"
+                        android:paddingEnd="@dimen/spacing_xxlarge"
+                        android:paddingStart="@dimen/spacing_xxlarge"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/text_size_xlarge"
+                        android:textStyle="bold"
+                        />
+            </FrameLayout>
+
+            <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_collapseMode="pin"
+                    >
+
+                <TextView
+                        android:id="@+id/titleTextViewInToolbar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:alpha="0"
+                        android:animateLayoutChanges="true"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:textSize="@dimen/text_size_large"
+                        android:textStyle="bold"
+                        />
+            </android.support.v7.widget.Toolbar>
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:fadeScrollbars="false"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
             >
 
         <LinearLayout
@@ -21,15 +75,6 @@
                 >
 
             <TextView
-                    android:id="@+id/titleTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:textSize="@dimen/text_size_xlarge"
-                    android:textStyle="bold"
-                    />
-
-            <TextView
                     android:id="@+id/authorsTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -37,13 +82,23 @@
                     android:layout_marginTop="@dimen/spacing_xlarge"
                     android:textSize="@dimen/text_size_small"
                     />
+            <TextView
+                    android:id="@+id/publishedAtTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/spacing_small"
+                    android:textSize="@dimen/text_size_small"
+                    />
 
             <TextView
                     android:id="@+id/summaryTextView"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_xlarge"
+                    android:justificationMode="inter_word"
                     android:textSize="@dimen/text_size_medium"
+                    tools:targetApi="o"
                     />
 
             <android.support.v7.widget.RecyclerView
@@ -52,18 +107,19 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_xlarge"
                     />
-        </LinearLayout>
-    </ScrollView>
 
-    <TextView
-            android:id="@+id/downloadButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?android:attr/selectableItemBackground"
-            android:gravity="center"
-            android:padding="@dimen/spacing_large"
-            android:text="@string/button_download"
-            android:textSize="@dimen/text_size_large"
-            android:textStyle="bold"
-            />
-</LinearLayout>
+            <TextView
+                    android:id="@+id/downloadButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:gravity="center"
+                    android:padding="@dimen/spacing_large"
+                    android:text="@string/button_download"
+                    android:textSize="@dimen/text_size_large"
+                    android:textStyle="bold"
+                    />
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</android.support.design.widget.CoordinatorLayout>

@@ -52,7 +52,7 @@ class SearchResultViewHolder(
 
     fun bind(paper: Paper) {
         itemView.titleTextView.text = paper.title
-        itemView.downloadUrlTextView.text = paper.downloadUrl
+        itemView.downloadUrlTextView.text = "${paper.publishedAt.year} - ${paper.downloadUrl}"
         itemView.summaryTextView.text = paper.summary
         adapter.items = paper.categories
         adapter.notifyDataSetChanged()
