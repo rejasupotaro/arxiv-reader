@@ -4,25 +4,27 @@ import android.arch.lifecycle.LifecycleActivity
 import android.arch.lifecycle.Observer
 import android.os.Bundle
 import com.yatatsu.autobundle.AutoBundleField
+import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_paper_view.*
 import rejasupotaro.arxiv.reader.R
 import rejasupotaro.arxiv.reader.data.file.FileManager
+import javax.inject.Inject
 
 class PaperViewActivity : LifecycleActivity() {
+    @Inject lateinit var viewModel: PaperViewViewModel
+
     @AutoBundleField
     var paperId: Long = 0
-
-    private lateinit var viewModel: PaperViewViewModel
 
     private val onPageChangedListener = { page: Int, _: Int ->
         viewModel.updatePaperLastOpenedPage(page).observe(this, Observer {})
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_paper_view)
         PaperViewActivityAutoBundle.bind(this, intent)
-        viewModel = PaperViewViewModel(paperId)
         setupPdfView()
     }
 
@@ -36,5 +38,6 @@ class PaperViewActivity : LifecycleActivity() {
                         .load()
             }
         })
+        viewModel.paperId.value = paperId
     }
 }

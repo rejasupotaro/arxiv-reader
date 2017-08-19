@@ -7,15 +7,18 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.KeyEvent
 import android.widget.ArrayAdapter
+import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_paper_search.*
 import rejasupotaro.arxiv.reader.R
 import rejasupotaro.arxiv.reader.extensions.hideKeyboard
 import rejasupotaro.arxiv.reader.extensions.showKeyboard
+import javax.inject.Inject
 
 class PaperSearchActivity : LifecycleActivity() {
-    private val viewModel = PaperSearchViewModel()
+    @Inject lateinit var viewModel: PaperSearchViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_paper_search)
         setupViews()

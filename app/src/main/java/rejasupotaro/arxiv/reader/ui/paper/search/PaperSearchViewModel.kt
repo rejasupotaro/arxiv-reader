@@ -7,7 +7,7 @@ import android.content.Context
 import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.async
 import org.joda.time.DateTime
-import rejasupotaro.arxiv.reader.data.db.DbManager
+import rejasupotaro.arxiv.reader.data.db.ArxivDb
 import rejasupotaro.arxiv.reader.data.model.Paper
 import rejasupotaro.arxiv.reader.data.model.SearchHistory
 import rejasupotaro.arxiv.reader.data.repo.PaperRepository
@@ -15,10 +15,7 @@ import rejasupotaro.arxiv.reader.extensions.observable
 import rejasupotaro.arxiv.reader.extensions.switchMap
 import rejasupotaro.arxiv.reader.job.PdfDownloadServiceAutoBundle
 
-class PaperSearchViewModel(
-        val repository: PaperRepository = PaperRepository(),
-        val db: DbManager = DbManager
-) : ViewModel() {
+class PaperSearchViewModel(val repository: PaperRepository, val db: ArxivDb) : ViewModel() {
     private val submitEvent = MutableLiveData<SearchRequest>()
 
     var query: String = ""
@@ -49,7 +46,7 @@ class PaperSearchViewModel(
 
     fun latestQueries(): LiveData<List<String>> {
         return observable {
-            db.searchHistoryDao.latest().map { it.query }
+            db.searchHistoryDao().latest().map { it.query }
         }
     }
 
@@ -61,7 +58,7 @@ class PaperSearchViewModel(
 
     private fun logQuery(query: String) {
         async(CommonPool) {
-            db.searchHistoryDao.insert(SearchHistory(query, DateTime.now()))
+            db.searchHistoryDao().insert(SearchHistory(query, DateTime.now()))
         }
     }
 }

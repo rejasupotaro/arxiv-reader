@@ -42,6 +42,7 @@ dependencies {
         exclude group: "com.android.support", module: "support-core-utils"
     })
     testCompile "org.assertj:assertj-core:$assertj_version"
+    testCompile "com.nhaarman:mockito-kotlin-kt1.1:$mockito_kotlin_version"
 
     androidTestCompile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     androidTestCompile "com.android.support:appcompat-v7:$support_version"
@@ -59,6 +60,11 @@ dependencies {
     androidTestCompile("android.arch.core:core-testing:$arch_version", {
     })
     androidTestCompile "org.assertj:assertj-core:$assertj_version"
+    androidTestCompile "com.linkedin.dexmaker:dexmaker-mockito:$dexmaker_mockito"
+    androidTestCompile "com.nhaarman:mockito-kotlin-kt1.1:$mockito_kotlin_version"
+
+    kaptAndroidTest "com.google.dagger:dagger-android-processor:$dagger_version"
+    kaptAndroidTest "com.google.dagger:dagger-compiler:$dagger_version"
 }
 
 repositories {

@@ -5,16 +5,20 @@ import android.arch.lifecycle.Observer
 import android.os.Bundle
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
+import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_paper_list.*
 import rejasupotaro.arxiv.reader.R
 import rejasupotaro.arxiv.reader.data.model.Paper
 import rejasupotaro.arxiv.reader.ui.common.NavigationController
+import javax.inject.Inject
 
 class PaperListActivity : LifecycleActivity() {
-    private val viewModel = PaperListViewModel()
+    @Inject lateinit var viewModel: PaperListViewModel
+
     lateinit var adapter: PaperListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_paper_list)
         setupViews()
