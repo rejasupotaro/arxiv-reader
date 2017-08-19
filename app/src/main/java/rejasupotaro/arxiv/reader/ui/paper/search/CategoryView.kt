@@ -25,11 +25,7 @@ class CategoryView : FrameLayout {
                 val drawable = categoryTextView.background as GradientDrawable
                 drawable.color = ColorStateList.valueOf(ContextCompat.getColor(context, value.color))
             }
-            categoryTextView.text = if (value.sub.isEmpty()) {
-                value.primary
-            } else {
-                "${value.primary.split(" ").map { it[0] }.joinToString("")}:${value.sub}"
-            }
+            categoryTextView.text = value.text
         }
 }
 

@@ -23,6 +23,7 @@
         </activity>
         <activity android:name=".ui.paper.search.PaperSearchActivity" />
         <activity android:name=".ui.paper.read.PaperReadActivity" />
+        <activity android:name=".ui.paper.view.PaperViewActivity" />
 
         <service android:name=".job.PdfDownloadService" />
     </application>

@@ -8,6 +8,14 @@ data class Category(
         val sub: String,
         @ColorRes val color: Int
 ) {
+    val text: String
+        get() {
+            return if (sub.isEmpty()) {
+                primary
+            } else {
+                "${primary.split(" ").map { it[0] }.joinToString("")}:$sub"
+            }
+        }
 
     companion object {
         fun entityToModel(iterm: String): Category {
@@ -46,7 +54,7 @@ data class Category(
             } else if (primary.contains("Physics") || primary.contains("Quant")) {
                 R.color.ink_pink
             } else if (primary == "Statistics") {
-               R.color.ink_purple
+                R.color.ink_purple
             } else {
                 R.color.md_grey_600
             }

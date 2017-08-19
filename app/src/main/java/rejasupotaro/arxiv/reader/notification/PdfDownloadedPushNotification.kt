@@ -6,7 +6,7 @@ import android.content.Context
 import android.support.v4.app.NotificationCompat
 import rejasupotaro.arxiv.reader.R
 import rejasupotaro.arxiv.reader.data.model.Paper
-import rejasupotaro.arxiv.reader.ui.paper.read.PaperViewActivityAutoBundle
+import rejasupotaro.arxiv.reader.ui.paper.read.PaperReadActivityAutoBundle
 import java.util.*
 
 class PdfDownloadedPushNotification(private val context: Context, private val paper: Paper) {
@@ -15,7 +15,7 @@ class PdfDownloadedPushNotification(private val context: Context, private val pa
     val id = Random().nextInt()
 
     fun show() {
-        val intent = PaperViewActivityAutoBundle.builder(paper.id)
+        val intent = PaperReadActivityAutoBundle.builder(paper.id)
                 .build(context)
 
         val pendingIntent = PendingIntent.getActivity(context, -1, intent, PendingIntent.FLAG_ONE_SHOT);

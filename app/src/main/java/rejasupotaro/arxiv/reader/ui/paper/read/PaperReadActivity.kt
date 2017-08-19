@@ -13,8 +13,7 @@ import javax.inject.Inject
 class PaperReadActivity : LifecycleActivity() {
     @Inject lateinit var viewModel: PaperReadViewModel
 
-    @AutoBundleField
-    var paperId: Long = 0
+    @AutoBundleField var paperId: Long = 0
 
     private val onPageChangedListener = { page: Int, _: Int ->
         viewModel.updatePaperLastOpenedPage(page).observe(this, Observer {})
@@ -24,7 +23,7 @@ class PaperReadActivity : LifecycleActivity() {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_paper_read)
-        PaperViewActivityAutoBundle.bind(this, intent)
+        PaperReadActivityAutoBundle.bind(this, intent)
         setupPdfView()
     }
 

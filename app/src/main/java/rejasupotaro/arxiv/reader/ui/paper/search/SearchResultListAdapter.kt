@@ -1,5 +1,8 @@
 package rejasupotaro.arxiv.reader.ui.paper.search
 
+import android.support.v4.content.ContextCompat
+import android.support.v7.widget.DividerItemDecoration
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -10,8 +13,8 @@ import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
 import kotlinx.android.synthetic.main.list_item_search_result.view.*
 import rejasupotaro.arxiv.reader.R
-import rejasupotaro.arxiv.reader.data.model.Category
 import rejasupotaro.arxiv.reader.data.model.Paper
+import rejasupotaro.arxiv.reader.ui.common.CategoryListAdapter
 
 class SearchResultListAdapter(
         val onItemClickListener: (Paper) -> Unit
@@ -36,12 +39,14 @@ class SearchResultViewHolder(
     private var adapter = CategoryListAdapter()
 
     init {
-        val layoutManager = FlexboxLayoutManager(itemView.context).apply {
+        itemView.categoryListView.layoutManager = FlexboxLayoutManager(itemView.context).apply {
             flexDirection = FlexDirection.ROW
             justifyContent = JustifyContent.FLEX_START
             flexWrap = FlexWrap.WRAP
         }
-        itemView.categoryListView.layoutManager = layoutManager
+        itemView.categoryListView.addItemDecoration(DividerItemDecoration(itemView.context, LinearLayoutManager.HORIZONTAL).apply {
+            setDrawable(ContextCompat.getDrawable(itemView.context, R.drawable.item_decoration_spacing_horizontal))
+        })
         itemView.categoryListView.adapter = adapter
     }
 
@@ -52,25 +57,5 @@ class SearchResultViewHolder(
         adapter.items = paper.categories
         adapter.notifyDataSetChanged()
         itemView.setOnClickListener { onItemClickListener.invoke(paper) }
-    }
-}
-
-private class CategoryListAdapter : RecyclerView.Adapter<CategoryViewHolder>() {
-    var items = listOf<Category>()
-    override fun getItemCount() = items.size
-
-    override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
-        holder.bind(items[position])
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
-        val categoryView = CategoryView(parent.context)
-        return CategoryViewHolder(categoryView)
-    }
-}
-
-private class CategoryViewHolder(val categoryView: CategoryView) : RecyclerView.ViewHolder(categoryView) {
-    fun bind(category: Category) {
-        categoryView.category = category
     }
 }

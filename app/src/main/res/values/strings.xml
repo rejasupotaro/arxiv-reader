@@ -13,4 +13,5 @@
     <!-- PaperSearchActivity -->
 
     <!-- PaperViewActivity-->
+    <string name="button_download">DOWNLOAD</string>
 </resources>

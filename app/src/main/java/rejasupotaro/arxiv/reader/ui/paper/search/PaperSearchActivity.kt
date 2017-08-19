@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.activity_paper_search.*
 import rejasupotaro.arxiv.reader.R
 import rejasupotaro.arxiv.reader.extensions.hideKeyboard
 import rejasupotaro.arxiv.reader.extensions.showKeyboard
+import rejasupotaro.arxiv.reader.ui.common.NavigationController
 import javax.inject.Inject
 
 class PaperSearchActivity : LifecycleActivity() {
@@ -55,7 +56,7 @@ class PaperSearchActivity : LifecycleActivity() {
     private fun setupSearchResultListView() {
         val adapter = SearchResultListAdapter(
                 onItemClickListener = { paper ->
-                    viewModel.download(this, paper)
+                    NavigationController.navigateToViewer(this, paper)
                 }
         )
 
