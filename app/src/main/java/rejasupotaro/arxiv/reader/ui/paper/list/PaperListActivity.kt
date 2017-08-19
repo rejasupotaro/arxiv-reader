@@ -5,6 +5,7 @@ import android.arch.lifecycle.Observer
 import android.os.Bundle
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
+import android.transition.Explode
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_paper_list.*
 import rejasupotaro.arxiv.reader.R
@@ -36,6 +37,7 @@ class PaperListActivity : LifecycleActivity() {
     private fun setupListView() {
         adapter = PaperListAdapter(
                 onItemClickListener = { paper ->
+                    window.exitTransition = Explode()
                     NavigationController.navigateToReader(this, paper.id)
                 },
                 onItemLongClickListener = { paper ->

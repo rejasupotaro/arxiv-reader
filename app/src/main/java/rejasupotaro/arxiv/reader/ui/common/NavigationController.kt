@@ -13,6 +13,10 @@ import rejasupotaro.arxiv.reader.ui.paper.list.PaperListActivity
 import rejasupotaro.arxiv.reader.ui.paper.read.PaperReadActivityAutoBundle
 import rejasupotaro.arxiv.reader.ui.paper.search.PaperSearchActivity
 import rejasupotaro.arxiv.reader.ui.paper.view.PaperViewActivityAutoBundle
+import android.app.ActivityOptions
+import android.os.Bundle
+
+
 
 object NavigationController {
     fun navigateToMyPapers(context: Context) {
@@ -34,10 +38,10 @@ object NavigationController {
         ActivityCompat.startActivity(activity, intent, options.toBundle())
     }
 
-    fun navigateToReader(context: Context, paperId: Long) {
-        val intent = PaperReadActivityAutoBundle.builder(paperId)
-                .build(context)
-        context.startActivity(intent)
+    fun navigateToReader(activity: Activity, paperId: Long) {
+        val options = ActivityOptions.makeSceneTransitionAnimation(activity)
+        val intent = PaperReadActivityAutoBundle.builder(paperId).build(activity)
+        ActivityCompat.startActivity(activity, intent, options.toBundle())
     }
 }
 

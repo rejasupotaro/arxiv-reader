@@ -3,6 +3,7 @@ package rejasupotaro.arxiv.reader.ui.paper.read
 import android.arch.lifecycle.LifecycleActivity
 import android.arch.lifecycle.Observer
 import android.os.Bundle
+import android.transition.Fade
 import com.yatatsu.autobundle.AutoBundleField
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_paper_read.*
@@ -23,6 +24,7 @@ class PaperReadActivity : LifecycleActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_paper_read)
         PaperReadActivityAutoBundle.bind(this, intent)
+        window.enterTransition = Fade()
         setupPdfView()
     }
 
