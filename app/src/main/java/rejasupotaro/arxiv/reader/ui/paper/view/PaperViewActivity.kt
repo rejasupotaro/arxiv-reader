@@ -3,10 +3,14 @@ package rejasupotaro.arxiv.reader.ui.paper.view
 import android.os.Bundle
 import android.support.design.widget.AppBarLayout
 import android.support.v4.content.ContextCompat
+import android.support.v4.view.ViewCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
-import android.view.View
+import android.transition.Explode
+import android.transition.Fade
+import android.transition.Slide
+import android.view.MenuItem
 import com.yatatsu.autobundle.AutoBundleField
 import kotlinx.android.synthetic.main.activity_paper_view.*
 import rejasupotaro.arxiv.reader.R
@@ -15,18 +19,22 @@ import rejasupotaro.arxiv.reader.data.model.PaperConverter
 import rejasupotaro.arxiv.reader.extensions.readableText
 import rejasupotaro.arxiv.reader.job.PdfDownloadServiceAutoBundle
 import rejasupotaro.arxiv.reader.ui.common.CategoryListAdapter
-import android.content.Intent
-import android.view.MenuItem
 
 
 class PaperViewActivity : AppCompatActivity() {
     @AutoBundleField(converter = PaperConverter::class)
     lateinit var paper: Paper
 
+    @AutoBundleField
+    lateinit var transitionName: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_paper_view)
         PaperViewActivityAutoBundle.bind(this, intent)
+        ViewCompat.setTransitionName(titleTextView, paper.title)
+        window.enterTransition = Explode()
+        window.exitTransition = Fade()
         setupToolbar()
         setupViews()
     }
@@ -45,14 +53,14 @@ class PaperViewActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(menuItem: MenuItem): Boolean {
         when (menuItem.itemId) {
-            android.R.id.home -> finish()
+            android.R.id.home -> onBackPressed()
         }
         return super.onOptionsItemSelected(menuItem)
     }
 
     private fun setupViews() {
         authorsTextView.text = paper.authors.joinToString()
-        publishedAtTextView.text= paper.publishedAt.readableText()
+        publishedAtTextView.text = paper.publishedAt.readableText()
         summaryTextView.text = paper.summary
         categoryListView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         categoryListView.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.HORIZONTAL).apply {

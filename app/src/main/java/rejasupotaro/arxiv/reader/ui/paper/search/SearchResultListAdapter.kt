@@ -17,7 +17,7 @@ import rejasupotaro.arxiv.reader.data.model.Paper
 import rejasupotaro.arxiv.reader.ui.common.CategoryListAdapter
 
 class SearchResultListAdapter(
-        val onItemClickListener: (Paper) -> Unit
+        val onItemClickListener: (View, Paper) -> Unit
 ) : RecyclerView.Adapter<SearchResultViewHolder>() {
     var items = mutableListOf<Paper>()
     override fun getItemCount() = items.size
@@ -34,7 +34,7 @@ class SearchResultListAdapter(
 
 class SearchResultViewHolder(
         itemView: View,
-        val onItemClickListener: (Paper) -> Unit
+        val onItemClickListener: (View, Paper) -> Unit
 ) : RecyclerView.ViewHolder(itemView) {
     private var adapter = CategoryListAdapter()
 
@@ -56,6 +56,6 @@ class SearchResultViewHolder(
         itemView.summaryTextView.text = paper.summary
         adapter.items = paper.categories
         adapter.notifyDataSetChanged()
-        itemView.setOnClickListener { onItemClickListener.invoke(paper) }
+        itemView.setOnClickListener { onItemClickListener.invoke(itemView.titleTextView, paper) }
     }
 }

@@ -82,6 +82,7 @@
                     android:layout_marginTop="@dimen/spacing_xlarge"
                     android:textSize="@dimen/text_size_small"
                     />
+
             <TextView
                     android:id="@+id/publishedAtTextView"
                     android:layout_width="wrap_content"

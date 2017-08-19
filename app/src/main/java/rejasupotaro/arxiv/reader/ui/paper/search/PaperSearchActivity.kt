@@ -5,10 +5,13 @@ import android.arch.lifecycle.Observer
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.transition.Explode
+import android.transition.Fade
 import android.view.KeyEvent
 import android.widget.ArrayAdapter
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_paper_search.*
+import kotlinx.android.synthetic.main.list_item_search_result.view.*
 import rejasupotaro.arxiv.reader.R
 import rejasupotaro.arxiv.reader.extensions.hideKeyboard
 import rejasupotaro.arxiv.reader.extensions.showKeyboard
@@ -55,8 +58,8 @@ class PaperSearchActivity : LifecycleActivity() {
 
     private fun setupSearchResultListView() {
         val adapter = SearchResultListAdapter(
-                onItemClickListener = { paper ->
-                    NavigationController.navigateToViewer(this, paper)
+                onItemClickListener = { view, paper ->
+                    NavigationController.navigateToViewer(this, paper, view)
                 }
         )
 
