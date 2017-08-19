@@ -6,7 +6,7 @@ import android.content.Context
 import android.support.v4.app.NotificationCompat
 import rejasupotaro.arxiv.reader.R
 import rejasupotaro.arxiv.reader.data.model.Paper
-import rejasupotaro.arxiv.reader.ui.paper.view.PaperViewActivityAutoBundle
+import rejasupotaro.arxiv.reader.ui.paper.read.PaperViewActivityAutoBundle
 import java.util.*
 
 class PdfDownloadedPushNotification(private val context: Context, private val paper: Paper) {

@@ -1,17 +1,17 @@
-package rejasupotaro.arxiv.reader.ui.paper.view
+package rejasupotaro.arxiv.reader.ui.paper.read
 
 import android.arch.lifecycle.LifecycleActivity
 import android.arch.lifecycle.Observer
 import android.os.Bundle
 import com.yatatsu.autobundle.AutoBundleField
 import dagger.android.AndroidInjection
-import kotlinx.android.synthetic.main.activity_paper_view.*
+import kotlinx.android.synthetic.main.activity_paper_read.*
 import rejasupotaro.arxiv.reader.R
 import rejasupotaro.arxiv.reader.data.file.FileManager
 import javax.inject.Inject
 
-class PaperViewActivity : LifecycleActivity() {
-    @Inject lateinit var viewModel: PaperViewViewModel
+class PaperReadActivity : LifecycleActivity() {
+    @Inject lateinit var viewModel: PaperReadViewModel
 
     @AutoBundleField
     var paperId: Long = 0
@@ -23,7 +23,7 @@ class PaperViewActivity : LifecycleActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_paper_view)
+        setContentView(R.layout.activity_paper_read)
         PaperViewActivityAutoBundle.bind(this, intent)
         setupPdfView()
     }

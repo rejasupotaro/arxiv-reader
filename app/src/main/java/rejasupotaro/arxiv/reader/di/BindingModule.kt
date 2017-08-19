@@ -7,8 +7,8 @@ import rejasupotaro.arxiv.reader.ui.paper.list.PaperListActivity
 import rejasupotaro.arxiv.reader.ui.paper.list.PaperListActivityModule
 import rejasupotaro.arxiv.reader.ui.paper.search.PaperSearchActivity
 import rejasupotaro.arxiv.reader.ui.paper.search.PaperSearchActivityModule
-import rejasupotaro.arxiv.reader.ui.paper.view.PaperViewActivity
-import rejasupotaro.arxiv.reader.ui.paper.view.PaperViewActivityModule
+import rejasupotaro.arxiv.reader.ui.paper.read.PaperReadActivity
+import rejasupotaro.arxiv.reader.ui.paper.read.PaperReadActivityModule
 
 @Module
 abstract class BindingModule {
@@ -28,10 +28,10 @@ abstract class BindingModule {
 
     @ContributesAndroidInjector(
             modules = arrayOf(
-                    PaperViewActivityModule::class
+                    PaperReadActivityModule::class
             )
     )
-    abstract fun bindPaperViewActivity(): PaperViewActivity
+    abstract fun bindPaperViewActivity(): PaperReadActivity
 
     @ContributesAndroidInjector
     abstract fun bindPdfDownloadService(): PdfDownloadService

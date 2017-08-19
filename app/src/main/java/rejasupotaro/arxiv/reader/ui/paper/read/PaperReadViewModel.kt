@@ -1,4 +1,4 @@
-package rejasupotaro.arxiv.reader.ui.paper.view
+package rejasupotaro.arxiv.reader.ui.paper.read
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
@@ -10,7 +10,7 @@ import rejasupotaro.arxiv.reader.extensions.map
 import rejasupotaro.arxiv.reader.extensions.observable
 import rejasupotaro.arxiv.reader.extensions.switchMap
 
-class PaperViewViewModel(private val db: ArxivDb) : ViewModel() {
+class PaperReadViewModel(private val db: ArxivDb) : ViewModel() {
     var paperId: MutableLiveData<Long> = MutableLiveData()
 
     var paper: LiveData<Paper> = paperId.switchMap { paperId ->

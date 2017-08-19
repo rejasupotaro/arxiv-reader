@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.paper.search.PaperSearchActivity" />
-        <activity android:name=".ui.paper.view.PaperViewActivity" />
+        <activity android:name=".ui.paper.read.PaperReadActivity" />
 
         <service android:name=".job.PdfDownloadService" />
     </application>

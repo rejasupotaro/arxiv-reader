@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.Intent
 import rejasupotaro.arxiv.reader.ui.paper.list.PaperListActivity
 import rejasupotaro.arxiv.reader.ui.paper.search.PaperSearchActivity
-import rejasupotaro.arxiv.reader.ui.paper.view.PaperViewActivityAutoBundle
+import rejasupotaro.arxiv.reader.ui.paper.read.PaperViewActivityAutoBundle
 
 object NavigationController {
     fun navigateToMyPapers(context: Context) {
