@@ -12,11 +12,10 @@ import javax.inject.Inject
 
 class PaperReadActivity : LifecycleActivity() {
     @Inject lateinit var viewModel: PaperReadViewModel
-
     @AutoBundleField var paperId: Long = 0
 
-    private val onPageChangedListener = { page: Int, _: Int ->
-        viewModel.updatePaperLastOpenedPage(page).observe(this, Observer {})
+    private val onPageChangedListener = { page: Int, totalPage: Int ->
+        viewModel.updatePaperLastOpenedPage(page, totalPage).observe(this, Observer {})
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

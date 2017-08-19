@@ -44,7 +44,10 @@ data class Paper(
         var openedAt: DateTime?,
 
         @ColumnInfo(name = "last_opened_page")
-        var lastOpenedPage: Int
+        var lastOpenedPage: Int,
+
+        @ColumnInfo(name = "total_page")
+        var totalPage: Int
 ) {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
@@ -64,7 +67,8 @@ data class Paper(
                     updatedAt = entity.updated,
                     downloadedAt = DateTime.now(),
                     openedAt = null,
-                    lastOpenedPage = 0
+                    lastOpenedPage = 0,
+                    totalPage = 0
             )
         }
     }

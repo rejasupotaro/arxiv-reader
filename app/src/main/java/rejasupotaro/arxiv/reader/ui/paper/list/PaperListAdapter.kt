@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.DecelerateInterpolator
 import kotlinx.android.synthetic.main.list_item_paper.view.*
 import rejasupotaro.arxiv.reader.R
 import rejasupotaro.arxiv.reader.data.model.Paper
@@ -43,6 +44,19 @@ class PaperViewHolder(
             relativeTimeTextView.text = relativeTimeText
             setOnClickListener { onItemClickListener.invoke(paper) }
             setOnLongClickListener { onItemLongClickListener.invoke(paper) }
+
+            if (paper.lastOpenedPage == 0 || paper.totalPage == 0) {
+                readRateIndicatorView.animate().scaleX(1F)
+            } else {
+                post {
+                    readRateIndicatorView.pivotX = readRateIndicatorBackgroundView.measuredWidth.toFloat()
+                    val percentage = paper.lastOpenedPage / paper.totalPage.toFloat()
+                    readRateIndicatorView.animate()
+                            .setDuration(1000)
+                            .setInterpolator(DecelerateInterpolator(3.0F))
+                            .scaleX(1 - percentage)
+                }
+            }
         }
     }
 }

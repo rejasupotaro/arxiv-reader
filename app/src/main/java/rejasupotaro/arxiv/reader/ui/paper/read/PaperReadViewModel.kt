@@ -30,9 +30,10 @@ class PaperReadViewModel(private val db: ArxivDb) : ViewModel() {
         }
     }
 
-    fun updatePaperLastOpenedPage(page: Int): LiveData<Unit> {
+    fun updatePaperLastOpenedPage(page: Int, totalPage: Int): LiveData<Unit> {
         return paper.value?.let {
-            it.lastOpenedPage = page
+            it.lastOpenedPage = page + 1
+            it.totalPage = totalPage
             updatePaper(it).map { Unit }
         } ?: observable { Unit }
     }

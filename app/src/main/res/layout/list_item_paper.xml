@@ -33,4 +33,27 @@
             android:textColor="@color/text_color_tertiary"
             android:textSize="@dimen/text_size_xsmall"
             />
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="@dimen/spacing_medium"
+            >
+
+        <View
+                android:id="@+id/readRateIndicatorBackgroundView"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:animateLayoutChanges="true"
+                android:background="@color/ink_blue"
+                />
+
+        <View
+                android:id="@+id/readRateIndicatorView"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:animateLayoutChanges="true"
+                android:background="@color/md_white_1000"
+                />
+    </FrameLayout>
 </LinearLayout>
