@@ -20,7 +20,7 @@
 
             <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="180dp"
+                    android:layout_height="160dp"
                     app:layout_collapseMode="pin"
                     >
 
@@ -44,17 +44,55 @@
                     app:layout_collapseMode="pin"
                     >
 
-                <TextView
-                        android:id="@+id/titleTextViewInToolbar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:alpha="0"
-                        android:animateLayoutChanges="true"
-                        android:ellipsize="end"
-                        android:maxLines="1"
-                        android:textSize="@dimen/text_size_large"
-                        android:textStyle="bold"
-                        />
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        >
+
+                    <com.mikepenz.iconics.view.IconicsTextView
+                            android:id="@+id/upButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:gravity="center"
+                            android:paddingBottom="@dimen/spacing_medium"
+                            android:paddingEnd="@dimen/spacing_large"
+                            android:paddingStart="@dimen/spacing_small"
+                            android:paddingTop="@dimen/spacing_medium"
+                            android:text="{gmd_keyboard_arrow_left}"
+                            android:textSize="@dimen/icon_size_medium"
+                            />
+
+                    <TextView
+                            android:id="@+id/titleTextViewInToolbar"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:alpha="0"
+                            android:animateLayoutChanges="true"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:textSize="@dimen/text_size_large"
+                            android:textStyle="bold"
+                            />
+
+                    <com.mikepenz.iconics.view.IconicsTextView
+                            android:id="@+id/downloadButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="@dimen/spacing_medium"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:gravity="center"
+                            android:paddingBottom="@dimen/spacing_medium"
+                            android:paddingEnd="@dimen/spacing_large"
+                            android:paddingStart="@dimen/spacing_large"
+                            android:paddingTop="@dimen/spacing_medium"
+                            android:text="{gmd_file_download}"
+                            android:textSize="@dimen/icon_size_medium"
+                            />
+                </LinearLayout>
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
@@ -107,19 +145,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_xlarge"
-                    />
-
-            <TextView
-                    android:id="@+id/downloadButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:background="?android:attr/selectableItemBackground"
-                    android:gravity="center"
-                    android:padding="@dimen/spacing_large"
-                    android:text="@string/button_download"
-                    android:textSize="@dimen/text_size_large"
-                    android:textStyle="bold"
                     />
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>

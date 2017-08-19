@@ -1,16 +1,14 @@
 package rejasupotaro.arxiv.reader.ui.paper.view
 
+import android.arch.lifecycle.LifecycleActivity
 import android.os.Bundle
 import android.support.design.widget.AppBarLayout
 import android.support.v4.content.ContextCompat
 import android.support.v4.view.ViewCompat
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.transition.Explode
 import android.transition.Fade
-import android.transition.Slide
-import android.view.MenuItem
 import com.yatatsu.autobundle.AutoBundleField
 import kotlinx.android.synthetic.main.activity_paper_view.*
 import rejasupotaro.arxiv.reader.R
@@ -20,8 +18,7 @@ import rejasupotaro.arxiv.reader.extensions.readableText
 import rejasupotaro.arxiv.reader.job.PdfDownloadServiceAutoBundle
 import rejasupotaro.arxiv.reader.ui.common.CategoryListAdapter
 
-
-class PaperViewActivity : AppCompatActivity() {
+class PaperViewActivity : LifecycleActivity() {
     @AutoBundleField(converter = PaperConverter::class)
     lateinit var paper: Paper
 
@@ -40,22 +37,10 @@ class PaperViewActivity : AppCompatActivity() {
     }
 
     private fun setupToolbar() {
-        setSupportActionBar(toolbar)
-        supportActionBar?.let {
-            it.setDisplayShowTitleEnabled(false)
-            it.setDisplayShowHomeEnabled(true)
-            it.setDisplayHomeAsUpEnabled(true)
-        }
+        upButton.setOnClickListener { onBackPressed() }
         titleTextView.text = paper.title
         titleTextViewInToolbar.text = paper.title
         appBarLayout.addOnOffsetChangedListener(ToolbarOnOffsetChangedListener(this))
-    }
-
-    override fun onOptionsItemSelected(menuItem: MenuItem): Boolean {
-        when (menuItem.itemId) {
-            android.R.id.home -> onBackPressed()
-        }
-        return super.onOptionsItemSelected(menuItem)
     }
 
     private fun setupViews() {
@@ -89,4 +74,3 @@ private class ToolbarOnOffsetChangedListener(private val activity: PaperViewActi
         }
     }
 }
-

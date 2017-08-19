@@ -28,7 +28,7 @@
                     android:maxLines="1"
                     android:padding="@dimen/spacing_medium"
                     android:paddingEnd="@dimen/spacing_medium"
-                    android:paddingStart="@dimen/spacing_medium"
+                    android:paddingStart="@dimen/spacing_large"
                     />
 
             <View
