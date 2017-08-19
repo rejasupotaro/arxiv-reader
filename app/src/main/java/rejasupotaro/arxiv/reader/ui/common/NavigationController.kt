@@ -1,6 +1,7 @@
 package rejasupotaro.arxiv.reader.ui.common
 
 import android.app.Activity
+import android.app.ActivityOptions
 import android.content.Context
 import android.content.Intent
 import android.support.v4.app.ActivityCompat
@@ -13,9 +14,6 @@ import rejasupotaro.arxiv.reader.ui.paper.list.PaperListActivity
 import rejasupotaro.arxiv.reader.ui.paper.read.PaperReadActivityAutoBundle
 import rejasupotaro.arxiv.reader.ui.paper.search.PaperSearchActivity
 import rejasupotaro.arxiv.reader.ui.paper.view.PaperViewActivityAutoBundle
-import android.app.ActivityOptions
-import android.os.Bundle
-
 
 
 object NavigationController {
@@ -24,9 +22,10 @@ object NavigationController {
         context.startActivity(intent)
     }
 
-    fun navigateToSearch(context: Context) {
-        val intent = Intent(context, PaperSearchActivity::class.java)
-        context.startActivity(intent)
+    fun navigateToSearch(activity: Activity) {
+        val options = ActivityOptions.makeSceneTransitionAnimation(activity)
+        val intent = Intent(activity, PaperSearchActivity::class.java)
+        ActivityCompat.startActivity(activity, intent, options.toBundle())
     }
 
     fun navigateToViewer(activity: Activity, paper: Paper, view: View) {
