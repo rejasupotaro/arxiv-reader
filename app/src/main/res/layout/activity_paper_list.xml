@@ -24,7 +24,7 @@
                     android:layout_weight="1"
                     android:gravity="center_vertical"
                     android:text="@string/my_library"
-                    android:textColor="@color/text_light"
+                    android:textColor="@color/text_light_primary"
                     android:textSize="@dimen/text_size_large"
                     android:textStyle="bold"
                     />
@@ -38,7 +38,7 @@
                     android:paddingEnd="@dimen/spacing_large"
                     android:paddingStart="@dimen/spacing_xxlarge"
                     android:text="{gmd_search}"
-                    android:textColor="@color/text_light"
+                    android:textColor="@color/text_light_primary"
                     android:textSize="@dimen/icon_size_medium"
                     />
         </LinearLayout>

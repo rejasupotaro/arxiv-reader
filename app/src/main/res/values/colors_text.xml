@@ -1,7 +1,7 @@
 <resources>
-    <color name="text_primary">#b3000000</color>
-    <color name="text_secondary">#8a000000</color>
-    <color name="text_tertiary">#76000000</color>
-    <color name="text_light">#ffffffff</color>
-    <color name="text_hint">#61000000</color>
+    <color name="text_dark_primary">#b3000000</color>
+    <color name="text_dark_secondary">#8a000000</color>
+    <color name="text_dark_tertiary">#76000000</color>
+    <color name="text_dark_hint">#61000000</color>
+    <color name="text_light_primary">#ffffffff</color>
 </resources>
