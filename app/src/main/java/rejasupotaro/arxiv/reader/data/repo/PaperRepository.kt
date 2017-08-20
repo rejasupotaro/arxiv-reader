@@ -10,9 +10,7 @@ import rejasupotaro.arxiv.reader.extensions.map
 import rejasupotaro.arxiv.reader.extensions.observable
 import java.io.File
 
-class PaperRepository(private val db: ArxivDb) {
-    val httpClient = HttpClient()
-
+class PaperRepository(private val db: ArxivDb, private val httpClient: HttpClient) {
     fun list(): LiveData<List<Paper>> {
         return observable {
             db.paperDao().findAll()

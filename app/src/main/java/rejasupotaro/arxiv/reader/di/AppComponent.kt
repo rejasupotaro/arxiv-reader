@@ -9,6 +9,7 @@ import dagger.Provides
 import dagger.android.AndroidInjectionModule
 import rejasupotaro.arxiv.reader.ArxivReaderApplication
 import rejasupotaro.arxiv.reader.data.db.ArxivDb
+import rejasupotaro.arxiv.reader.data.http.HttpClient
 import rejasupotaro.arxiv.reader.data.repo.PaperRepository
 import rejasupotaro.arxiv.reader.data.repo.SearchHistoryRepository
 import javax.inject.Singleton
@@ -43,8 +44,13 @@ class AppModule {
     }
 
     @Provides @Singleton
-    fun providePaperRepository(db: ArxivDb): PaperRepository {
-        return PaperRepository(db)
+    fun provideHttpClient(): HttpClient {
+        return HttpClient()
+    }
+
+    @Provides @Singleton
+    fun providePaperRepository(db: ArxivDb, httpClient: HttpClient): PaperRepository {
+        return PaperRepository(db, httpClient)
     }
 
     @Provides @Singleton
