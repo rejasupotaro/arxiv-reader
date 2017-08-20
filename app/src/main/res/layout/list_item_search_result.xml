@@ -2,8 +2,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/spacing_medium"
-        android:layout_marginEnd="@dimen/spacing_large"
-        android:layout_marginStart="@dimen/spacing_large"
         android:layout_marginTop="@dimen/spacing_medium"
         >
 
@@ -67,7 +65,7 @@
                     android:id="@+id/categoryListView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/spacing_medium"
+                    android:layout_marginTop="@dimen/spacing_medium"
                     />
         </LinearLayout>
     </LinearLayout>

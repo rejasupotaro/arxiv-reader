@@ -3,12 +3,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:background="@color/base"
         >
 
     <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/spacing_large"
+            android:layout_marginEnd="@dimen/spacing_large"
+            android:layout_marginStart="@dimen/spacing_large"
+            android:layout_marginTop="@dimen/spacing_large"
             >
 
         <LinearLayout
@@ -36,7 +39,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginBottom="@dimen/spacing_small"
                     android:layout_marginTop="@dimen/spacing_small"
-                    android:background="@color/text_color_hint"
+                    android:background="@color/text_hint"
                     />
 
             <com.mikepenz.iconics.view.IconicsTextView
@@ -60,6 +63,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:clipToPadding="false"
+            android:padding="@dimen/spacing_large"
             />
 </LinearLayout>
 

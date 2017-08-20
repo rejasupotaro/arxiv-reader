@@ -14,6 +14,8 @@
             android:background="@drawable/background_round"
             android:paddingEnd="@dimen/spacing_medium"
             android:paddingStart="@dimen/spacing_medium"
+            android:paddingTop="@dimen/spacing_xsmall"
+            android:paddingBottom="@dimen/spacing_xsmall"
             android:textColor="@color/md_white_1000"
             android:textStyle="bold"
             />
