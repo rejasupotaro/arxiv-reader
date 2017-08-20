@@ -10,6 +10,7 @@ import dagger.android.AndroidInjectionModule
 import rejasupotaro.arxiv.reader.ArxivReaderApplication
 import rejasupotaro.arxiv.reader.data.db.ArxivDb
 import rejasupotaro.arxiv.reader.data.repo.PaperRepository
+import rejasupotaro.arxiv.reader.data.repo.SearchHistoryRepository
 import javax.inject.Singleton
 
 @Component(
@@ -37,12 +38,17 @@ class AppModule {
     }
 
     @Provides @Singleton
-    fun providePaperRepository(): PaperRepository {
-        return PaperRepository()
+    fun provideArxivDb(context: Context): ArxivDb {
+        return Room.databaseBuilder(context, ArxivDb::class.java, "arxiv").build()
     }
 
     @Provides @Singleton
-    fun provideArxivDb(context: Context): ArxivDb {
-        return Room.databaseBuilder(context, ArxivDb::class.java, "arxiv").build()
+    fun providePaperRepository(db: ArxivDb): PaperRepository {
+        return PaperRepository(db)
+    }
+
+    @Provides @Singleton
+    fun provideSearchHistoryRepository(db: ArxivDb): SearchHistoryRepository {
+        return SearchHistoryRepository(db)
     }
 }
