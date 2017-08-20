@@ -5,13 +5,11 @@ import android.arch.lifecycle.Observer
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.transition.Explode
-import android.transition.Fade
 import android.view.KeyEvent
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_paper_search.*
-import kotlinx.android.synthetic.main.list_item_search_result.view.*
 import rejasupotaro.arxiv.reader.R
 import rejasupotaro.arxiv.reader.extensions.hideKeyboard
 import rejasupotaro.arxiv.reader.extensions.showKeyboard
@@ -31,6 +29,7 @@ class PaperSearchActivity : LifecycleActivity() {
     private fun setupViews() {
         setupSearchView()
         setupSearchResultListView()
+        setupFilterButton()
     }
 
     private fun setupSearchView() {
@@ -52,7 +51,7 @@ class PaperSearchActivity : LifecycleActivity() {
                 false
             }
         }
-        searchButton.setOnClickListener { doSearch() }
+        voiceSearchButton.setOnClickListener { notImplementedYet() }
         queryEditText.showKeyboard()
     }
 
@@ -91,9 +90,17 @@ class PaperSearchActivity : LifecycleActivity() {
         })
     }
 
+    private fun setupFilterButton() {
+        filterButton.setOnClickListener { notImplementedYet() }
+    }
+
     private fun doSearch() {
         queryEditText.hideKeyboard()
         val query = queryEditText.text.toString().trim()
         viewModel.query = query
+    }
+
+    private fun notImplementedYet() {
+        Toast.makeText(this, "Not Implemented yet", Toast.LENGTH_SHORT).show()
     }
 }
