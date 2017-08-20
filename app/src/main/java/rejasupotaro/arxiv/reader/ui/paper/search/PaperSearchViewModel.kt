@@ -3,8 +3,6 @@ package rejasupotaro.arxiv.reader.ui.paper.search
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import android.content.Context
-import rejasupotaro.arxiv.reader.data.model.Paper
 import rejasupotaro.arxiv.reader.data.repo.PaperRepository
 import rejasupotaro.arxiv.reader.data.repo.SearchHistoryRepository
 import rejasupotaro.arxiv.reader.data.repo.SearchRequest
@@ -12,7 +10,6 @@ import rejasupotaro.arxiv.reader.data.repo.SearchResponse
 import rejasupotaro.arxiv.reader.extensions.map
 import rejasupotaro.arxiv.reader.extensions.observable
 import rejasupotaro.arxiv.reader.extensions.switchMap
-import rejasupotaro.arxiv.reader.job.PdfDownloadServiceAutoBundle
 
 class PaperSearchViewModel(
         private val paperRepository: PaperRepository,
@@ -48,11 +45,5 @@ class PaperSearchViewModel(
 
     fun latestQueries(): LiveData<List<String>> {
         return searchHistoryRepository.latest().map { it.map { it.query } }
-    }
-
-    fun download(context: Context, paper: Paper) {
-        val intent = PdfDownloadServiceAutoBundle.builder(paper)
-                .build(context)
-        context.startService(intent)
     }
 }
