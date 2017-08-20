@@ -1,4 +1,4 @@
-package rejasupotaro.arxiv.reader.data.repo
+package rejasupotaro.arxiv.reader.data.repository
 
 import android.arch.lifecycle.LiveData
 import org.joda.time.DateTime
@@ -44,21 +44,25 @@ class PaperRepository(private val db: ArxivDb, private val httpClient: HttpClien
         }
     }
 
-    fun search(query: String, page: Int, perPage: Int): SearchResponse {
+    fun search(searchRequest: SearchRequest): SearchResponse {
+        val (query, page, perPage) = searchRequest
         val url = "http://export.arxiv.org/api/query?search_query=all:$query&start=${page * perPage}"
         val response = httpClient.get(url)
-        val body = response.body()?.string() ?: ""
-        val result = ResponseConverter
-                .xmlToApiResponse(body)
-                .let {
-                    SearchResponse(
-                            query,
-                            it.papers.map { Paper.entityToModel(it) },
-                            page,
-                            it.totalResults.content
-                    )
-                }
-        return result
+        val body = response?.body()?.string() ?: ""
+        return if (body.isEmpty()) {
+            SearchResponse(query, listOf<Paper>(), page, 0)
+        } else {
+            ResponseConverter
+                    .xmlToApiResponse(body)
+                    .let {
+                        SearchResponse(
+                                query,
+                                it.papers.map { Paper.entityToModel(it) },
+                                page,
+                                it.totalResults.content
+                        )
+                    }
+        }
     }
 
     fun download(paper: Paper, file: File) {

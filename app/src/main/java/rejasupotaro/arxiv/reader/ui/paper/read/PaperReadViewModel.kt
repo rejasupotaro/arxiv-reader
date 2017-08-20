@@ -3,10 +3,8 @@ package rejasupotaro.arxiv.reader.ui.paper.read
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import org.joda.time.DateTime
-import rejasupotaro.arxiv.reader.data.db.ArxivDb
 import rejasupotaro.arxiv.reader.data.model.Paper
-import rejasupotaro.arxiv.reader.data.repo.PaperRepository
+import rejasupotaro.arxiv.reader.data.repository.PaperRepository
 import rejasupotaro.arxiv.reader.extensions.map
 import rejasupotaro.arxiv.reader.extensions.observable
 import rejasupotaro.arxiv.reader.extensions.switchMap

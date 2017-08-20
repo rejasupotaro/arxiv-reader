@@ -1,20 +1,16 @@
 package rejasupotaro.arxiv.reader.data.db
 
-import android.arch.persistence.room.Room
-import android.content.Context
-import android.support.test.InstrumentationRegistry.getInstrumentation
 import android.support.test.runner.AndroidJUnit4
 import org.assertj.core.api.Assertions.assertThat
 import org.joda.time.DateTime
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import rejasupotaro.arxiv.reader.helper.testDatabase
 
 @RunWith(AndroidJUnit4::class)
 class SearchHistoryDaoTest {
-    val context: Context = getInstrumentation().targetContext
-    val db: ArxivDb = Room.databaseBuilder(context, ArxivDb::class.java, "arxiv_test").build()
-    val searchHistoryDao = db.searchHistoryDao()
+    private val searchHistoryDao = testDatabase().searchHistoryDao()
 
     @Before
     fun setup() {

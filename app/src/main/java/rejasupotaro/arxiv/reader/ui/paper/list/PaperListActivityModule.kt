@@ -2,8 +2,7 @@ package rejasupotaro.arxiv.reader.ui.paper.list
 
 import dagger.Module
 import dagger.Provides
-import rejasupotaro.arxiv.reader.data.db.ArxivDb
-import rejasupotaro.arxiv.reader.data.repo.PaperRepository
+import rejasupotaro.arxiv.reader.data.repository.PaperRepository
 
 @Module
 class PaperListActivityModule {

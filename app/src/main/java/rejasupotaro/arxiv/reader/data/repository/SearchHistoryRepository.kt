@@ -1,4 +1,4 @@
-package rejasupotaro.arxiv.reader.data.repo
+package rejasupotaro.arxiv.reader.data.repository
 
 import android.arch.lifecycle.LiveData
 import kotlinx.coroutines.experimental.CommonPool

@@ -10,8 +10,8 @@ import dagger.android.AndroidInjectionModule
 import rejasupotaro.arxiv.reader.ArxivReaderApplication
 import rejasupotaro.arxiv.reader.data.db.ArxivDb
 import rejasupotaro.arxiv.reader.data.http.HttpClient
-import rejasupotaro.arxiv.reader.data.repo.PaperRepository
-import rejasupotaro.arxiv.reader.data.repo.SearchHistoryRepository
+import rejasupotaro.arxiv.reader.data.repository.PaperRepository
+import rejasupotaro.arxiv.reader.data.repository.SearchHistoryRepository
 import javax.inject.Singleton
 
 @Component(

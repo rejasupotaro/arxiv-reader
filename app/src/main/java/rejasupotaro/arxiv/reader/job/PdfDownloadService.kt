@@ -8,7 +8,7 @@ import rejasupotaro.arxiv.reader.data.db.ArxivDb
 import rejasupotaro.arxiv.reader.data.file.FileManager
 import rejasupotaro.arxiv.reader.data.model.Paper
 import rejasupotaro.arxiv.reader.data.model.PaperConverter
-import rejasupotaro.arxiv.reader.data.repo.PaperRepository
+import rejasupotaro.arxiv.reader.data.repository.PaperRepository
 import rejasupotaro.arxiv.reader.notification.PdfDownloadedPushNotification
 import rejasupotaro.arxiv.reader.notification.PdfDownloadingPushNotification
 import javax.inject.Inject

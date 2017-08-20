@@ -2,7 +2,7 @@ package rejasupotaro.arxiv.reader.ui.paper.read
 
 import dagger.Module
 import dagger.Provides
-import rejasupotaro.arxiv.reader.data.repo.PaperRepository
+import rejasupotaro.arxiv.reader.data.repository.PaperRepository
 
 @Module
 class PaperReadActivityModule {

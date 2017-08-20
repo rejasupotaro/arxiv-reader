@@ -11,7 +11,7 @@ import android.widget.Toast
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_paper_search.*
 import rejasupotaro.arxiv.reader.R
-import rejasupotaro.arxiv.reader.data.repo.SearchResponse
+import rejasupotaro.arxiv.reader.data.repository.SearchResponse
 import rejasupotaro.arxiv.reader.extensions.hideKeyboard
 import rejasupotaro.arxiv.reader.extensions.showKeyboard
 import rejasupotaro.arxiv.reader.ui.common.NavigationController

@@ -3,10 +3,10 @@ package rejasupotaro.arxiv.reader.ui.paper.search
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import rejasupotaro.arxiv.reader.data.repo.PaperRepository
-import rejasupotaro.arxiv.reader.data.repo.SearchHistoryRepository
-import rejasupotaro.arxiv.reader.data.repo.SearchRequest
-import rejasupotaro.arxiv.reader.data.repo.SearchResponse
+import rejasupotaro.arxiv.reader.data.repository.PaperRepository
+import rejasupotaro.arxiv.reader.data.repository.SearchHistoryRepository
+import rejasupotaro.arxiv.reader.data.repository.SearchRequest
+import rejasupotaro.arxiv.reader.data.repository.SearchResponse
 import rejasupotaro.arxiv.reader.extensions.flatMap
 import rejasupotaro.arxiv.reader.extensions.observable
 import rejasupotaro.arxiv.reader.extensions.switchMap
@@ -27,9 +27,9 @@ class PaperSearchViewModel(
             field = value
         }
 
-    var searchResults: LiveData<SearchResponse> = submitEvent.switchMap { (query, page, perPage) ->
+    var searchResults: LiveData<SearchResponse> = submitEvent.switchMap { searchRequest ->
         observable {
-            paperRepository.search(query, page, perPage)
+            paperRepository.search(searchRequest)
         }
     }
 
