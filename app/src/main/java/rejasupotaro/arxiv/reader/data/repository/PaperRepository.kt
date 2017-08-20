@@ -17,9 +17,10 @@ class PaperRepository(private val db: ArxivDb, private val httpClient: HttpClien
         }
     }
 
-    fun delete(paper: Paper): LiveData<Unit> {
+    fun delete(paper: Pair<Paper, File>): LiveData<Unit> {
         return observable {
-            db.paperDao().delete(paper)
+            paper.second.delete()
+            db.paperDao().delete(paper.first)
         }
     }
 
