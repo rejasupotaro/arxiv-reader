@@ -18,7 +18,7 @@ class PaperReadViewModel(private val paperRepository: PaperRepository) : ViewMod
 
     fun updatePaperLastOpenedPage(page: Int, totalPage: Int): LiveData<Unit> {
         return paper.value?.let {
-            it.lastOpenedPage = page + 1
+            it.lastOpenedPage = page
             it.totalPage = totalPage
             paperRepository.update(it).map { Unit }
         } ?: observable { Unit }

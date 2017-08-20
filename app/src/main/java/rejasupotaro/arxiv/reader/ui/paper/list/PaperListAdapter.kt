@@ -45,12 +45,12 @@ class PaperViewHolder(
             setOnClickListener { onItemClickListener.invoke(paper) }
             setOnLongClickListener { onItemLongClickListener.invoke(paper) }
 
-            if (paper.lastOpenedPage == 0 || paper.totalPage == 0) {
+            if (paper.lastOpenedPage == 0) {
                 readRateIndicatorView.animate().scaleX(1F)
             } else {
                 post {
                     readRateIndicatorView.pivotX = readRateIndicatorBackgroundView.measuredWidth.toFloat()
-                    val percentage = paper.lastOpenedPage / paper.totalPage.toFloat()
+                    val percentage = paper.lastOpenedPage / (paper.totalPage - 1).toFloat()
                     readRateIndicatorView.animate()
                             .setDuration(1000)
                             .setInterpolator(DecelerateInterpolator(3.0F))
