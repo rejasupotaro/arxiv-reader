@@ -7,6 +7,8 @@ import android.content.Context
 import rejasupotaro.arxiv.reader.data.model.Paper
 import rejasupotaro.arxiv.reader.data.repo.PaperRepository
 import rejasupotaro.arxiv.reader.data.repo.SearchHistoryRepository
+import rejasupotaro.arxiv.reader.data.repo.SearchRequest
+import rejasupotaro.arxiv.reader.data.repo.SearchResponse
 import rejasupotaro.arxiv.reader.extensions.map
 import rejasupotaro.arxiv.reader.extensions.observable
 import rejasupotaro.arxiv.reader.extensions.switchMap
@@ -54,6 +56,3 @@ class PaperSearchViewModel(
         context.startService(intent)
     }
 }
-
-data class SearchRequest(val query: String, val page: Int, val perPage: Int = 20)
-data class SearchResponse(val query: String, val result: List<Paper>, val page: Int, val totalPages: Int)

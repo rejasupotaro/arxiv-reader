@@ -8,7 +8,6 @@ import rejasupotaro.arxiv.reader.data.http.HttpClient
 import rejasupotaro.arxiv.reader.data.model.Paper
 import rejasupotaro.arxiv.reader.extensions.map
 import rejasupotaro.arxiv.reader.extensions.observable
-import rejasupotaro.arxiv.reader.ui.paper.search.SearchResponse
 import java.io.File
 
 class PaperRepository(private val db: ArxivDb) {
@@ -26,13 +25,13 @@ class PaperRepository(private val db: ArxivDb) {
         }
     }
 
-    fun findById(paperId: Long) : LiveData<Paper> {
+    fun findById(paperId: Long): LiveData<Paper> {
         return observable {
             db.paperDao().findById(paperId)
         }
     }
 
-    fun openById(paperId: Long) : LiveData<Paper> {
+    fun openById(paperId: Long): LiveData<Paper> {
         return findById(paperId).map { paper ->
             paper.openedAt = DateTime.now()
             update(paper)
@@ -71,4 +70,7 @@ class PaperRepository(private val db: ArxivDb) {
         }
     }
 }
+
+data class SearchRequest(val query: String, val page: Int, val perPage: Int = 20)
+data class SearchResponse(val query: String, val result: List<Paper>, val page: Int, val totalPages: Int)
 
