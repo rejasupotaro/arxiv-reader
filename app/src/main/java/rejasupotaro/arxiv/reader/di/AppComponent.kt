@@ -2,11 +2,13 @@ package rejasupotaro.arxiv.reader.di
 
 import android.arch.persistence.room.Room
 import android.content.Context
+import com.facebook.stetho.okhttp3.StethoInterceptor
 import dagger.BindsInstance
 import dagger.Component
 import dagger.Module
 import dagger.Provides
 import dagger.android.AndroidInjectionModule
+import okhttp3.OkHttpClient
 import rejasupotaro.arxiv.reader.ArxivReaderApplication
 import rejasupotaro.arxiv.reader.data.db.ArxivDb
 import rejasupotaro.arxiv.reader.data.http.HttpClient
@@ -44,8 +46,15 @@ class AppModule {
     }
 
     @Provides @Singleton
-    fun provideHttpClient(): HttpClient {
-        return HttpClient()
+    fun provideOkHttpClient(): OkHttpClient {
+        return OkHttpClient.Builder()
+                .addNetworkInterceptor(StethoInterceptor())
+                .build()
+    }
+
+    @Provides @Singleton
+    fun provideHttpClient(okHttpClient: OkHttpClient): HttpClient {
+        return HttpClient(okHttpClient)
     }
 
     @Provides @Singleton
