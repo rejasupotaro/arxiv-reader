@@ -3,6 +3,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/md_white_1000"
         >
 
     <android.support.design.widget.AppBarLayout
@@ -31,8 +32,8 @@
                         android:layout_gravity="bottom|center_horizontal"
                         android:paddingEnd="@dimen/spacing_xxlarge"
                         android:paddingStart="@dimen/spacing_xxlarge"
-                        android:textColor="@color/text_dark_primary"
                         android:textAlignment="center"
+                        android:textColor="@color/text_dark_primary"
                         android:textSize="@dimen/text_size_xlarge"
                         android:textStyle="bold"
                         />
