@@ -17,6 +17,7 @@ class PdfDownloadingPushNotification(private val context: Context, private val p
                 .setSmallIcon(R.drawable.ic_arrow_downward_white_24dp)
                 .setContentTitle("Downloading ${paper.title}")
                 .setProgress(0, 0, true)
+                .setAutoCancel(true)
                 .build()
 
         notificationManager.notify(id, notification)

@@ -24,6 +24,7 @@ class PdfDownloadedPushNotification(private val context: Context, private val pa
                 .setSmallIcon(R.drawable.ic_check_box_white_24dp)
                 .setContentTitle("${paper.title} is downloaded")
                 .setContentIntent(pendingIntent)
+                .setAutoCancel(true)
                 .build()
         notificationManager.notify(id, notification)
     }
