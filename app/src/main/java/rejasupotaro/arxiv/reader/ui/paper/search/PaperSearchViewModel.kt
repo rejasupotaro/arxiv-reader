@@ -7,7 +7,7 @@ import rejasupotaro.arxiv.reader.data.repo.PaperRepository
 import rejasupotaro.arxiv.reader.data.repo.SearchHistoryRepository
 import rejasupotaro.arxiv.reader.data.repo.SearchRequest
 import rejasupotaro.arxiv.reader.data.repo.SearchResponse
-import rejasupotaro.arxiv.reader.extensions.map
+import rejasupotaro.arxiv.reader.extensions.flatMap
 import rejasupotaro.arxiv.reader.extensions.observable
 import rejasupotaro.arxiv.reader.extensions.switchMap
 
@@ -44,6 +44,6 @@ class PaperSearchViewModel(
     }
 
     fun latestQueries(): LiveData<List<String>> {
-        return searchHistoryRepository.latest().map { it.map { it.query } }
+        return searchHistoryRepository.latest().flatMap { it.query }
     }
 }

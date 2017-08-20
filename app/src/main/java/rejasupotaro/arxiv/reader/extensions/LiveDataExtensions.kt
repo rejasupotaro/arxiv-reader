@@ -21,6 +21,12 @@ fun <X, Y> LiveData<X>.map(func: (X) -> Y): LiveData<Y> {
     }
 }
 
+fun <X, Y> LiveData<out Iterable<X>>.flatMap(func: (X) -> Y): LiveData<List<Y>> {
+    return Transformations.map(this) {
+        it.map { func.invoke(it) }
+    }
+}
+
 fun <X, Y> LiveData<X>.switchMap(func: (X) -> LiveData<Y>): LiveData<Y> {
     return Transformations.switchMap(this) {
         func.invoke(it)
