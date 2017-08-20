@@ -14,6 +14,9 @@ interface PaperDao {
     @Delete
     fun delete(paper: Paper)
 
+    @Query("DELETE FROM papers")
+    fun deleteAll()
+
     @Query("SELECT * FROM papers WHERE id = :id")
     fun findById(id: Long): Paper
 
