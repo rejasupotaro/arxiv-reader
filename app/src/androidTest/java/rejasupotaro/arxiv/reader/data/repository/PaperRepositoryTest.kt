@@ -27,4 +27,3 @@ class PaperRepositoryTest {
         assertThat(argumentCaptor.firstValue).isEqualTo("http://export.arxiv.org/api/query?search_query=all:query&start=20")
     }
 }
-

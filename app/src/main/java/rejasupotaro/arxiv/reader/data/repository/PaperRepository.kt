@@ -1,12 +1,10 @@
 package rejasupotaro.arxiv.reader.data.repository
 
 import android.arch.lifecycle.LiveData
-import org.joda.time.DateTime
 import rejasupotaro.arxiv.reader.data.api.ResponseConverter
 import rejasupotaro.arxiv.reader.data.db.ArxivDb
 import rejasupotaro.arxiv.reader.data.http.HttpClient
 import rejasupotaro.arxiv.reader.data.model.Paper
-import rejasupotaro.arxiv.reader.extensions.map
 import rejasupotaro.arxiv.reader.extensions.observable
 import java.io.File
 
@@ -27,14 +25,6 @@ class PaperRepository(private val db: ArxivDb, private val httpClient: HttpClien
     fun findById(paperId: Long): LiveData<Paper> {
         return observable {
             db.paperDao().findById(paperId)
-        }
-    }
-
-    fun openById(paperId: Long): LiveData<Paper> {
-        return findById(paperId).map { paper ->
-            paper.openedAt = DateTime.now()
-            update(paper)
-            paper
         }
     }
 
