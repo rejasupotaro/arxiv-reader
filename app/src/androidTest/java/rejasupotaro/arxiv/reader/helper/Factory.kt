@@ -1,4 +1,4 @@
-package rejasupotaro.arxiv.reader.data.db
+package rejasupotaro.arxiv.reader.helper
 
 import org.joda.time.DateTime
 import rejasupotaro.arxiv.reader.data.model.Category

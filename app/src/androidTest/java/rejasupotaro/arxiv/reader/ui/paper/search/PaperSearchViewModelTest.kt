@@ -1,4 +1,4 @@
-package rejasupotaro.arxiv.reader.ui.search
+package rejasupotaro.arxiv.reader.ui.paper.search
 
 import android.support.test.runner.AndroidJUnit4
 import com.nhaarman.mockito_kotlin.mock
@@ -12,7 +12,6 @@ import rejasupotaro.arxiv.reader.data.repository.PaperRepository
 import rejasupotaro.arxiv.reader.data.repository.SearchHistoryRepository
 import rejasupotaro.arxiv.reader.data.repository.SearchRequest
 import rejasupotaro.arxiv.reader.helper.extensions.waitAndGetValue
-import rejasupotaro.arxiv.reader.ui.paper.search.PaperSearchViewModel
 
 @RunWith(AndroidJUnit4::class)
 class PaperSearchViewModelTest {
@@ -21,14 +20,13 @@ class PaperSearchViewModelTest {
     private val viewModel = PaperSearchViewModel(paperRepository, searchHistoryRepository)
 
     @Test
-    fun test() {
+    fun search() {
         launch(UI) {
             viewModel.searchResults.waitAndGetValue {
                 viewModel.query = "query"
             }
             verify(searchHistoryRepository, times(1)).log("query")
             verify(paperRepository, times(1)).search(SearchRequest("query", 1))
-
         }
     }
 }

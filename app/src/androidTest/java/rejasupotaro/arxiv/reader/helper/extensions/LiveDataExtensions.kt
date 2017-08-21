@@ -5,7 +5,7 @@ import android.arch.lifecycle.Observer
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 
-fun <T> LiveData<T>.waitAndGetValue(func: () -> Unit): T? {
+fun <T> LiveData<T>.waitAndGetValue(func: () -> Unit = {}): T? {
     var data: T? = null
     val latch = CountDownLatch(1)
     val observer = object : Observer<T> {
