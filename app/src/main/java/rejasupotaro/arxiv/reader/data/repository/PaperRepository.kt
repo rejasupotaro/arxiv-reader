@@ -1,6 +1,7 @@
 package rejasupotaro.arxiv.reader.data.repository
 
 import android.arch.lifecycle.LiveData
+import rejasupotaro.arxiv.reader.OpenClassOnDebug
 import rejasupotaro.arxiv.reader.data.api.ResponseConverter
 import rejasupotaro.arxiv.reader.data.db.ArxivDb
 import rejasupotaro.arxiv.reader.data.http.HttpClient
@@ -8,6 +9,7 @@ import rejasupotaro.arxiv.reader.data.model.Paper
 import rejasupotaro.arxiv.reader.extensions.observable
 import java.io.File
 
+@OpenClassOnDebug
 class PaperRepository(private val db: ArxivDb, private val httpClient: HttpClient) {
     fun list(): LiveData<List<Paper>> {
         return observable {

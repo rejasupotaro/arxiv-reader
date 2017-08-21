@@ -1,9 +1,12 @@
 package rejasupotaro.arxiv.reader.data.model
 
+import android.support.test.runner.AndroidJUnit4
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
+import org.junit.runner.RunWith
 import rejasupotaro.arxiv.reader.R
 
+@RunWith(AndroidJUnit4::class)
 class CategoryTest {
     @Test
     fun entityToModel() {

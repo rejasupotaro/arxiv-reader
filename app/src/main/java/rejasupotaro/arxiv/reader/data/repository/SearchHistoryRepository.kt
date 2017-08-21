@@ -4,10 +4,12 @@ import android.arch.lifecycle.LiveData
 import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.async
 import org.joda.time.DateTime
+import rejasupotaro.arxiv.reader.OpenClassOnDebug
 import rejasupotaro.arxiv.reader.data.db.ArxivDb
 import rejasupotaro.arxiv.reader.data.model.SearchHistory
 import rejasupotaro.arxiv.reader.extensions.observable
 
+@OpenClassOnDebug
 class SearchHistoryRepository(private val db: ArxivDb) {
     fun latest(): LiveData<List<SearchHistory>> {
         return observable {
