@@ -79,6 +79,9 @@ class PaperSearchActivity : LifecycleActivity() {
             }
         })
 
+        swipeRefreshLayout.setColorSchemeResources(R.color.color_accent)
+        swipeRefreshLayout.setOnRefreshListener { doSearch() }
+
         viewModel.searchResults.observe(this, Observer<SearchResponse> { response ->
             response?.let {
                 if (it.page == 1) {
@@ -88,6 +91,7 @@ class PaperSearchActivity : LifecycleActivity() {
                 }
                 adapter.notifyDataSetChanged()
             }
+            swipeRefreshLayout.isRefreshing = false
         })
     }
 
@@ -96,9 +100,14 @@ class PaperSearchActivity : LifecycleActivity() {
     }
 
     private fun doSearch() {
-        queryEditText.hideKeyboard()
         val query = queryEditText.text.toString().trim()
-        viewModel.query = query
+        if (viewModel.query != query) {
+            swipeRefreshLayout.isRefreshing = true
+            queryEditText.hideKeyboard()
+            viewModel.query = query
+        } else {
+            swipeRefreshLayout.isRefreshing = false
+        }
     }
 
     private fun notImplementedYet() {

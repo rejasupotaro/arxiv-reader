@@ -19,9 +19,6 @@ class PaperSearchViewModel(
 
     var query: String = ""
         set(value) {
-            if (field == value) {
-                return
-            }
             searchHistoryRepository.log(value)
             submitEvent.value = SearchRequest(value, 1)
             field = value

@@ -28,6 +28,7 @@ class PaperListActivity : LifecycleActivity() {
     private fun setupViews() {
         setupToolbar()
         setupListView()
+        viewModel.loadPaperList.value = Unit
     }
 
     private fun setupToolbar() {
@@ -54,10 +55,16 @@ class PaperListActivity : LifecycleActivity() {
         val itemDecoration = DividerItemDecoration(this, (paperListView.layoutManager as LinearLayoutManager).orientation)
         paperListView.addItemDecoration(itemDecoration)
 
+        swipeRefreshLayout.setColorSchemeResources(R.color.color_accent)
+        swipeRefreshLayout.setOnRefreshListener {
+            viewModel.loadPaperList.value = Unit
+        }
+
         viewModel.paperList().observe(this, Observer<List<Paper>> { papers ->
             papers?.let {
                 adapter.items = papers.toMutableList()
                 adapter.notifyDataSetChanged()
+                swipeRefreshLayout.isRefreshing = false
             }
         })
     }
