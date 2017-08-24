@@ -1,4 +1,6 @@
 dependencies {
+    compile project(path: ":nlp")
+
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     compile "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlin_coroutines_version"
     compile "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlin_coroutines_version"

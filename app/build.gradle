@@ -59,6 +59,3 @@ allOpen {
 }
 
 apply from: "./dependencies.gradle"
-dependencies {
-    compile 'com.android.support.constraint:constraint-layout:+'
-}
