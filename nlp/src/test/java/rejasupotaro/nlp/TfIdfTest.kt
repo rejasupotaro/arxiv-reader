@@ -6,7 +6,7 @@ import org.junit.Test
 class TfIdfTest {
     @Test
     fun tf() {
-        val doc = "apple orange orange banana".split(" ").map { it.toLowerCase() }
+        val doc = "apple orange orange banana".tokenize()
 
         TfIdf.tf(doc, "orange").let {
             assertThat(it).isEqualTo(0.5)
@@ -19,8 +19,8 @@ class TfIdfTest {
 
     @Test
     fun idf() {
-        val doc1 = "apple orange orange banana".split(" ").map { it.toLowerCase() }
-        val doc2 = "apple banana banana kiwi".split(" ").map { it.toLowerCase() }
+        val doc1 = "apple orange orange banana".tokenize()
+        val doc2 = "apple banana banana kiwi".tokenize()
         val docs = listOf(doc1, doc2)
 
         TfIdf.idf(docs, "apple").let {
@@ -34,8 +34,8 @@ class TfIdfTest {
 
     @Test
     fun tfidf() {
-        val doc1 = "apple orange orange banana".split(" ").map { it.toLowerCase() }
-        val doc2 = "apple banana banana kiwi".split(" ").map { it.toLowerCase() }
+        val doc1 = "apple orange orange banana".tokenize()
+        val doc2 = "apple banana banana kiwi".tokenize()
         val docs = listOf(doc1, doc2)
 
         val appleInDoc1 = TfIdf.tfidf(docs, doc1, "apple")
@@ -51,8 +51,8 @@ class TfIdfTest {
 
     @Test
     fun vectorize() {
-        val doc1 = "apple orange orange banana".split(" ").map { it.toLowerCase() }
-        val doc2 = "apple banana banana kiwi".split(" ").map { it.toLowerCase() }
+        val doc1 = "apple orange orange banana".tokenize()
+        val doc2 = "apple banana banana kiwi".tokenize()
         val docs = listOf(doc1, doc2)
 
         val vectors = TfIdf.vectorize(docs)

@@ -1,11 +1,11 @@
 package rejasupotaro.nlp
 
 object TfIdf {
-    fun vectorize(docs: List<List<String>>): List<Map<String, Double>> {
-        val terms = docs.toMutableSet().flatten().distinct()
+    fun vectorize(docs: List<List<String>>, stopwords: List<String> = listOf<String>()): List<Map<String, Double>> {
+        val terms = docs.toMutableSet().flatten().filterNot { stopwords.contains(it) }.distinct()
         return docs.map { doc ->
             val vector = mutableMapOf<String, Double>()
-            terms.forEach { term ->
+            terms.filterNot { stopwords.contains(it) }.forEach { term ->
                 vector[term] = tfidf(docs, doc, term)
             }
             vector
@@ -38,4 +38,3 @@ object TfIdf {
         return Math.log(docs.size / n.toDouble())
     }
 }
-
