@@ -1,14 +1,24 @@
 package rejasupotaro.nlp
 
 object TfIdf {
-    fun calculate(docs: Collection<List<String>>, doc: List<String>, term: String): Double {
+    fun vectorize(docs: List<List<String>>): List<Map<String, Double>> {
+        val terms = docs.toMutableSet().flatten().distinct()
+        return docs.map { doc ->
+            val vector = mutableMapOf<String, Double>()
+            terms.forEach { term ->
+                vector[term] = tfidf(docs, doc, term)
+            }
+            vector
+        }
+    }
+
+    fun tfidf(docs: List<List<String>>, doc: List<String>, term: String): Double {
         val tf = tf(doc, term)
         val idf = idf(docs, term)
         return tf * idf
     }
 
     fun tf(doc: List<String>, term: String): Double {
-        println("$doc / $term")
         var n = 0
         doc.forEach { word ->
             if (term.equals(word, ignoreCase = true)) {
@@ -18,7 +28,7 @@ object TfIdf {
         return n / doc.size.toDouble()
     }
 
-    fun idf(docs: Collection<List<String>>, term: String): Double {
+    fun idf(docs: List<List<String>>, term: String): Double {
         var n = 0
         docs.map { doc ->
             if (doc.contains(term)) {
