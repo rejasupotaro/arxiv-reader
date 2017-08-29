@@ -10,6 +10,10 @@ import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.transition.Explode
 import android.transition.Fade
+import com.google.android.flexbox.FlexDirection
+import com.google.android.flexbox.FlexWrap
+import com.google.android.flexbox.FlexboxLayoutManager
+import com.google.android.flexbox.JustifyContent
 import com.yatatsu.autobundle.AutoBundleField
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_paper_view.*
@@ -50,7 +54,11 @@ class PaperViewActivity : LifecycleActivity() {
         authorsTextView.text = paper.authors.joinToString()
         publishedAtTextView.text = paper.publishedAt.readableText()
         summaryTextView.text = paper.summary
-        categoryListView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        categoryListView.layoutManager = FlexboxLayoutManager(this).apply {
+            flexDirection = FlexDirection.ROW
+            justifyContent = JustifyContent.FLEX_START
+            flexWrap = FlexWrap.WRAP
+        }
         categoryListView.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.HORIZONTAL).apply {
             setDrawable(ContextCompat.getDrawable(this@PaperViewActivity, R.drawable.item_decoration_spacing_horizontal))
         })
