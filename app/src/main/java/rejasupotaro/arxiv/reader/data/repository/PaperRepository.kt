@@ -30,6 +30,12 @@ class PaperRepository(private val db: ArxivDb, private val httpClient: HttpClien
         }
     }
 
+    fun findByTitle(title: String): LiveData<Paper?> {
+        return observable {
+            db.paperDao().findByTitle(title)
+        }
+    }
+
     fun update(paper: Paper): LiveData<Paper> {
         return observable {
             db.paperDao().update(paper)

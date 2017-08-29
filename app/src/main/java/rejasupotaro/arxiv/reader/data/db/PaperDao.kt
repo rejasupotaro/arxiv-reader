@@ -20,6 +20,9 @@ interface PaperDao {
     @Query("SELECT * FROM papers WHERE id = :id")
     fun findById(id: Long): Paper
 
+    @Query("SELECT * FROM papers WHERE title = :title")
+    fun findByTitle(title: String): Paper?
+
     @Update
     fun update(paper: Paper)
 }

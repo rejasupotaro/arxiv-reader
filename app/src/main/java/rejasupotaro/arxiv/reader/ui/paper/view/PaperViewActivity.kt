@@ -1,6 +1,7 @@
 package rejasupotaro.arxiv.reader.ui.paper.view
 
 import android.arch.lifecycle.LifecycleActivity
+import android.arch.lifecycle.Observer
 import android.os.Bundle
 import android.support.design.widget.AppBarLayout
 import android.support.v4.content.ContextCompat
@@ -10,6 +11,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.transition.Explode
 import android.transition.Fade
 import com.yatatsu.autobundle.AutoBundleField
+import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_paper_view.*
 import rejasupotaro.arxiv.reader.R
 import rejasupotaro.arxiv.reader.data.model.Paper
@@ -17,15 +19,16 @@ import rejasupotaro.arxiv.reader.data.model.PaperConverter
 import rejasupotaro.arxiv.reader.extensions.readableText
 import rejasupotaro.arxiv.reader.job.PdfDownloadServiceAutoBundle
 import rejasupotaro.arxiv.reader.ui.common.CategoryListAdapter
+import rejasupotaro.arxiv.reader.ui.common.NavigationController
+import javax.inject.Inject
 
 class PaperViewActivity : LifecycleActivity() {
-    @AutoBundleField(converter = PaperConverter::class)
-    lateinit var paper: Paper
-
-    @AutoBundleField
-    lateinit var transitionName: String
+    @AutoBundleField(converter = PaperConverter::class) lateinit var paper: Paper
+    @AutoBundleField lateinit var transitionName: String
+    @Inject lateinit var viewModel: PaperViewViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_paper_view)
         PaperViewActivityAutoBundle.bind(this, intent)
@@ -54,9 +57,28 @@ class PaperViewActivity : LifecycleActivity() {
         categoryListView.adapter = CategoryListAdapter().apply {
             items = paper.categories
         }
-        downloadButton.setOnClickListener {
+
+        viewModel.loadPaper(paper.title).observe(this, Observer { paper ->
+            if (paper == null) {
+                setDownloadAction()
+            } else {
+                setReadAction(paper)
+            }
+        })
+    }
+
+    private fun setDownloadAction() {
+        actionButton.text = getString(R.string.button_download)
+        actionButton.setOnClickListener {
             val intent = PdfDownloadServiceAutoBundle.builder(paper).build(this)
             startService(intent)
+        }
+    }
+
+    private fun setReadAction(paper: Paper) {
+        actionButton.text = getString(R.string.button_read)
+        actionButton.setOnClickListener {
+            NavigationController.navigateToReader(this, paper.id)
         }
     }
 }

@@ -12,4 +12,5 @@
 
     <!-- PaperViewActivity-->
     <string name="button_download">DOWNLOAD</string>
+    <string name="button_read">READ</string>
 </resources>

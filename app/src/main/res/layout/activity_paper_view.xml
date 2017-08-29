@@ -77,19 +77,6 @@
                             android:textSize="@dimen/text_size_large"
                             android:textStyle="bold"
                             />
-
-                    <com.mikepenz.iconics.view.IconicsTextView
-                            android:id="@+id/downloadButton"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_marginStart="@dimen/spacing_medium"
-                            android:background="?android:attr/selectableItemBackground"
-                            android:gravity="center"
-                            android:paddingEnd="@dimen/spacing_xlarge"
-                            android:paddingStart="@dimen/spacing_xlarge"
-                            android:text="{gmd_file_download}"
-                            android:textSize="@dimen/icon_size_medium"
-                            />
                 </LinearLayout>
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.CollapsingToolbarLayout>
@@ -128,11 +115,20 @@
                     android:textSize="@dimen/text_size_small"
                     />
 
+            <Button
+                    android:id="@+id/actionButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/spacing_large"
+                    android:text="@string/button_download"
+                    />
+
             <TextView
                     android:id="@+id/summaryTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_xlarge"
+                    android:layout_marginTop="@dimen/spacing_large"
                     android:justificationMode="inter_word"
                     android:textSize="@dimen/text_size_medium"
                     tools:targetApi="o"
