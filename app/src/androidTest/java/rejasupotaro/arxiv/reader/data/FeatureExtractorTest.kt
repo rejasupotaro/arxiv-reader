@@ -15,17 +15,32 @@ class FeatureExtractorTest {
 
     @Test
     fun topNWords() {
-        val xml = readTextFromAssets("api_response.xml")
-        val apiResponse = ResponseConverter.xmlToApiResponse(xml)
-        val papers = apiResponse.papers.map { Paper.entityToModel(it) }
-        val vectors = FeatureExtractor.topNWords(context, papers)
+        val vectors = FeatureExtractor.topNWords(context, papers())
         assertThat(vectors[0].size).isEqualTo(10)
-        assertThat(vectors).isEqualTo(listOf<String>())
     }
 
     @Test
     fun stopwords() {
         val stopwords = FeatureExtractor.stopwords(context)
         assertThat(stopwords).isNotEmpty
+    }
+
+    @Test
+    fun similarPapers() {
+        val papers = papers()
+        val similarities = FeatureExtractor.topNSimilarPapers(context, papers)
+        (similarities.indices).forEach { i ->
+            similarities[i]
+                    .map { (paper, _) -> paper.title }
+                    .let { titles ->
+                        assertThat(titles.contains(papers[i].title)).isFalse()
+                    }
+        }
+    }
+
+    private fun papers(): List<Paper> {
+        val xml = readTextFromAssets("api_response.xml")
+        val apiResponse = ResponseConverter.xmlToApiResponse(xml)
+        return apiResponse.papers.map { Paper.entityToModel(it) }
     }
 }
