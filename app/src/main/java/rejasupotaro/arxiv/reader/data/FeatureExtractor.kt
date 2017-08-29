@@ -3,6 +3,7 @@ package rejasupotaro.arxiv.reader.data
 import android.content.Context
 import rejasupotaro.arxiv.reader.data.model.Paper
 import rejasupotaro.nlp.TfIdf
+import rejasupotaro.nlp.cosineSimilarity
 import rejasupotaro.nlp.tokenize
 import java.io.BufferedReader
 
@@ -27,8 +28,8 @@ object FeatureExtractor {
             (vectors.indices)
                     .forEach { j ->
                         if (i != j) {
-                            val similarity = Pair(papers[j], cosineSimilarity(vectors[i], vectors[j]))
-                            similarities.add(similarity)
+                            val similarity = cosineSimilarity(vectors[i].toDoubleArray(), vectors[j].toDoubleArray())
+                            similarities.add(Pair(papers[j], similarity))
                         }
                     }
             similarities.sortedByDescending { (_, value) -> value }.take(n)
@@ -37,27 +38,6 @@ object FeatureExtractor {
 
     fun stopwords(context: Context): List<String> {
         return context.assets.open("ranksnl_large.txt").bufferedReader().use(BufferedReader::readText).split("\n")
-    }
-
-    private fun cosineSimilarity(vector1: List<Double>, vector2: List<Double>): Double {
-        var dotProduct = 0.0
-        var magnitude1 = 0.0
-        var magnitude2 = 0.0
-
-        (vector1.indices).map { i ->
-            dotProduct += vector1[i] * vector2[i]
-            magnitude1 += Math.pow(vector1[i], 2.0)
-            magnitude2 += Math.pow(vector2[i], 2.0)
-        }
-
-        magnitude1 = Math.sqrt(magnitude1)
-        magnitude2 = Math.sqrt(magnitude2)
-
-        return if ((magnitude1 != 0.0) or (magnitude2 != 0.0)) {
-            dotProduct / (magnitude1 * magnitude2)
-        } else {
-            0.0
-        }
     }
 }
 
