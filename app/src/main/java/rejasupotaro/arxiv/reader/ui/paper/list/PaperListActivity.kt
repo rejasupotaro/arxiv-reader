@@ -37,9 +37,9 @@ class PaperListActivity : LifecycleActivity() {
 
     private fun setupListView() {
         adapter = PaperListAdapter(
-                onItemClickListener = { paper ->
+                onItemClickListener = { paper, view ->
                     window.exitTransition = Explode()
-                    NavigationController.navigateToReader(this, paper.id)
+                    NavigationController.navigateToViewer(this, paper, view)
                 },
                 onItemLongClickListener = { paper ->
                     viewModel.deletePaper(paper).observe(this, Observer {

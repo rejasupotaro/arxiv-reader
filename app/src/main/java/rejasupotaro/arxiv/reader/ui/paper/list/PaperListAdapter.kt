@@ -11,7 +11,7 @@ import rejasupotaro.arxiv.reader.data.model.Paper
 import rejasupotaro.arxiv.reader.extensions.relativeTimeSpanText
 
 class PaperListAdapter(
-        val onItemClickListener: (Paper) -> Unit,
+        val onItemClickListener: (Paper, View) -> Unit,
         val onItemLongClickListener: (Paper) -> Boolean = { _ -> false }
 ) : RecyclerView.Adapter<PaperViewHolder>() {
     var items = mutableListOf<Paper>()
@@ -29,7 +29,7 @@ class PaperListAdapter(
 
 class PaperViewHolder(
         itemView: View,
-        val onItemClickListener: (Paper) -> Unit,
+        val onItemClickListener: (Paper, View) -> Unit,
         val onItemLongClickListener: (Paper) -> Boolean
 ) : RecyclerView.ViewHolder(itemView) {
     fun bind(paper: Paper) {
@@ -42,7 +42,7 @@ class PaperViewHolder(
                 context.getString(R.string.downloaded_xxx_ago, paper.downloadedAt.relativeTimeSpanText())
             }
             relativeTimeTextView.text = relativeTimeText
-            setOnClickListener { onItemClickListener.invoke(paper) }
+            setOnClickListener { onItemClickListener.invoke(paper, titleTextView) }
             setOnLongClickListener { onItemLongClickListener.invoke(paper) }
 
             if (paper.lastOpenedPage == 0) {
