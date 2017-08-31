@@ -10,8 +10,10 @@ fun readTextFromAssets(fileName: String): String {
     return assetManager.open(fileName).bufferedReader().use { it.readText() }
 }
 
+val TEST_DB_NAME = "arxiv_test"
+
 fun testDatabase(): ArxivDb {
     val context: Context = getInstrumentation().targetContext
-    return Room.databaseBuilder(context, ArxivDb::class.java, "arxiv_test").build()
+    return Room.databaseBuilder(context, ArxivDb::class.java, TEST_DB_NAME).build()
 }
 
