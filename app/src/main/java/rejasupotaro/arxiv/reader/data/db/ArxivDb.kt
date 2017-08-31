@@ -4,14 +4,16 @@ import android.arch.persistence.room.Database
 import android.arch.persistence.room.RoomDatabase
 import android.arch.persistence.room.TypeConverters
 import rejasupotaro.arxiv.reader.data.model.Paper
+import rejasupotaro.arxiv.reader.data.model.PaperSimilarity
 import rejasupotaro.arxiv.reader.data.model.SearchHistory
 
 @Database(
         entities = arrayOf(
                 Paper::class,
-                SearchHistory::class
+                SearchHistory::class,
+                PaperSimilarity::class
         ),
-        version = 1
+        version = 2
 )
 @TypeConverters(
         StringListConverter::class,

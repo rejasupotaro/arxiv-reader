@@ -1,6 +1,7 @@
 package rejasupotaro.arxiv.reader.di
 
 import android.arch.persistence.room.Room
+import android.arch.persistence.room.migration.Migration
 import android.content.Context
 import com.facebook.stetho.okhttp3.StethoInterceptor
 import dagger.BindsInstance
@@ -10,7 +11,9 @@ import dagger.Provides
 import dagger.android.AndroidInjectionModule
 import okhttp3.OkHttpClient
 import rejasupotaro.arxiv.reader.ArxivReaderApplication
+import rejasupotaro.arxiv.reader.data.db.AddPaperSimilaritiesTable
 import rejasupotaro.arxiv.reader.data.db.ArxivDb
+import rejasupotaro.arxiv.reader.data.db.migrations
 import rejasupotaro.arxiv.reader.data.http.HttpClient
 import rejasupotaro.arxiv.reader.data.repository.PaperRepository
 import rejasupotaro.arxiv.reader.data.repository.SearchHistoryRepository
@@ -42,7 +45,9 @@ class AppModule {
 
     @Provides @Singleton
     fun provideArxivDb(context: Context): ArxivDb {
-        return Room.databaseBuilder(context, ArxivDb::class.java, "arxiv").build()
+        return Room.databaseBuilder(context, ArxivDb::class.java, "arxiv")
+                .addMigrations(*migrations())
+                .build()
     }
 
     @Provides @Singleton
