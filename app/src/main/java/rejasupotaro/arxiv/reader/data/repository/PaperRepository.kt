@@ -24,7 +24,7 @@ class PaperRepository(private val db: ArxivDb, private val httpClient: HttpClien
         }
     }
 
-    fun findById(paperId: Long): LiveData<Paper> {
+    fun findById(paperId: Long): LiveData<Paper?> {
         return observable {
             db.paperDao().findById(paperId)
         }

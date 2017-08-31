@@ -18,7 +18,7 @@ interface PaperDao {
     fun deleteAll()
 
     @Query("SELECT * FROM papers WHERE id = :id")
-    fun findById(id: Long): Paper
+    fun findById(id: Long): Paper?
 
     @Query("SELECT * FROM papers WHERE title = :title")
     fun findByTitle(title: String): Paper?

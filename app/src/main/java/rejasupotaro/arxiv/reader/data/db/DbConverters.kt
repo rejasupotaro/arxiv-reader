@@ -15,7 +15,7 @@ class StringListConverter {
 
     @TypeConverter
     fun deserialize(value: String): List<String> {
-        return gson.fromJson(value, object : TypeToken<ArrayList<String>>() {}.type)
+        return gson.fromJson(value, object : TypeToken<List<String>>() {}.type)
     }
 }
 

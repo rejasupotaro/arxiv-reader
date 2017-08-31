@@ -24,14 +24,14 @@ class PaperDaoTest {
         paper.id = paperDao.insert(paper)
 
         paperDao.findById(paper.id).let {
-            assertThat(it.title).isEqualTo("BIRRA MORETTI")
+            assertThat(it!!.title).isEqualTo("BIRRA MORETTI")
         }
 
         paper.title = "BIRRA MORETTI (NEW)"
         paperDao.update(paper)
 
         paperDao.findById(paper.id).let {
-            assertThat(it.title).isEqualTo("BIRRA MORETTI (NEW)")
+            assertThat(it!!.title).isEqualTo("BIRRA MORETTI (NEW)")
         }
 
         paperDao.delete(paper)

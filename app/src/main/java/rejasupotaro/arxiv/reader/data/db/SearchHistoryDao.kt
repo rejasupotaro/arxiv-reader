@@ -15,7 +15,7 @@ interface SearchHistoryDao {
     fun findAll(): List<SearchHistory>
 
     @Query("SELECT * FROM search_histories ORDER BY created_at DESC LIMIT 1")
-    fun first(): SearchHistory
+    fun first(): SearchHistory?
 
     @Query("SELECT * FROM search_histories GROUP BY query ORDER BY created_at DESC LIMIT 10")
     fun latest(): List<SearchHistory>

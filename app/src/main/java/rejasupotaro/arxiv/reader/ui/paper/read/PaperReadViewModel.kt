@@ -13,7 +13,7 @@ import rejasupotaro.arxiv.reader.extensions.switchMap
 class PaperReadViewModel(private val paperRepository: PaperRepository) : ViewModel() {
     var paperId: MutableLiveData<Long> = MutableLiveData()
 
-    var paper: LiveData<Paper> = paperId
+    var paper: LiveData<Paper?> = paperId
             .switchMap { paperId ->
                 openPaperById(paperId)
             }
@@ -26,14 +26,13 @@ class PaperReadViewModel(private val paperRepository: PaperRepository) : ViewMod
         } ?: observable { Unit }
     }
 
-    private fun openPaperById(paperId: Long): LiveData<Paper> {
+    private fun openPaperById(paperId: Long): LiveData<Paper?> {
         return paperRepository.findById(paperId)
                 .map { paper ->
-                    paper.openedAt = DateTime.now()
-                    paper
-                }
-                .map { paper ->
-                    paperRepository.update(paper)
+                    paper?.apply {
+                        paper.openedAt = DateTime.now()
+                        paperRepository.update(paper)
+                    }
                     paper
                 }
     }
