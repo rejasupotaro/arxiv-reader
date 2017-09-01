@@ -3,6 +3,8 @@ package rejasupotaro.arxiv.reader.data.db
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.RoomDatabase
 import android.arch.persistence.room.TypeConverters
+import rejasupotaro.arxiv.reader.data.db.dao.PaperDao
+import rejasupotaro.arxiv.reader.data.db.dao.SearchHistoryDao
 import rejasupotaro.arxiv.reader.data.model.Paper
 import rejasupotaro.arxiv.reader.data.model.PaperSimilarity
 import rejasupotaro.arxiv.reader.data.model.SearchHistory

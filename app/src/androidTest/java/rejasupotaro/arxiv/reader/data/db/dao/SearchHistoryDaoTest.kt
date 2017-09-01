@@ -1,4 +1,4 @@
-package rejasupotaro.arxiv.reader.data.db
+package rejasupotaro.arxiv.reader.data.db.dao
 
 import android.support.test.runner.AndroidJUnit4
 import org.assertj.core.api.Assertions.assertThat

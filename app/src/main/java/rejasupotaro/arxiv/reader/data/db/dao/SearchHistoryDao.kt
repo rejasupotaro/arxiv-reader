@@ -1,4 +1,4 @@
-package rejasupotaro.arxiv.reader.data.db
+package rejasupotaro.arxiv.reader.data.db.dao
 
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert
