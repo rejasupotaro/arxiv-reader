@@ -6,7 +6,9 @@ import rejasupotaro.arxiv.reader.data.api.ResponseConverter
 import rejasupotaro.arxiv.reader.data.db.ArxivDb
 import rejasupotaro.arxiv.reader.data.http.HttpClient
 import rejasupotaro.arxiv.reader.data.model.Paper
+import rejasupotaro.arxiv.reader.extensions.map
 import rejasupotaro.arxiv.reader.extensions.observable
+import rejasupotaro.arxiv.reader.extensions.switchMap
 import java.io.File
 
 @OpenClassOnDebug
@@ -40,6 +42,18 @@ class PaperRepository(private val db: ArxivDb, private val httpClient: HttpClien
         return observable {
             db.paperDao().update(paper)
             paper
+        }
+    }
+
+    fun similarPapers(paperId: Long): LiveData<List<Pair<Paper, Double>>> {
+        return observable {
+            db.paperSimilarityDao().findByFromPaperId(paperId).let { paperSimilarities ->
+                db.paperDao().findById(paperSimilarities.map { paperSimilarity ->
+                    paperSimilarity.toPaperId
+                }).mapIndexed { index, paper ->
+                    Pair(paper, paperSimilarities[index].similarity)
+                }
+            }
         }
     }
 

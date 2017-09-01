@@ -27,7 +27,9 @@ object FeatureExtractor {
             (vectors.indices).forEach { j ->
                 if (i != j) {
                     val similarity = cosineSimilarity(vectors[i].toDoubleArray(), vectors[j].toDoubleArray())
-                    similarities.add(Pair(papers[j].id, similarity))
+                    if (similarity > 0) {
+                        similarities.add(Pair(papers[j].id, similarity))
+                    }
                 }
             }
             result.put(papers[i].id, similarities.sortedByDescending { (_, value) -> value }.take(n))

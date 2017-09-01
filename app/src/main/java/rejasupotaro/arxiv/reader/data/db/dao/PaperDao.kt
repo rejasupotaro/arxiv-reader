@@ -23,6 +23,9 @@ interface PaperDao {
     @Query("SELECT * FROM papers WHERE id = :id")
     fun findById(id: Long): Paper?
 
+    @Query("SELECT * FROM papers WHERE id IN (:ids)")
+    fun findById(ids: List<Long>): List<Paper>
+
     @Query("SELECT * FROM papers WHERE title = :title")
     fun findByTitle(title: String): Paper?
 

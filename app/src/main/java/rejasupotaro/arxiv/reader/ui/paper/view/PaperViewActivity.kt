@@ -73,6 +73,14 @@ class PaperViewActivity : LifecycleActivity() {
                 setReadAction(paper)
             }
         })
+
+        viewModel.loadSimilarPapers(paper.title).observe(this, Observer { similarPapers ->
+            similarPapers?.let {
+                similarPapersTextView.text = similarPapers.map { similarPaper ->
+                    "${similarPaper.first.title} (${similarPaper.second})"
+                }.joinToString("\n")
+            }
+        })
     }
 
     private fun setDownloadAction() {

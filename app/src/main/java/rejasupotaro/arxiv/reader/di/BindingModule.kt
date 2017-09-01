@@ -2,6 +2,7 @@ package rejasupotaro.arxiv.reader.di
 
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
+import rejasupotaro.arxiv.reader.job.PaperSimilarityUpdateService
 import rejasupotaro.arxiv.reader.job.PdfDownloadService
 import rejasupotaro.arxiv.reader.ui.paper.list.PaperListActivity
 import rejasupotaro.arxiv.reader.ui.paper.list.PaperListActivityModule
@@ -44,4 +45,7 @@ abstract class BindingModule {
 
     @ContributesAndroidInjector
     abstract fun bindPdfDownloadService(): PdfDownloadService
+
+    @ContributesAndroidInjector
+    abstract fun bindPaperSimilarityUpdateService(): PaperSimilarityUpdateService
 }
