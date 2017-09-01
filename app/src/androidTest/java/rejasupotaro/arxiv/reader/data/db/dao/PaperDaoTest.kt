@@ -21,8 +21,6 @@ class PaperDaoTest {
     @Test
     fun insertAndUpdateAndDelete() {
         val paper = createPaper(title = "BIRRA MORETTI")
-        paper.id = paperDao.insert(paper)
-
         paperDao.findById(paper.id).let {
             assertThat(it!!.title).isEqualTo("BIRRA MORETTI")
         }
@@ -46,25 +44,21 @@ class PaperDaoTest {
         val yesterday = DateTime.now().minusDays(1)
         val dayBeforeYesterday = DateTime.now().minusDays(2)
 
-        val paper1 = createPaper(
+        createPaper(
                 title = "Expected to be 1",
                 downloadedAt = dayBeforeYesterday,
                 openedAt = today
         )
-        val paper2 = createPaper(
+        createPaper(
                 title = "Expected to be 2",
                 downloadedAt = today,
                 openedAt = null
         )
-        val paper3 = createPaper(
+        createPaper(
                 title = "Expected to be 3",
                 downloadedAt = yesterday,
                 openedAt = yesterday
         )
-
-        paperDao.insert(paper1)
-        paperDao.insert(paper2)
-        paperDao.insert(paper3)
 
         paperDao.findAll().let { papers ->
             assertThat(papers.size).isEqualTo(3)

@@ -14,7 +14,7 @@ import rejasupotaro.arxiv.reader.notification.PdfDownloadingPushNotification
 import javax.inject.Inject
 
 class PdfDownloadService(name: String = PdfDownloadService::class.java.simpleName) : IntentService(name) {
-    @Inject lateinit var repository: PaperRepository
+    @Inject lateinit var paperRepository: PaperRepository
     @Inject lateinit var db: ArxivDb
 
     @AutoBundleField(converter = PaperConverter::class)
@@ -26,14 +26,15 @@ class PdfDownloadService(name: String = PdfDownloadService::class.java.simpleNam
         download(paper)
     }
 
-    fun download(paper: Paper) {
+    private fun download(paper: Paper) {
         val notification = PdfDownloadingPushNotification(applicationContext, paper)
         try {
             notification.show()
             val file = FileManager.paperToFile(applicationContext, paper)
-            repository.download(paper, file)
+            paperRepository.download(paper, file)
             paper.id = db.paperDao().insert(paper)
             PdfDownloadedPushNotification(applicationContext, paper).show()
+            applicationContext.startService(Intent(applicationContext, PaperSimilarityUpdateService::class.java))
         } finally {
             notification.cancel()
         }

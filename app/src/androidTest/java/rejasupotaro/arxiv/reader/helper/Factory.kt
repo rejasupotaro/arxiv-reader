@@ -3,6 +3,7 @@ package rejasupotaro.arxiv.reader.helper
 import org.joda.time.DateTime
 import rejasupotaro.arxiv.reader.data.model.Category
 import rejasupotaro.arxiv.reader.data.model.Paper
+import rejasupotaro.arxiv.reader.data.model.PaperSimilarity
 import rejasupotaro.arxiv.reader.data.model.SearchHistory
 
 fun createPaper(
@@ -18,7 +19,7 @@ fun createPaper(
         lastOpenedPage: Int = 1,
         totalPage: Int = 2
 ): Paper {
-    return Paper(
+    val paper = Paper(
             title = title,
             summary = summary,
             authors = authors,
@@ -31,15 +32,32 @@ fun createPaper(
             lastOpenedPage = lastOpenedPage,
             totalPage = totalPage
     )
+    paper.id = testDatabase().paperDao().insert(paper)
+    return paper
 }
 
 fun createSearchHistory(
         query: String = "query",
         createdAt: DateTime = DateTime()
 ): SearchHistory {
-    return SearchHistory(
+    val searchHistory = SearchHistory(
             query = query,
             createdAt = createdAt
     )
+    searchHistory.id = testDatabase().searchHistoryDao().insert(searchHistory)
+    return searchHistory
 }
 
+fun createPaperSimilarity(
+        fromPaper: Paper = createPaper(),
+        toPaper: Paper = createPaper(),
+        similarity: Double = 0.0
+): PaperSimilarity {
+    val paperSimilarity = PaperSimilarity(
+            fromPaperId = fromPaper.id,
+            toPaperId = toPaper.id,
+            similarity = similarity
+    )
+    paperSimilarity.id = testDatabase().paperSimilarityDao().insert(paperSimilarity)
+    return paperSimilarity
+}

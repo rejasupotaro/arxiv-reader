@@ -9,7 +9,7 @@ import rejasupotaro.arxiv.reader.data.model.SearchHistory
 @Dao
 interface SearchHistoryDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(searchHistory: SearchHistory)
+    fun insert(searchHistory: SearchHistory): Long
 
     @Query("SELECT * FROM search_histories ORDER BY created_at DESC")
     fun findAll(): List<SearchHistory>

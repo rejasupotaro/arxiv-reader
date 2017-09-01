@@ -24,22 +24,18 @@ class SearchHistoryDaoTest {
         val yesterday = DateTime.now().minusDays(1)
         val dayBeforeYesterday = DateTime.now().minusDays(2)
 
-        val searchHistory1 = createSearchHistory(
+        createSearchHistory(
                 query = "query 1",
                 createdAt = yesterday
         )
-        val searchHistory2 = createSearchHistory(
+        createSearchHistory(
                 query = "query 2",
                 createdAt = today
         )
-        val searchHistory3 = createSearchHistory(
+        createSearchHistory(
                 query = "query 3",
                 createdAt = dayBeforeYesterday
         )
-
-        searchHistoryDao.insert(searchHistory1)
-        searchHistoryDao.insert(searchHistory2)
-        searchHistoryDao.insert(searchHistory3)
 
         searchHistoryDao.latest().let { searchHistories ->
             assertThat(searchHistories[0].query).isEqualTo("query 2")

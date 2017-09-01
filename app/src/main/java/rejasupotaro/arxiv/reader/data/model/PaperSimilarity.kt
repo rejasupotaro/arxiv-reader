@@ -24,10 +24,6 @@ import android.arch.persistence.room.*
         )
 )
 data class PaperSimilarity(
-        @PrimaryKey(autoGenerate = true)
-        @ColumnInfo(name = "id")
-        val id: Long,
-
         @ColumnInfo(name = "from_paper_id")
         val fromPaperId: Long,
 
@@ -36,5 +32,10 @@ data class PaperSimilarity(
 
         @ColumnInfo(name = "similarity")
         var similarity: Double
-)
+) {
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    var id: Long = 0
+
+}
 

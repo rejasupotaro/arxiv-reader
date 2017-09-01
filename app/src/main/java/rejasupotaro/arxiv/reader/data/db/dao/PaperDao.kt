@@ -8,6 +8,9 @@ interface PaperDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(paper: Paper): Long
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertAll(papers: List<Paper>): List<Long>
+
     @Query("SELECT * FROM papers ORDER BY COALESCE(opened_at, downloaded_at) DESC")
     fun findAll(): List<Paper>
 

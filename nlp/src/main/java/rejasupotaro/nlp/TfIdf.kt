@@ -1,7 +1,7 @@
 package rejasupotaro.nlp
 
 object TfIdf {
-    fun vectorize(docs: List<List<String>>, stopwords: List<String> = listOf<String>()): List<Map<String, Double>> {
+    fun vectorize(docs: List<List<String>>, stopwords: List<String> = listOf()): List<Map<String, Double>> {
         val terms = docs.toMutableSet().flatten().filterNot { stopwords.contains(it) }.distinct()
         return docs.map { doc ->
             val vector = mutableMapOf<String, Double>()
