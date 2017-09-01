@@ -5,8 +5,7 @@ import android.arch.persistence.room.*
 @Entity(
         tableName = "paper_similarities",
         indices = arrayOf(
-                Index(value = "from_paper_id", unique = true),
-                Index(value = "to_paper_id", unique = true)
+                Index(value = *arrayOf("from_paper_id", "to_paper_id"), unique = true)
         ),
         foreignKeys = arrayOf(
                 ForeignKey(

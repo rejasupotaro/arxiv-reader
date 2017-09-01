@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 2,
-    "identityHash": "8aea9457dd845340c2be14674e8ebfe7",
+    "identityHash": "45be6ef35c05e56bd1064b4b1a3e48d5",
     "entities": [
       {
         "tableName": "papers",
@@ -168,20 +168,13 @@
         },
         "indices": [
           {
-            "name": "index_paper_similarities_from_paper_id",
+            "name": "index_paper_similarities_from_paper_id_to_paper_id",
             "unique": true,
             "columnNames": [
-              "from_paper_id"
-            ],
-            "createSql": "CREATE UNIQUE INDEX `index_paper_similarities_from_paper_id` ON `${TABLE_NAME}` (`from_paper_id`)"
-          },
-          {
-            "name": "index_paper_similarities_to_paper_id",
-            "unique": true,
-            "columnNames": [
+              "from_paper_id",
               "to_paper_id"
             ],
-            "createSql": "CREATE UNIQUE INDEX `index_paper_similarities_to_paper_id` ON `${TABLE_NAME}` (`to_paper_id`)"
+            "createSql": "CREATE UNIQUE INDEX `index_paper_similarities_from_paper_id_to_paper_id` ON `${TABLE_NAME}` (`from_paper_id`, `to_paper_id`)"
           }
         ],
         "foreignKeys": [
@@ -212,7 +205,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"8aea9457dd845340c2be14674e8ebfe7\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"45be6ef35c05e56bd1064b4b1a3e48d5\")"
     ]
   }
 }
