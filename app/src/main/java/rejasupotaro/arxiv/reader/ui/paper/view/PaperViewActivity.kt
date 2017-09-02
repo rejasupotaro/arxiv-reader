@@ -53,11 +53,17 @@ class PaperViewActivity : LifecycleActivity() {
         authorsTextView.text = paper.authors.joinToString()
         publishedAtTextView.text = paper.publishedAt.readableText()
         summaryTextView.text = paper.summary
+        setupCategoryListView()
+        setupSimilarPaperListView()
+    }
+
+    private fun setupCategoryListView() {
         categoryListView.layoutManager = FlexboxLayoutManager(this).apply {
             flexDirection = FlexDirection.ROW
             justifyContent = JustifyContent.FLEX_START
             flexWrap = FlexWrap.WRAP
         }
+
         categoryListView.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.HORIZONTAL).apply {
             setDrawable(ContextCompat.getDrawable(this@PaperViewActivity, R.drawable.item_decoration_spacing_horizontal))
         })
@@ -70,14 +76,6 @@ class PaperViewActivity : LifecycleActivity() {
                 setDownloadAction()
             } else {
                 setReadAction(paper)
-            }
-        })
-
-        viewModel.loadSimilarPapers(paper.title).observe(this, Observer { similarPapers ->
-            similarPapers?.let {
-                similarPapersTextView.text = similarPapers.map { (first, second) ->
-                    "${first.title} ($second)"
-                }.joinToString("\n")
             }
         })
     }
@@ -95,5 +93,21 @@ class PaperViewActivity : LifecycleActivity() {
         actionButton.setOnClickListener {
             NavigationController.navigateToReader(this, paper.id)
         }
+    }
+
+    private fun setupSimilarPaperListView() {
+        val adapter = SimilarPaperListAdapter { paper, view ->
+            NavigationController.navigateToViewer(this, paper, view)
+        }
+
+        similarPaperListView.layoutManager = LinearLayoutManager(this)
+        similarPaperListView.adapter = adapter
+
+        viewModel.loadSimilarPapers(paper.title).observe(this, Observer { similarPapers ->
+            similarPapers?.let {
+                adapter.items = similarPapers
+                adapter.notifyDataSetChanged()
+            }
+        })
     }
 }

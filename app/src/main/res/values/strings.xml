@@ -13,4 +13,6 @@
     <!-- PaperViewActivity-->
     <string name="button_download">DOWNLOAD</string>
     <string name="button_read">READ</string>
+    <string name="category">Category</string>
+    <string name="similar_papers">Similar papers in my library</string>
 </resources>

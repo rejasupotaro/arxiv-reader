@@ -7,6 +7,7 @@ import rejasupotaro.arxiv.reader.ui.paper.search.CategoryView
 
 class CategoryListAdapter : RecyclerView.Adapter<CategoryViewHolder>() {
     var items = listOf<Category>()
+
     override fun getItemCount() = items.size
 
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
@@ -14,12 +15,11 @@ class CategoryListAdapter : RecyclerView.Adapter<CategoryViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
-        val categoryView = CategoryView(parent.context)
-        return CategoryViewHolder(categoryView)
+        return CategoryViewHolder(CategoryView(parent.context))
     }
 }
 
-class CategoryViewHolder(val categoryView: CategoryView) : RecyclerView.ViewHolder(categoryView) {
+class CategoryViewHolder(private val categoryView: CategoryView) : RecyclerView.ViewHolder(categoryView) {
     fun bind(category: Category) {
         categoryView.category = category
     }
