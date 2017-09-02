@@ -2,7 +2,6 @@ package rejasupotaro.arxiv.reader.ui.paper.view
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
-import android.text.Html
 import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup

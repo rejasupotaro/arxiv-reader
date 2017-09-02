@@ -4,4 +4,5 @@
     <color name="text_dark_tertiary">#76000000</color>
     <color name="text_dark_hint">#61000000</color>
     <color name="text_light_primary">#ffffffff</color>
+    <color name="text_link">@color/md_blue_800</color>
 </resources>

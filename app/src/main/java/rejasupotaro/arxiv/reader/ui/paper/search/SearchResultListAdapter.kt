@@ -34,7 +34,7 @@ class SearchResultListAdapter(
 
 class SearchResultViewHolder(
         itemView: View,
-        val onItemClickListener: (View, Paper) -> Unit
+        private val onItemClickListener: (View, Paper) -> Unit
 ) : RecyclerView.ViewHolder(itemView) {
     private var adapter = CategoryListAdapter()
 

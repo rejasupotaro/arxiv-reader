@@ -23,7 +23,7 @@
                     android:id="@+id/titleTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/md_blue_800"
+                    android:textColor="@color/text_link"
                     android:textSize="@dimen/text_size_medium"
                     android:textStyle="bold"
                     />
