@@ -10,6 +10,7 @@ import android.widget.FrameLayout
 import kotlinx.android.synthetic.main.view_similar_paper.view.*
 import rejasupotaro.arxiv.reader.R
 import rejasupotaro.arxiv.reader.data.model.Paper
+import rejasupotaro.arxiv.reader.extensions.toHtml
 
 class SimilarPaperListAdapter(
         private val onItemClickListener: (Paper, View) -> Unit
@@ -51,7 +52,7 @@ class SimilarPaperView : FrameLayout {
     var similarPaper: Pair<Paper, Double>? = null
         set(value) {
             value?.let {
-                titleTextView.text = Html.fromHtml("<b>${value.first.title}</b> (${value.second})")
+                titleTextView.text = "<b>${value.first.title}</b> (${value.second})".toHtml()
             }
         }
 }
