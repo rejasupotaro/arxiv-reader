@@ -1,93 +1,13 @@
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/md_white_1000"
         >
 
-    <android.support.design.widget.AppBarLayout
-            android:id="@+id/appBarLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            >
-
-        <android.support.design.widget.CollapsingToolbarLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed"
-                >
-
-            <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="160dp"
-                    app:layout_collapseMode="pin"
-                    >
-
-                <TextView
-                        android:id="@+id/titleTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="bottom|center_horizontal"
-                        android:paddingEnd="@dimen/spacing_xxlarge"
-                        android:paddingStart="@dimen/spacing_xxlarge"
-                        android:textAlignment="center"
-                        android:textColor="@color/text_dark_primary"
-                        android:textSize="@dimen/text_size_xlarge"
-                        android:textStyle="bold"
-                        />
-            </FrameLayout>
-
-            <android.support.v7.widget.Toolbar
-                    android:id="@+id/toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    app:layout_collapseMode="pin"
-                    >
-
-                <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        >
-
-                    <com.mikepenz.iconics.view.IconicsTextView
-                            android:id="@+id/upButton"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:background="?android:attr/selectableItemBackground"
-                            android:gravity="center"
-                            android:paddingEnd="@dimen/spacing_large"
-                            android:paddingStart="@dimen/spacing_small"
-                            android:text="{gmd_keyboard_arrow_left}"
-                            android:textSize="@dimen/icon_size_medium"
-                            />
-
-                    <TextView
-                            android:id="@+id/titleTextViewInToolbar"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:alpha="0"
-                            android:animateLayoutChanges="true"
-                            android:ellipsize="end"
-                            android:maxLines="1"
-                            android:paddingEnd="@dimen/spacing_large"
-                            android:textSize="@dimen/text_size_large"
-                            android:textStyle="bold"
-                            />
-                </LinearLayout>
-            </android.support.v7.widget.Toolbar>
-        </android.support.design.widget.CollapsingToolbarLayout>
-    </android.support.design.widget.AppBarLayout>
-
     <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fadeScrollbars="false"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
             >
 
         <LinearLayout
@@ -102,6 +22,20 @@
                     android:orientation="vertical"
                     android:padding="@dimen/spacing_xxlarge"
                     >
+
+                <TextView
+                        android:id="@+id/titleTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="?attr/actionBarSize"
+                        android:paddingEnd="@dimen/spacing_xxlarge"
+                        android:paddingStart="@dimen/spacing_xxlarge"
+                        android:textAlignment="center"
+                        android:textColor="@color/text_dark_primary"
+                        android:textSize="@dimen/text_size_xlarge"
+                        android:textStyle="bold"
+                        />
 
                 <TextView
                         android:id="@+id/authorsTextView"
@@ -183,4 +117,32 @@
             </LinearLayout>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
-</android.support.design.widget.CoordinatorLayout>
+
+    <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="#aaffffff"
+            >
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                >
+
+            <com.mikepenz.iconics.view.IconicsTextView
+                    android:id="@+id/upButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:gravity="center"
+                    android:paddingEnd="@dimen/spacing_large"
+                    android:paddingStart="@dimen/spacing_small"
+                    android:text="{gmd_keyboard_arrow_left}"
+                    android:textSize="@dimen/icon_size_medium"
+                    />
+        </LinearLayout>
+    </android.support.v7.widget.Toolbar>
+</FrameLayout>

@@ -45,8 +45,6 @@ class PaperViewActivity : LifecycleActivity() {
     private fun setupToolbar() {
         upButton.setOnClickListener { onBackPressed() }
         titleTextView.text = paper.title
-        titleTextViewInToolbar.text = paper.title
-        appBarLayout.addOnOffsetChangedListener(ToolbarOnOffsetChangedListener(this))
     }
 
     private fun setupViews() {
