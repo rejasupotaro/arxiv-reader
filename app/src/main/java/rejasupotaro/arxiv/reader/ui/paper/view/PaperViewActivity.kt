@@ -3,7 +3,6 @@ package rejasupotaro.arxiv.reader.ui.paper.view
 import android.arch.lifecycle.LifecycleActivity
 import android.arch.lifecycle.Observer
 import android.os.Bundle
-import android.support.design.widget.AppBarLayout
 import android.support.v4.content.ContextCompat
 import android.support.v4.view.ViewCompat
 import android.support.v7.widget.DividerItemDecoration
@@ -76,8 +75,8 @@ class PaperViewActivity : LifecycleActivity() {
 
         viewModel.loadSimilarPapers(paper.title).observe(this, Observer { similarPapers ->
             similarPapers?.let {
-                similarPapersTextView.text = similarPapers.map { similarPaper ->
-                    "${similarPaper.first.title} (${similarPaper.second})"
+                similarPapersTextView.text = similarPapers.map { (first, second) ->
+                    "${first.title} ($second)"
                 }.joinToString("\n")
             }
         })
@@ -95,20 +94,6 @@ class PaperViewActivity : LifecycleActivity() {
         actionButton.text = getString(R.string.button_read)
         actionButton.setOnClickListener {
             NavigationController.navigateToReader(this, paper.id)
-        }
-    }
-}
-
-private class ToolbarOnOffsetChangedListener(private val activity: PaperViewActivity) : AppBarLayout.OnOffsetChangedListener {
-    val threshold = 260F
-
-    override fun onOffsetChanged(appBarLayout: AppBarLayout, verticalOffset: Int) {
-        val alpha = 1F - Math.min(1F, Math.abs(verticalOffset) / threshold)
-        activity.titleTextView.alpha = alpha
-        if (alpha < 0.1) {
-            activity.titleTextViewInToolbar.animate().alpha(1F)
-        } else {
-            activity.titleTextViewInToolbar.animate().alpha(0F)
         }
     }
 }
