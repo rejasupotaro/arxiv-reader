@@ -28,7 +28,7 @@ class PaperListActivity : LifecycleActivity() {
     private fun setupViews() {
         setupToolbar()
         setupListView()
-        viewModel.loadPaperList.value = Unit
+        viewModel.loadPaperList()
     }
 
     private fun setupToolbar() {
@@ -57,10 +57,10 @@ class PaperListActivity : LifecycleActivity() {
 
         swipeRefreshLayout.setColorSchemeResources(R.color.color_accent)
         swipeRefreshLayout.setOnRefreshListener {
-            viewModel.loadPaperList.value = Unit
+            viewModel.loadPaperList()
         }
 
-        viewModel.paperList().observe(this, Observer<List<Paper>> { papers ->
+        viewModel.papers.observe(this, Observer<List<Paper>> { papers ->
             papers?.let {
                 adapter.items = papers.toMutableList()
                 adapter.notifyDataSetChanged()

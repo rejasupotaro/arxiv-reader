@@ -1,6 +1,5 @@
 package rejasupotaro.arxiv.reader.ui.paper.view
 
-import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.content.Context
@@ -15,7 +14,11 @@ class PaperViewViewModel(
         private val context: Context,
         private val paperRepository: PaperRepository
 ) : ViewModel() {
-    val paper = MutableLiveData<Paper>()
+    private val loadEvent = MutableLiveData<String>()
+
+    val paper = loadEvent.switchMap { title ->
+        paperRepository.findByTitle(title)
+    }
 
     val featureWords = paper.switchMap { paper ->
         paperRepository.all().map { papers ->
@@ -33,12 +36,8 @@ class PaperViewViewModel(
         }
     }
 
-    fun loadPaper(title: String): LiveData<Unit?> {
-        return paperRepository.findByTitle(title).map {
-            it?.let {
-                paper.value = it
-            }
-        }
+    fun loadPaper(title: String) {
+        loadEvent.value = title
     }
 }
 

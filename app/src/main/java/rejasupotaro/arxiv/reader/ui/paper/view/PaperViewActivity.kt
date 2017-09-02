@@ -55,7 +55,7 @@ class PaperViewActivity : LifecycleActivity() {
         setupFeatureWordListView()
         setupSimilarPaperListView()
 
-        viewModel.loadPaper(paper.title).observe(this, Observer {})
+        viewModel.loadPaper(paper.title)
     }
 
     private fun setupCategoryListView() {

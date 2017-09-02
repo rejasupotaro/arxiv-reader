@@ -15,14 +15,18 @@ class PaperListViewModel(
         private val activity: Activity,
         private val paperRepository: PaperRepository
 ) : ViewModel() {
-    val loadPaperList = MutableLiveData<Unit>()
+    private val loadEvent = MutableLiveData<Unit>()
 
-    fun paperList(): LiveData<List<Paper>> = loadPaperList.switchMap {
-        paperRepository.list()
+    val papers = loadEvent.switchMap {
+        paperRepository.all()
     }
 
     fun deletePaper(paper: Paper): LiveData<Unit> {
         val file = FileManager.paperToFile(activity, paper)
         return paperRepository.delete(paper to file)
+    }
+
+    fun loadPaperList() {
+        loadEvent.value = Unit
     }
 }

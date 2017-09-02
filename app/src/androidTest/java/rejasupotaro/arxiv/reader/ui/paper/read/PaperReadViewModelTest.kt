@@ -20,13 +20,16 @@ class PaperReadViewModelTest {
 
     @Test
     fun open() {
+        val paper = createPaper()
+
         launch(UI) {
             val data = MutableLiveData<Paper>()
-            data.value = createPaper()
+            data.value = paper
+
             whenever(paperRepository.findById(1)).thenReturn(data)
 
             viewModel.paper.waitAndGetValue {
-                viewModel.paperId.value = 1
+                viewModel.loadPaper(1)
             }
 
             val argumentCaptor = argumentCaptor<Paper>()

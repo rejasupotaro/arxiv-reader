@@ -11,12 +11,6 @@ import java.io.File
 
 @OpenClassOnDebug
 class PaperRepository(private val db: ArxivDb, private val httpClient: HttpClient) {
-    fun list(): LiveData<List<Paper>> {
-        return observable {
-            db.paperDao().all()
-        }
-    }
-
     fun delete(paper: Pair<Paper, File>): LiveData<Unit> {
         return observable {
             paper.second.delete()

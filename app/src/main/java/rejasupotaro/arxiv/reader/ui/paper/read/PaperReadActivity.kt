@@ -13,7 +13,8 @@ import javax.inject.Inject
 
 class PaperReadActivity : LifecycleActivity() {
     @Inject lateinit var viewModel: PaperReadViewModel
-    @AutoBundleField var paperId: Long = 0
+    @AutoBundleField
+    var paperId: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
@@ -36,6 +37,6 @@ class PaperReadActivity : LifecycleActivity() {
                         .load()
             }
         })
-        viewModel.paperId.value = paperId
+        viewModel.loadPaper(paperId)
     }
 }
