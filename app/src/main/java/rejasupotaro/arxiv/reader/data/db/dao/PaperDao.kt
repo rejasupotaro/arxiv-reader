@@ -12,7 +12,7 @@ interface PaperDao {
     fun insertAll(papers: List<Paper>): List<Long>
 
     @Query("SELECT * FROM papers ORDER BY COALESCE(opened_at, downloaded_at) DESC")
-    fun findAll(): List<Paper>
+    fun all(): List<Paper>
 
     @Delete
     fun delete(paper: Paper)

@@ -6,16 +6,14 @@ import rejasupotaro.arxiv.reader.data.api.ResponseConverter
 import rejasupotaro.arxiv.reader.data.db.ArxivDb
 import rejasupotaro.arxiv.reader.data.http.HttpClient
 import rejasupotaro.arxiv.reader.data.model.Paper
-import rejasupotaro.arxiv.reader.extensions.map
 import rejasupotaro.arxiv.reader.extensions.observable
-import rejasupotaro.arxiv.reader.extensions.switchMap
 import java.io.File
 
 @OpenClassOnDebug
 class PaperRepository(private val db: ArxivDb, private val httpClient: HttpClient) {
     fun list(): LiveData<List<Paper>> {
         return observable {
-            db.paperDao().findAll()
+            db.paperDao().all()
         }
     }
 
@@ -23,6 +21,12 @@ class PaperRepository(private val db: ArxivDb, private val httpClient: HttpClien
         return observable {
             paper.second.delete()
             db.paperDao().delete(paper.first)
+        }
+    }
+
+    fun all(): LiveData<List<Paper>> {
+        return observable {
+            db.paperDao().all()
         }
     }
 

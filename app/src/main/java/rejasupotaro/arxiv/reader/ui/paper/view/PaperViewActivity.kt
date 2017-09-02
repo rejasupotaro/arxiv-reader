@@ -52,7 +52,10 @@ class PaperViewActivity : LifecycleActivity() {
         publishedAtTextView.text = paper.publishedAt.readableText()
         summaryTextView.text = paper.summary
         setupCategoryListView()
+        setupFeatureWordListView()
         setupSimilarPaperListView()
+
+        viewModel.loadPaper(paper.title).observe(this, Observer {})
     }
 
     private fun setupCategoryListView() {
@@ -69,7 +72,7 @@ class PaperViewActivity : LifecycleActivity() {
             items = paper.categories
         }
 
-        viewModel.loadPaper(paper.title).observe(this, Observer { paper ->
+        viewModel.paper.observe(this, Observer { paper ->
             if (paper == null) {
                 setDownloadAction()
             } else {
@@ -93,6 +96,12 @@ class PaperViewActivity : LifecycleActivity() {
         }
     }
 
+    private fun setupFeatureWordListView() {
+        viewModel.featureWords.observe(this, Observer { featureWords ->
+            featureWordsTextView.text = featureWords?.map { it.first }?.joinToString()
+        })
+    }
+
     private fun setupSimilarPaperListView() {
         val adapter = SimilarPaperListAdapter { paper, view ->
             NavigationController.navigateToViewer(this, paper, view)
@@ -101,7 +110,7 @@ class PaperViewActivity : LifecycleActivity() {
         similarPaperListView.layoutManager = LinearLayoutManager(this)
         similarPaperListView.adapter = adapter
 
-        viewModel.loadSimilarPapers(paper.title).observe(this, Observer { similarPapers ->
+        viewModel.similarPapers.observe(this, Observer { similarPapers ->
             similarPapers?.let {
                 adapter.items = similarPapers
                 adapter.notifyDataSetChanged()

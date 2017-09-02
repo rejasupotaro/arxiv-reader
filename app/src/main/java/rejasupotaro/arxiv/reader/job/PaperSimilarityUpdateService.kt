@@ -17,7 +17,7 @@ class PaperSimilarityUpdateService(name: String = PaperSimilarityUpdateService::
     }
 
     fun update() {
-        val papers = db.paperDao().findAll()
+        val papers = db.paperDao().all()
         FeatureExtractor.topNSimilarPapers(applicationContext, papers).map { (paperId, similarPapers) ->
             val paperSimilarities = similarPapers.map { (similarPaperId, similarity) ->
                 PaperSimilarity(paperId, similarPaperId, similarity)
