@@ -18,18 +18,18 @@ class PaperReadViewModel(private val paperRepository: PaperRepository) : ViewMod
                 openPaperById(paperId)
             }
 
-    fun updatePaperLastOpenedPage(page: Int, totalPage: Int): LiveData<Unit> {
+    fun updatePaperLastOpenedPage(page: Int, totalPage: Int): LiveData<Paper>? {
         return paper.value?.let { paper ->
             paper.lastOpenedPage = page
             paper.totalPage = totalPage
-            paperRepository.update(paper).map { Unit }
-        } ?: observable { Unit }
+            paperRepository.update(paper)
+        }
     }
 
     private fun openPaperById(paperId: Long): LiveData<Paper?> {
         return paperRepository.findById(paperId)
                 .map { paper ->
-                    paper?.apply {
+                    paper?.let {
                         paper.openedAt = DateTime.now()
                         paperRepository.update(paper)
                     }

@@ -15,10 +15,6 @@ class PaperReadActivity : LifecycleActivity() {
     @Inject lateinit var viewModel: PaperReadViewModel
     @AutoBundleField var paperId: Long = 0
 
-    private val onPageChangedListener = { page: Int, totalPage: Int ->
-        viewModel.updatePaperLastOpenedPage(page, totalPage).observe(this, Observer {})
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
@@ -34,7 +30,9 @@ class PaperReadActivity : LifecycleActivity() {
                 val file = FileManager.paperToFile(this, it)
                 pdfView.fromFile(file)
                         .defaultPage(it.lastOpenedPage)
-                        .onPageChange(onPageChangedListener)
+                        .onPageChange { page, pageCount ->
+                            viewModel.updatePaperLastOpenedPage(page, pageCount)?.observe(this, Observer {})
+                        }
                         .load()
             }
         })
