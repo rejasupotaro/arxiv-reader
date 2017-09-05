@@ -20,7 +20,7 @@ class PaperRepository(private val db: ArxivDb, private val httpClient: HttpClien
 
     fun all(): LiveData<List<Paper>> {
         return observable {
-            db.paperDao().all()
+            db.paperDao().findAll()
         }
     }
 
@@ -46,7 +46,7 @@ class PaperRepository(private val db: ArxivDb, private val httpClient: HttpClien
     fun similarPapers(paperId: Long): LiveData<List<Pair<Paper, Double>>> {
         return observable {
             db.paperSimilarityDao().findByFromPaperId(paperId).let { paperSimilarities ->
-                db.paperDao().findById(paperSimilarities.map { paperSimilarity ->
+                db.paperDao().findByIds(paperSimilarities.map { paperSimilarity ->
                     paperSimilarity.toPaperId
                 }).mapIndexed { index, paper ->
                     Pair(paper, paperSimilarities[index].similarity)
@@ -61,7 +61,7 @@ class PaperRepository(private val db: ArxivDb, private val httpClient: HttpClien
         val response = httpClient.get(url)
         val body = response?.body()?.string() ?: ""
         return if (body.isEmpty()) {
-            SearchResponse(query, listOf<Paper>(), page, 0)
+            SearchResponse(query, listOf(), page, 0)
         } else {
             ResponseConverter
                     .xmlToApiResponse(body)

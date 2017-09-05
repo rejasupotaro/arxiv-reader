@@ -3,7 +3,7 @@ package rejasupotaro.arxiv.reader.data.db
 import android.arch.persistence.db.SupportSQLiteDatabase
 import android.arch.persistence.room.migration.Migration
 
-fun migrations(): Array<Migration> = arrayOf(AddPaperSimilaritiesTable())
+fun migrations() = arrayOf(AddPaperSimilaritiesTable())
 
 class AddPaperSimilaritiesTable : Migration(1, 2) {
     override fun migrate(db: SupportSQLiteDatabase) {

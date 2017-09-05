@@ -54,7 +54,7 @@ class FeatureExtractorTest {
         val xml = readTextFromAssets("api_response.xml")
         val apiResponse = ResponseConverter.xmlToApiResponse(xml)
         val papers = apiResponse.papers.map { Paper.entityToModel(it) }
-        paperDao.insertAll(papers)
-        return paperDao.all()
+        paperDao.insert(papers)
+        return paperDao.findAll()
     }
 }

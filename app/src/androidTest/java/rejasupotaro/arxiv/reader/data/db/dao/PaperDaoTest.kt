@@ -60,7 +60,7 @@ class PaperDaoTest {
                 openedAt = yesterday
         )
 
-        paperDao.all().let { papers ->
+        paperDao.findAll().let { papers ->
             assertThat(papers.size).isEqualTo(3)
             assertThat(papers[0].title).isEqualTo("Expected to be 1")
             assertThat(papers[1].title).isEqualTo("Expected to be 2")

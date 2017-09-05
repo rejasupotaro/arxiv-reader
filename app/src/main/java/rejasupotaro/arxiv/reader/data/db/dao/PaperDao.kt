@@ -9,10 +9,10 @@ interface PaperDao {
     fun insert(paper: Paper): Long
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(papers: List<Paper>): List<Long>
+    fun insert(papers: List<Paper>): List<Long>
 
     @Query("SELECT * FROM papers ORDER BY COALESCE(opened_at, downloaded_at) DESC")
-    fun all(): List<Paper>
+    fun findAll(): List<Paper>
 
     @Delete
     fun delete(paper: Paper)
@@ -24,7 +24,7 @@ interface PaperDao {
     fun findById(id: Long): Paper?
 
     @Query("SELECT * FROM papers WHERE id IN (:ids)")
-    fun findById(ids: List<Long>): List<Paper>
+    fun findByIds(ids: List<Long>): List<Paper>
 
     @Query("SELECT * FROM papers WHERE title = :title")
     fun findByTitle(title: String): Paper?

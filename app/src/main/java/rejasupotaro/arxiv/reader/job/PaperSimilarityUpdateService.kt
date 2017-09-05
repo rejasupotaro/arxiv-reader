@@ -17,12 +17,12 @@ class PaperSimilarityUpdateService(name: String = PaperSimilarityUpdateService::
     }
 
     fun update() {
-        val papers = db.paperDao().all()
+        val papers = db.paperDao().findAll()
         FeatureExtractor.topNSimilarPapers(applicationContext, papers).map { (paperId, similarPapers) ->
             val paperSimilarities = similarPapers.map { (similarPaperId, similarity) ->
                 PaperSimilarity(paperId, similarPaperId, similarity)
             }
-            db.paperSimilarityDao().insertAll(paperSimilarities)
+            db.paperSimilarityDao().insert(paperSimilarities)
         }
     }
 }

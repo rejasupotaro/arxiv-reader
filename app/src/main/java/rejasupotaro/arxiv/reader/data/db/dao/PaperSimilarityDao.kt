@@ -12,7 +12,7 @@ interface PaperSimilarityDao {
     fun insert(paperSimilarity: PaperSimilarity): Long
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(paperSimilarities: List<PaperSimilarity>): List<Long>
+    fun insert(paperSimilarities: List<PaperSimilarity>): List<Long>
 
     @Query("DELETE FROM paper_similarities")
     fun deleteAll()
