@@ -33,15 +33,20 @@ class CharacterTableTest {
 
     @Test
     fun decode() {
-        val encodedData = CharacterTable.encode("word")
-        val actual = CharacterTable.decode(encodedData)
-        assertThat(actual).isEqualTo("word")
+        val vector = arrayOf(
+                floatArrayOf(0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f),
+                floatArrayOf(0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f),
+                floatArrayOf(0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f)
+        )
+        val actual = CharacterTable.decode(vector)
+        assertThat(actual).isEqualTo("abc")
     }
 
     @Test
     fun vectorize() {
-        val actual = CharacterTable.vectorize(listOf("word"))
+        val actual = CharacterTable.vectorize(listOf("a"))
         assertThat(actual.shape()).isEqualTo("(1, 36, 27)")
+        assertThat(actual[0][0][0]).isEqualTo(1.0f)
         assertThat(actual.flatten().size).isEqualTo(972)
     }
 

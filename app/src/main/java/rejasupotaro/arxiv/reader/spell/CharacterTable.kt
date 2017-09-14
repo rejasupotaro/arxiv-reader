@@ -19,8 +19,9 @@ object CharacterTable {
 
     fun decode(vector: Array<FloatArray>): String {
         return vector.map { preds ->
-            val index = preds.max()?.let {
-                preds.indexOf(it)
+            val reversed = preds.reversed()
+            val index = reversed.max()?.let {
+                reversed.indexOf(it)
             }
             CharacterTable.INDEX_CHARS[index]
         }.joinToString("")

@@ -9,6 +9,12 @@ class TensorFlowRunner(assets: AssetManager) {
     private val outputName = "output_0"
     private val numClasses = CharacterTable.NUM_CLASSES
 
+    val inputOperation
+        get() = inferenceInterface.graphOperation(inputName)
+
+    val outputOperation
+        get() = inferenceInterface.graphOperation(outputName)
+
     fun run(input: FloatArray): FloatArray {
         val outputNames = arrayOf(outputName)
         val output = FloatArray(1 * CharacterTable.MAX_LEN * numClasses)
